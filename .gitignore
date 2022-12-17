@@ -1,7 +1,16 @@
-# See http://help.github.com/ignore-files/ for more about ignoring files.
+.env
+
+.yarn/*
+!.yarn/releases
+
+
+cache
+forge-artifacts
+broadcast
+.gas-snapshot
 
 # compiled output
-dist
+packages/*/build
 tmp
 /out-tsc
 
