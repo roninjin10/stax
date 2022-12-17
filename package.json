@@ -1,15 +1,33 @@
 {
-  "name": "experiments",
+  "name": "stax",
   "version": "0.0.0",
-  "license": "MIT",
-  "scripts": {},
   "private": true,
-  "devDependencies": {
-    "@nrwl/nx-cloud": "latest",
-    "nx": "15.3.3",
-    "prettier": "^2.8.1"
+  "workspaces": {
+    "packages": [
+      "packages/*"
+    ]
   },
-  "workspaces": [
-    "packages/*"
-  ]
+  "scripts": {
+    "test": "nx run-many --target=test",
+    "test:ci": "nx run-many --target=test --parallel=3",
+    "build": "nx run-many --target=build",
+    "build:ci": "nx run-many --target=build --parallel=3",
+    "lint": "nx run-many --target=lint",
+    "lint:ci": "nx run-many --target=lint --parallel=3",
+    "postinstall": "forge install"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.46.1",
+    "@typescript-eslint/parser": "^5.46.1",
+    "eslint": "^8.30.0",
+    "eslint-plugin-react": "^7.31.11",
+    "prettier": "^2.8.1",
+    "typescript": "^4.9.4"
+  },
+  "license": "MIT",
+  "packageManager": "yarn@3.3.0",
+  "dependencies": {
+    "@nrwl/nx-cloud": "latest",
+    "nx": "^15.3.3"
+  }
 }
