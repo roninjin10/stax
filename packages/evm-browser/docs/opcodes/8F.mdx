@@ -1,0 +1,76 @@
+---
+fork: Frontier
+group: Duplication Operations
+---
+
+*Index 1 is top of the stack. See [PUSH](/#60).*
+
+## Stack input
+
+0. ignored value.
+1. ignored value.
+2. ignored value.
+3. ignored value.
+4. ignored value.
+5. ignored value.
+6. ignored value.
+7. ignored value.
+8. ignored value.
+9. ignored value.
+10. ignored value.
+11. ignored value.
+12. ignored value.
+13. ignored value.
+14. ignored value.
+15. `value`: value to duplicate.
+
+## Stack output
+
+0. `value`: duplicated value.
+1. ignored value.
+2. ignored value.
+3. ignored value.
+4. ignored value.
+5. ignored value.
+6. ignored value.
+7. ignored value.
+8. ignored value.
+9. ignored value.
+10. ignored value.
+11. ignored value.
+12. ignored value.
+13. ignored value.
+14. ignored value.
+15. ignored value.
+16. `value`: original value.
+
+## Example
+
+| * | Input | Output |
+|--:|------:|-------:|
+| `1` | `0` | `1` |
+| `2` | `0` | `0` |
+| `3` | `0` | `0` |
+| `4` | `0` | `0` |
+| `5` | `0` | `0` |
+| `6` | `0` | `0` |
+| `7` | `0` | `0` |
+| `8` | `0` | `0` |
+| `9` | `0` | `0` |
+| `10` | `0` | `0` |
+| `11` | `0` | `0` |
+| `12` | `0` | `0` |
+| `13` | `0` | `0` |
+| `14` | `0` | `0` |
+| `15` | `0` | `0` |
+| `16` | `1` | `0` |
+| `17` | | `1` |
+
+[Reproduce in playground](/playground?unit=Wei&codeType=Mnemonic&code='ySet%20statex1wwwwwzzyDuplicatezDUP16'~x0z%5Cny%2F%2F%20xzPUSH1%20w~~~%01wxyz~_).
+
+## Error cases
+
+The state changes done by the current context are [reverted](#FD) in those cases:
+- Not enough gas.
+- Not enough values on the stack.
+- Stack overflow.

@@ -1,0 +1,34 @@
+---
+fork: Frontier
+group: Push Operations
+---
+
+*Index 1 is top of the stack.*
+
+## Notes
+
+The new value is put on top of the stack, incrementing all the other value indices. The values for a specific opcode thus have to be pushed in reverse order of the stack. For example, with [MSTORE](/#52), the first value pushed would have to be `value`, and then `offset`.
+
+## Stack output
+
+0. `value`: pushed value, aligned to the right (put in the lowest significant bytes).
+
+## Example
+
+| * | * |
+|---|---|
+| **Code** | `0x66FFFFFFFFFFFFFF6600000000000000` |
+| **Text** | `PUSH7 FFFFFFFFFFFFFF PUSH7 00000000000000` |
+
+| * | Input | Output |
+|--:|------:|-------:|
+| `1` | | `0x00000000000000` |
+| `2` | | `0xFFFFFFFFFFFFFF` |
+
+[Reproduce in playground](/playground?unit=Wei&codeType=Mnemonic&code='~xzzzzzzz%5Cn~'~PUSH7%200zFF%01z~_).
+
+## Error cases
+
+The state changes done by the current context are [reverted](#FD) in those cases:
+- Not enough gas.
+- Stack overflow.

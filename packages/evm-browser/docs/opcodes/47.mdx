@@ -1,0 +1,28 @@
+---
+fork: Istanbul
+group: Block Information
+---
+
+*Index 1 is top of the stack. See [PUSH](/#60).*
+
+## Notes
+
+Semantically equivalent of calling [BALANCE](/#31) with [ADDRESS](/#30) as parameter, but with a reduced gas cost.
+
+## Stack output
+
+0. `balance`: balance of the current account in [wei](https://www.investopedia.com/terms/w/wei.asp).
+
+## Example
+
+| * | Input | Output |
+|--:|------:|-------:|
+| `1` | | `9` |
+
+[Reproduce in playground](/playground?callValue=9&unit=Wei&codeType=Mnemonic&code='SELFBALANCE'_).
+
+## Error cases
+
+The state changes done by the current context are [reverted](#FD) in those cases:
+- Not enough gas.
+- Stack overflow.

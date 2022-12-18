@@ -1,0 +1,30 @@
+---
+fork: Frontier
+group: Comparison & Bitwise Logic Operations
+---
+
+*Index 1 is top of the stack. See [PUSH](/#60).*
+
+## Stack input
+
+0. `a`: left side integer.
+1. `b`: right side integer.
+
+## Stack output
+
+0. `a < b`: 1 if the left side is smaller, 0 otherwise.
+
+## Examples
+
+| * | Input | Output | * | * | Input | Output |
+|--:|------:|-------:|--:|--:|------:|-------:|
+| `1` | `9` | `1` | * | `1` | `10` | `0` |
+| `2` | `10` | | * | `2` | `10` | |
+
+[Reproduce in playground](/playground?unit=Wei&codeType=Mnemonic&code='z1w~9yLTyyz2wwyLT'~yPUSH1%20z%2F%2F%20Example%20y%5Cnw~10%01wyz~_).
+
+## Error cases
+
+The state changes done by the current context are [reverted](#FD) in those cases:
+- Not enough gas.
+- Not enough values on the stack.
