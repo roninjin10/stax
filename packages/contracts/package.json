@@ -5,17 +5,17 @@
   "main": "src/AppEntrypoint.sol",
   "license": "MIT",
   "scripts": {
-    "typecheck": "yarn tsc --noEmit",
+    "typecheck": "pnpm tsc --noEmit",
     "build": "forge build",
-    "lint": "yarn solhint -f table 'contracts/**/*.sol'",
+    "lint": "pnpm solhint -f table 'contracts/**/*.sol'",
     "test": "forge test -vvv",
     "test:watch": "forge test -vvv --watch",
     "test:coverage": "forge coverage -vvv --watch",
     "start:devnet": "anvil",
     "predeploy": "source ../../.env",
-    "deploy:goerli": "yarn predeploy && forge script script/AppEntrypoint.s.sol:Deploy --fork-url http://localhost:8545 --broadcast --verify -vvvv",
-    "deploy:devnet": "yarn predeploy && forge script script/AppEntrypoint.s.sol:Deploy --rpc-url http://localhost:8545 --broadcast -vvvv",
-    "deploy:optimism": "yarn predeploy && forge script script/AppEntrypoint.s.sol:Deploy --rpc-url $OPTIMISM_RPC_URL --broadcast --verify -vvvv"
+    "deploy:goerli": "pnpm predeploy && forge script script/AppEntrypoint.s.sol:Deploy --fork-url http://localhost:8545 --broadcast --verify -vvvv",
+    "deploy:devnet": "pnpm predeploy && forge script script/AppEntrypoint.s.sol:Deploy --rpc-url http://localhost:8545 --broadcast -vvvv",
+    "deploy:optimism": "pnpm predeploy && forge script script/AppEntrypoint.s.sol:Deploy --rpc-url $OPTIMISM_RPC_URL --broadcast --verify -vvvv"
   },
   "devDependencies": {
     "solhint": "^3.3.7"

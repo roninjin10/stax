@@ -1,9 +1,5 @@
 .env
 
-.yarn/*
-!.yarn/releases
-
-
 cache
 forge-artifacts
 broadcast
@@ -40,7 +36,6 @@ node_modules
 /coverage
 /libpeerconnection.log
 npm-debug.log
-yarn-error.log
 testem.log
 /typings
 

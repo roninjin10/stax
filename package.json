@@ -2,6 +2,10 @@
   "name": "stax",
   "version": "0.0.0",
   "private": true,
+  "engines": {
+    "node": ">=18",
+    "pnpm": ">=7"
+  },
   "workspaces": {
     "packages": [
       "packages/*"
@@ -16,16 +20,8 @@
     "lint:ci": "nx run-many --target=lint --parallel=3",
     "postinstall": "forge install"
   },
-  "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "^5.46.1",
-    "@typescript-eslint/parser": "^5.46.1",
-    "eslint": "^8.30.0",
-    "eslint-plugin-react": "^7.31.11",
-    "prettier": "^2.8.1",
-    "typescript": "^4.9.4"
-  },
   "license": "MIT",
-  "packageManager": "yarn@3.3.0",
+  "packageManager": "pnpm@7.18.2",
   "dependencies": {
     "@nrwl/nx-cloud": "latest",
     "nx": "^15.3.3"
