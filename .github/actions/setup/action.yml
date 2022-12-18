@@ -6,7 +6,7 @@ runs:
       with:
         node-version-file: '.nvmrc'
         registry-url: https://registry.npmjs.org
-        cache: yarn
+        cache: pnpm
 
     - name: Install Foundry
       uses: foundry-rs/foundry-toolchain@v1
@@ -14,7 +14,7 @@ runs:
         version: nightly
 
     - name: Install node modules
-      run: yarn install
+      run: pnpm install
       shell: bash
 
     - name: Derive appropriate SHAs for base and head for `nx affected` commands

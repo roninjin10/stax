@@ -16,7 +16,7 @@
     "lint:ci": "nx affected --target=lint --parallel=3"
   },
   "license": "MIT",
-  "packageManager": "yarn@3.3.0",
+  "packageManager": "pnpm@7.18.2",
   "dependencies": {
     "@nrwl/nx-cloud": "^15.0.2",
     "nx": "^15.3.3"
