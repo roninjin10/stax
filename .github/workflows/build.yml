@@ -24,6 +24,6 @@ jobs:
         uses: ./.github/actions/setup
 
       - name: Run build
-        run: yarn build:ci
+        run: pnpm build:ci
         env:
           NX_CLOUD_ACCESS_TOKEN: ${{ secrets.NX_CLOUD_ACCESS_TOKEN }}
