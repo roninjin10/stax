@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "target": "es2015",
+    "module": "commonjs",
+    "plugins": [
+      {
+        "name": "../../lib",
+        "tag": "gql",
+        "schema": "schema.graphql",
+        "typegen": {
+          "addons": ["invalid-module"]
+        }
+      }
+    ]
+  }
+}

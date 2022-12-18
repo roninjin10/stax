@@ -1,0 +1,41 @@
+name: build
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [16.x]
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: npm install, build, and test
+        run: |
+          yarn --frozen-lockfile
+          yarn compile
+          yarn link
+          yarn link ts-graphql-plugin
+          yarn test
+        env:
+          CI: true
+      - uses: codecov/codecov-action@v3
+        with:
+          name: jest
+          token: ${{ secrets.CODECOV_TOKEN }}
+          files: ./coverage/coverage-final.json
+      - uses: codecov/codecov-action@v3
+        with:
+          name: e2e
+          token: ${{ secrets.CODECOV_TOKEN }}
+          files: ./e2e_coverage/coverage-final.json
