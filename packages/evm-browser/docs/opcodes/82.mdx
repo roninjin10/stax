@@ -1,0 +1,37 @@
+---
+fork: Frontier
+group: Duplication Operations
+---
+
+*Index 1 is top of the stack. See [PUSH](/#60).*
+
+## Stack input
+
+0. `a`: ignored value.
+1. `b`: ignored value.
+2. `c`: value to duplicate.
+
+## Stack output
+
+0. `c`: duplicated value.
+1. `a`: ignored value.
+2. `b`: ignored value.
+3. `c`: original value.
+
+## Example
+
+| * | Input | Output |
+|--:|------:|-------:|
+| `1` | `0` | `1` |
+| `2` | `0` | `0` |
+| `3` | `1` | `0` |
+| `4` | | `1` |
+
+[Reproduce in playground](/playground?unit=Wei&codeType=Mnemonic&code='ySet%20state~1~0~0zzyDuplicatezDUP3'~zPUSH1%20z%5Cny%2F%2F%20%01yz~_).
+
+## Error cases
+
+The state changes done by the current context are [reverted](#FD) in those cases:
+- Not enough gas.
+- Not enough values on the stack.
+- Stack overflow.

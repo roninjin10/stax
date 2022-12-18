@@ -1,0 +1,22 @@
+---
+fork: Frontier
+group: Block Information
+---
+
+*Index 1 is top of the stack. See [PUSH](/#60).*
+
+## Stack output
+
+0. `timestamp`: unix timestamp of the current block.
+
+## Example
+
+| * | Input | Output |
+|--:|------:|-------:|
+| `1` | | `1636704767` |
+
+## Error cases
+
+The state changes done by the current context are [reverted](#FD) in those cases:
+- Not enough gas.
+- Stack overflow.

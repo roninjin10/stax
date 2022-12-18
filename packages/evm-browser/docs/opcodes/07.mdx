@@ -1,0 +1,39 @@
+---
+fork: Frontier
+group: Stop and Arithmetic Operations
+---
+
+*Index 1 is top of the stack. See [PUSH](/#60).*
+
+## Notes
+
+All values are treated as two’s complement signed 256-bit integers. Note the overflow semantic when −2<sup>255</sup> is negated.
+
+## Stack input
+
+0. `a`: integer numerator.
+1. `b`: integer denominator.
+
+## Stack output
+
+0. `a % b`: integer result of the signed integer modulo. If the denominator is 0, the result will be 0.
+
+## Examples
+
+| * | Input | Output |
+|--:|------:|-------:|
+| `1` | `10` | `1` |
+| `2` | `3` | |
+
+| * | Input | Output |
+|--:|------:|-------:|
+| `1` | `0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF8` | `0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFE` |
+| `2` | `0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFD` | |
+
+[Reproduce in playground](/playground?unit=Wei&codeType=Mnemonic&code='y1s3s10tzzy2wrDwr8t'~uuuz%5Cny%2F%2F%20Example%20wv32%200xr~vzPUSHuFFFtzSMODsv1%20r~~~%01rstuvwyz~_).
+
+## Error cases
+
+The state changes done by the current context are [reverted](#FD) in those cases:
+- Not enough gas.
+- Not enough values on the stack.

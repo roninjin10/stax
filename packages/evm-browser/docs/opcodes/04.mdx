@@ -1,0 +1,30 @@
+---
+fork: Frontier
+group: Stop and Arithmetic Operations
+---
+
+*Index 1 is top of the stack. See [PUSH](/#60).*
+
+## Stack input
+
+0. `a`: integer numerator
+1. `b`: integer denominator.
+
+## Stack output
+
+0. `a // b`: integer result of the integer division. If the denominator is 0, the result will be 0.
+
+## Examples
+
+| * | Input | Output | * | * | Input | Output |
+|--:|------:|-------:|--:|--:|------:|-------:|
+| `1` | `10` | `1` | * | `1` | `1` | `0` |
+| `2` | `10` | | * | `2` | `2` | |
+
+[Reproduce in playground](/playground?unit=Wei&codeType=Mnemonic&code='z1~10~10wyyz2~2~1w'~yPUSH1%20z%2F%2F%20Example%20y%5CnwyDIV%01wyz~_).
+
+## Error cases
+
+The state changes done by the current context are [reverted](#FD) in those cases:
+- Not enough gas.
+- Not enough values on the stack.

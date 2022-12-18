@@ -1,0 +1,91 @@
+/*
+Atom One Light by Daniel Gamage
+Original One Light Syntax theme from https://github.com/atom/one-light-syntax
+base:    #fafafa
+mono-1:  #383a42
+mono-2:  #686b77
+mono-3:  #a0a1a7
+hue-1:   #0184bb
+hue-2:   #4078f2
+hue-3:   #a626a4
+hue-4:   #50a14f
+hue-5:   #e45649
+hue-5-2: #c91243
+hue-6:   #986801
+hue-6-2: #c18401
+*/
+
+.light .hljs {
+  color: #383a42;
+  background: #fafafa;
+}
+
+.light .hljs-comment,
+.light .hljs-quote {
+  color: #a0a1a7;
+  font-style: italic;
+}
+
+.light .hljs-doctag,
+.light .hljs-keyword,
+.light .hljs-formula {
+  color: #a626a4;
+}
+
+.light .hljs-section,
+.light .hljs-name,
+.light .hljs-selector-tag,
+.light .hljs-deletion,
+.light .hljs-subst {
+  color: #e45649;
+}
+
+.light .hljs-literal {
+  color: #0184bb;
+}
+
+.light .hljs-string,
+.light .hljs-regexp,
+.light .hljs-addition,
+.light .hljs-attribute,
+.light .hljs-meta .hljs-string {
+  color: #50a14f;
+}
+
+.light .hljs-attr,
+.light .hljs-variable,
+.light .hljs-template-variable,
+.light .hljs-type,
+.light .hljs-selector-class,
+.light .hljs-selector-attr,
+.light .hljs-selector-pseudo,
+.light .hljs-number {
+  color: #986801;
+}
+
+.light .hljs-symbol,
+.light .hljs-bullet,
+.light .hljs-link,
+.light .hljs-meta,
+.light .hljs-selector-id,
+.light .hljs-title {
+  color: #4078f2;
+}
+
+.light .hljs-built_in,
+.light .hljs-title.class_,
+.light .hljs-class .hljs-title {
+  color: #c18401;
+}
+
+.light .hljs-emphasis {
+  font-style: italic;
+}
+
+.light .hljs-strong {
+  font-weight: bold;
+}
+
+.light .hljs-link {
+  text-decoration: underline;
+}

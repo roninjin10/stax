@@ -1,0 +1,24 @@
+---
+fork: London
+group: Block Information
+---
+
+*Index 1 is top of the stack. See [PUSH](/#60).*
+
+## Stack output
+
+0. `baseFee`: [base fee](https://ethereum.org/en/developers/docs/gas/#base-fee) in [wei](https://www.investopedia.com/terms/w/wei.asp).
+
+## Example
+
+| * | Input | Output |
+|--:|------:|-------:|
+| `1` | | `10` |
+
+[Reproduce in playground](/playground?unit=Wei&codeType=Mnemonic&code='BASEFEE'_).
+
+## Error cases
+
+The state changes done by the current context are [reverted](#FD) in those cases:
+- Not enough gas.
+- Stack overflow.

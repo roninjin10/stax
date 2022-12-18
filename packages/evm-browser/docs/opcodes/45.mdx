@@ -1,0 +1,24 @@
+---
+fork: Frontier
+group: Block Information
+---
+
+*Index 1 is top of the stack. See [PUSH](/#60).*
+
+## Stack output
+
+0. `gasLimit`: [gas limit](https://ethereum.org/en/developers/docs/gas/#what-is-gas-limit).
+
+## Example
+
+| * | Input | Output |
+|--:|------:|-------:|
+| `1` | | `0xffffffffffff` |
+
+[Reproduce in playground](/playground?unit=Wei&codeType=Mnemonic&code='GASLIMIT'_).
+
+## Error cases
+
+The state changes done by the current context are [reverted](#FD) in those cases:
+- Not enough gas.
+- Stack overflow.

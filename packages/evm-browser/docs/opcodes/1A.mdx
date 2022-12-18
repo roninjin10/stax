@@ -1,0 +1,30 @@
+---
+fork: Frontier
+group: Comparison & Bitwise Logic Operations
+---
+
+*Index 1 is top of the stack. See [PUSH](/#60).*
+
+## Stack input
+
+0. `i`: byte offset starting from the most significant byte.
+1. `x`: 32-byte value.
+
+## Stack output
+
+0. `y`: the indicated byte at the least significant position. If the byte offset is out of range, the result is 0.
+
+## Examples
+
+| * | Input | Output | * | * | Input | Output |
+|--:|------:|-------:|--:|--:|------:|-------:|
+| `1` | `31` | `0xFF` | * | `1` | `30` | `0xFF` |
+| `2` | `0xFF` | | * | `2` | `0xFF00` | |
+
+[Reproduce in playground](/playground?unit=Wei&codeType=Mnemonic&code='z1~0xFF~31vyyz2w2%200xFF00~30v'~w1%20z%2F%2F%20Example%20y%5CnwyPUSHvyBYTE%01vwyz~_).
+
+## Error cases
+
+The state changes done by the current context are [reverted](#FD) in those cases:
+- Not enough gas.
+- Not enough values on the stack.

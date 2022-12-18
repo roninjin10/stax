@@ -1,0 +1,30 @@
+---
+fork: Frontier
+group: Stop and Arithmetic Operations
+---
+
+*Index 1 is top of the stack. See [PUSH](/#60).*
+
+## Stack input
+
+0. `a`: integer base.
+1. `exponent`: integer exponent.
+
+## Stack output
+
+0. `a ** exponent`: integer result of the exponential operation modulo 2<sup>256</sup>.
+
+## Examples
+
+| * | Input | Output | * | * | Input | Output |
+|--:|------:|-------:|--:|--:|------:|-------:|
+| `1` | `10` | `100` | * | `1` | `2` | `4` |
+| `2` | `2` | | * | `2` | `2` | |
+
+[Reproduce in playground](/playground?unit=Wei&codeType=Mnemonic&code='z1~2~10wyyz2~2~2w'~yPUSH1%20z%2F%2F%20Example%20y%5CnwyEXP%01wyz~_).
+
+## Error cases
+
+The state changes done by the current context are [reverted](#FD) in those cases:
+- Not enough gas.
+- Not enough values on the stack.

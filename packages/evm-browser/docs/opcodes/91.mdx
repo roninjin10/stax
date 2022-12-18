@@ -1,0 +1,34 @@
+---
+fork: Frontier
+group: Exchange Operations
+---
+
+*Index 1 is top of the stack. See [PUSH](/#60).*
+
+## Stack input
+
+0. `a`: value to swap.
+1. `b`: ignored value.
+2. `c`: value to swap.
+
+## Stack output
+
+0. `c`: swapped value.
+1. `b`: ignored value.
+2. `a`: swapped value.
+
+## Example
+
+| * | Input | Output |
+|--:|------:|-------:|
+| `1` | `1` | `2` |
+| `2` | `0` | `0` |
+| `3` | `2` | `1` |
+
+[Reproduce in playground](/playground?unit=Wei&codeType=Mnemonic&code='yet%20state~2~0~1zzywapzSWAP2'~zPUSH1%20z%5Cny%2F%2F%20S%01yz~_).
+
+## Error cases
+
+The state changes done by the current context are [reverted](#FD) in those cases:
+- Not enough gas.
+- Not enough values on the stack.
