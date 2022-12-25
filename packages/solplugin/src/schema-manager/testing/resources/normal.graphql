@@ -1,7 +1,0 @@
-type User {
-  name: String!
-}
-
-extend type Query {
-  me: User!
-}
