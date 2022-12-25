@@ -1,3 +1,0 @@
-extend type NoExisitingType {
-  name: String!
-}
