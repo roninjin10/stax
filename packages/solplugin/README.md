@@ -1,52 +1,174 @@
-## A Template for a TypeScript Language Service Plugin
+# solidity-plugin
 
-<img src="./docs/screenshot.png">
+The solidity plugin provides useful functionality to optimize TypeScript development including
 
-This repo has two projects:
+- a solidity native programming api
+- auto completion
+- type generation
+- hook generation
 
-- `/` is a TSServer Plugin 
-- `/example` is a TypeScript project which uses the root TSServer Plugin
+This plugin has the following features:
 
-The source files for your project
+- As TypeScript Language Service extension:
+  - Completion suggestion
+  - Get solidity diagnostics
+  - Display solidity quick info within tooltip
+- As CLI
+  - Generate ts type files from solidity files
+  - Extract + validate solidity code within your typescript files
+- As rollup plugin
+  - Transform your solidity directly to abis statically
+  - Transform your solidity directly to wagmi hooks
 
-#### Get Started
+## ToC
 
-Get the plugin working and your TS to JS converted as you save:
+<!-- toc -->
+
+- [Getting started](#getting-started)
+- [CLI Usage](#cli-usage)
+  - [`typegen` command](#typegen-command)
+  - [`extract` command](#extract-command)
+  - [`validate` command](#validate-command)
+  - [`report` command](#report-command)
+- [Plugin options](#plugin-options)
+  - [`schema`](#schema)
+  - [`tag`](#tag)
+  - [`localSchemaExtensions`](#localschemaextensions)
+  - [`typegen.addons`](#typegenaddons)
+  - [`removeDuplicatedFragments`](#removeduplicatedfragments)
+- [Built-in Type Generator Addons](#built-in-type-generator-addons)
+  - [`typed-query-document`](#typed-query-document)
+- [webpack custom transformer](#webpack-custom-transformer)
+  - [webpack plugin options](#webpack-plugin-options)
+    - [`tsconfigPath` optional](#tsconfigpath-optional)
+  - [Transformer options](#transformer-options)
+    - [`removeFragmentDefinitions` optional](#removefragmentdefinitions-optional)
+    - [`documentTransformers` optional](#documenttransformers-optional)
+- [Template strings](#template-strings)
+- [Available editors](#available-editors)
+- [Version compatibility](#version-compatibility)
+- [Contributing](#contributing)
+- [License](#license)
+
+<!-- tocstop -->
+
+## Getting started
+
+First, confirm that your project has foundry installed.
+
+To install this foundry visit https://github.com/foundry-rs/foundry#installing-from-source
+
+````
+
+And configure `plugins` section in your tsconfig.json, for example:
+
+```json
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "target": "es5",
+    "plugins": [
+      {
+        "name": "solidity-plugin",
+        "foundry-config": "path/to/foundry.toml",
+      }
+    ]
+  }
+}
+````
+
+It's ready to go. Launch your TypeScript IDE.
+
+## CLI Usage
+
+```sh
+$ npx solidity-plugin <command> [options]
+```
+
+If you install this plugin, a short alias `tssol` is also available instead of `solidity-plugin`.
+
+Available commands are `typegen`, `extract`, and `validate`. If you want more detail, run`solidity-plugin --help`or`solidity-plugin <command> --help` in your console.
+
+### `typegen` command
+
+Generate TypeScript types from solidity files and template strings in ts files [Here is an output example](https://github.com/roninjin10/solidity-plugin/blob/main/project-fixtures/react-apollo-prj/src/__generated__/git-hub-query.ts).
+
+### `extract` command
+
+Extracts Solidity from ts files and writes them to `manifest.json`.
+
+### `validate` command
+
+Validates your solidity code in your ts files and report syntax or semantic errors.
+
+## Plugin options
+
+Pass plugin options to your tsconfig.json to configure this plugin.
+
+```js
+/* tsconfig.json */
+{
+  "compilerOptions": {
+    "plugins": [
+      {
+        "name": "solidity-plugin",
+        /* plugin options */
+        "foundry-config": "path/to/foundry.toml",
+        ...
+      }
+    ]
+  }
+}
+```
+
+### `foundry-config`
+
+It's a required parameter and should point your foundry-toml file `
+
+### `tag`
+
+Comma seperated list of tags that include solidity template strings.
+
+It's optional. When it's set, this plugin works only if the target template string is tagged by a function whose name is equal to this parameter.
+
+If not set, this plugin will default to sol
+
+For example if you set tag=s:
 
 ```ts
-git clone https://github.com/orta/TypeScript-TSServer-Plugin-Template
-cd TypeScript-TSServer-Plugin-Template
+import { sol as s } from '@stax/ts-sol'
 
-# Install deps and run TypeScript
-npm i
-npx tsc --watch
+// when tag param is sol'
+const deployMutation = s`
+function mutate() external {
+    uint256 deployerPrivateKey = vm.envUint("DEPLOYER_PRIVATE_KEY");
+    vm.startBroadcast(deployerPrivateKey);
+    AppEntrypoint appEntrypoint = new AppEntrypoint();
+    vm.stopBroadcast();
+}
+` // work
+const str2 = `<div></div>` // don't work
+const str3 = otherTagFn`foooo` // don't work
 ```
 
-Next, get the example project up and running, it will load your TSServer Plugin from the emitted JavaScript.
+It's useful to write multiple kinds template strings(e.g. one is Angular Component template, another is Apollo GraphQL query).
 
-```
-# Set up the host app to work in
-cd example
-npm i
-cd ..
+## Available editors
 
-# Open one VS Code window to work on your plugin
-code .
+TODO check the operation with the following editors:
 
-# Or to hook up a debugger, use this command
-# to have the TSServer wait till you attach:
-TSS_DEBUG_BRK=9559 code example
+- Visual Studio Code
+- Vim (with tsuquyomi)
+- Emacs
+- Sublime text
+- Eclipse
 
-# or use this to hook in later:
-TSS_DEBUG=9559 code example
-```
+## Version compatibility
 
-You can then use the launch options in this root project to connect your debugger to the running TSServer in the other window. To see changes, run the command palette "TypeScript: Reload Project" to restart the TSServer for the project.
+## Contributing
 
-Make sure that the TypeScript version on that project runs from your `node_modules` and not the version which is embedded in vscode. You can see the logs via the vscode command 'TypeScript: Open TS Server Logs." ( search for 'Loading tsserver-plugin' to see whether it loaded correctly. )
+See [contribution guide](CONTRIBUTING.md).
 
-### What Now?
+## License
 
-This project has a `debugger` statement inside the completions which will trigger on completions, you can get that running and then you have proven the toolset works and get started building your plugin.
-
-You can read up the docs on [Language Service Plugins in the TypeScript repo wiki](https://github.com/microsoft/TypeScript/wiki/Writing-a-Language-Service-Plugin#overview-writing-a-simple-plugin).
+This software is released under the MIT License, see LICENSE.txt.
