@@ -1,1 +1,3 @@
-console.log('todo')
+import { Server } from './Server'
+
+new Server().start()
