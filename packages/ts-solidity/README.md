@@ -25,44 +25,45 @@ const result = await query(balanceQuery, {
     account: '0xab5801a7d398351b8be11c439e05c5b3259aec9b',
   },
 })
-console.log(result.txHash)
 console.log(result.data.balance)
 ```
 
 In mutations any transaction that gets sent will be sent by the signer
 
 ```ts
-import { sol } from '@stax/ts-sol'
+import { Sol } from '@stax/ts-sol'
 import detectEthereumProvider from '@metamask/detect-provider'
 import { MyERC20 } from '../contracts/myERC20.sol'
 
-const { mutate } = sol.initResolvers({
+const sol = new Sol({
   signers: [await detectEthereumProvider()],
 })
 
 // to write to blockchain simply write a forge style script
-const transferAll = sol.import({
-  MyERC20,
-}).sol`
-function transferAll() external {
-  # sol signer is a special env variable passed into every mutation
+const transferEntireERC20Balance = sol.mutation`
+${MyERC20}
+function transferBalance() external returns (string) {
   uint256 solSigner = vm.envUint('SIGNERS[0]');
-  vm.startBroadcast(solSigner);
   uint256 contractAddress = vm.envUint('contractAddress');
   uint256 recipient = vm.envUint('recipient');
+  
   MyERC20Contract contract = MyERC20Contract(contractAddress);
   uint256 totalBalance = contract.balanceOf(address(solSigner));
+
+  vm.startBroadcast(solSigner);
   contract.safeTransfer(msg.sender, amount);
   vm.stopBroadcast()
+  return totalBalance
 }
 `
-const provider = await detectEthereumProvider()
-const result = await mutate(transferAll, {
-  env: {
-    recipient: '0xab5801a7d398351b8be11c439e05c5b3259aec9b',
-  },
+
+const result = await sol.mutate(transferEntireERC20Balance, {
+  chainId: 1,
+  contractAddress: '0x6b175474e89094c44da98b954eedeac495271d0f',
+  recipient: '0xab5801a7d398351b8be11c439e05c5b3259aec9b',
 })
-console.log(result.txHash)
+console.log(result.data.transferBalance) // returns the return value of transferBalance
+console.log(result.txHash) // ethereum chain tx hash
 ```
 
 ## ToC
