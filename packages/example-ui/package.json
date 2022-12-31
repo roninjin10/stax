@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
+    "serve": "serve -s build",
     "lint": "prettier --check \"**/*.{ts,tsx}\"",
     "lint:fix": "prettier \"**/*.{ts,tsx}\" --write --loglevel=warn",
     "preview": "vite preview"
