@@ -25,6 +25,10 @@
   "dependencies": {
     "@nrwl/nx-cloud": "latest",
     "dotenv": "^16.0.3",
-    "nx": "^15.3.3"
+    "nx": "^15.3.3",
+    "prettier": "^2.8.1",
+    "prettier-plugin-solidity": "^1.1.1",
+    "solhint": "^3.3.7",
+    "solhint-plugin-prettier": "^0.0.5"
   }
 }

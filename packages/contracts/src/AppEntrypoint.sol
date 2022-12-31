@@ -13,7 +13,7 @@ pragma solidity 0.8.17;
  *         2. Sources can be appended to the list of URI sources
  */
 contract AppEntrypoint {
-    string constant public version = "0.0.0";
+    string public constant VERSION = "0.0.0";
 
     /**
      * @notice stores entrypoint sources creator => appname => appVersion => sources
@@ -80,8 +80,6 @@ contract AppEntrypoint {
         bytes mutableData
     );
 
-    constructor() {}
-
     /**
      * @notice Adds an  new app
      *
@@ -106,12 +104,12 @@ contract AppEntrypoint {
         );
         require(bytes(integrity).length > 0, "AppEntrypoint: integrity must be set");
 
-        appToSources[msg.sender][appName][version] = sources;
-        appToIntegrity[msg.sender][appName][version] = integrity;
-        appToDataImmutable[msg.sender][appName][version] = immutableData;
-        appToDataMutable[msg.sender][appName][version] = mutableData;
+        appToSources[msg.sender][appName][appVersion] = sources;
+        appToIntegrity[msg.sender][appName][appVersion] = integrity;
+        appToDataImmutable[msg.sender][appName][appVersion] = immutableData;
+        appToDataMutable[msg.sender][appName][appVersion] = mutableData;
 
-        emit AppCreated(msg.sender, appName, version, sources, integrity);
+        emit AppCreated(msg.sender, appName, appVersion, sources, integrity);
     }
 
     /**
@@ -127,7 +125,7 @@ contract AppEntrypoint {
         string[] memory sources
     ) public {
         for (uint256 i = 0; i < sources.length; i++) {
-            appToSources[msg.sender][appName][version].push(sources[i]);
+            appToSources[msg.sender][appName][appVersion].push(sources[i]);
         }
         emit SourcesAppended(msg.sender, appName, appVersion, sources);
     }
