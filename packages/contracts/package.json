@@ -8,7 +8,13 @@
     "typecheck": "pnpm tsc --noEmit",
     "build": "forge build",
     "build:optimized": "FOUNDRY_PROFILE=optimized forge build",
-    "lint": "pnpm solhint -f table 'contracts/**/*.sol'",
+    "prettier": "prettier --check src/**/*.sol",
+    "prettier:list": "prettier --list-different src/**/*.sol",
+    "prettier:fix": "prettier --write src/**/*.sol",
+    "solhint": "solhint --config ./.solhint.json 'src/**/*.sol'",
+    "solhint:fix": "solhint --config ./.solhint.json 'src/**/*.sol' --fix",
+    "lint": "pnpm prettier && pnpm solhint",
+    "lint:fix": "pnpm prettier:fix && pnpm solhint:fix",
     "test": "forge test -vvv",
     "test:watch": "forge test -vvv --watch",
     "test:coverage": "forge coverage -vvv --watch",
@@ -21,7 +27,5 @@
   "devDependencies": {
     "solhint": "^3.3.7"
   },
-  "dependencies": {
-    "prettier-plugin-solidity": "^1.1.1"
-  }
+  "dependencies": {}
 }

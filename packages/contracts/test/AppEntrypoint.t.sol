@@ -59,7 +59,7 @@ contract AssetReceiverTest is AssetReceiver_Initializer {
     }
 
     function test_AppEntrypoint_init() external {
-        assertEq(appEntrypoint.version(), "0.0.0");
+        assertEq(appEntrypoint.VERSION(), "0.0.0");
     }
 
     /**
