@@ -3,7 +3,6 @@
 cache
 forge-artifacts
 broadcast
-.gas-snapshot
 
 # compiled output
 packages/*/build
@@ -22,6 +21,8 @@ node_modules
 *.launch
 .settings/
 *.sublime-workspace
+
+**/lcov.info
 
 # IDE - VSCode
 .vscode/*
