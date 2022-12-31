@@ -23,9 +23,9 @@
   "license": "MIT",
   "packageManager": "pnpm@7.18.2",
   "dependencies": {
-    "@nrwl/nx-cloud": "latest",
+    "@nrwl/nx-cloud": "^15.0.2",
     "dotenv": "^16.0.3",
-    "nx": "^15.3.3",
+    "nx": "^15.4.2",
     "prettier": "^2.8.1",
     "prettier-plugin-solidity": "^1.1.1",
     "solhint": "^3.3.7",
