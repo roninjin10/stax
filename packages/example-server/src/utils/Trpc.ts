@@ -2,6 +2,8 @@ import { initTRPC } from '@trpc/server'
 import superjson from 'superjson'
 
 /**
+ * Wrapper around TRPC
+ *
  * TRPC is a typesafe way of a making an api server and a client
  * The typescript types are shared between the two keeping them in sync
  * The strength of trpc is how quickly you can add new endpoints so
