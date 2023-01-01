@@ -6,6 +6,7 @@
     "target": "ESNext",
     "lib": ["esnext"],
     "module": "commonjs",
+    "skipLibCheck": true,
     "outDir": "build"
   },
   "include": ["src", "src/**/*.json"]
