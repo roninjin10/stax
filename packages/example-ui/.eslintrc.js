@@ -1,6 +1,10 @@
 module.exports = {
-  extends: ['../../.eslintrc.js', 'react-app'],
-  plugins: ['eslint-plugin-testing-library', 'plugin:react-query/recommended'],
+  extends: [
+    '../../.eslintrc.js',
+    'react-app',
+    'plugin:react-query/recommended',
+  ],
+  plugins: ['eslint-plugin-testing-library'],
   rules: {
     'no-restricted-imports': [
       'error',

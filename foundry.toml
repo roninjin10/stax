@@ -7,7 +7,7 @@ no_match_test = "FFI|LongRunning"
 # We need to build seperate artifacts for forge and hh, because they each expect a different
 # structure for the artifacts directory.
 # The artifact directory
-out = 'packages/contracts/build'
+out = 'packages/contracts/dist'
 # Enables or disables the optimizer
 optimizer = true
 # The number of optimizer runs

@@ -2,4 +2,4 @@
 
 /coverage
 /lib
-**/build/**/*
+**/dist/**/*
