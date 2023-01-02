@@ -1,0 +1,39 @@
+version: '3'
+
+services:
+  # React App
+  example-ui:
+    extends:
+      file: docker-compose.base.yml
+      service: base-app
+    command: pnpm serve @stax/example-ui
+    ports:
+      - 3000:3001
+
+  # React App
+  example-server:
+    extends:
+      file: docker-compose.base.yml
+      service: base-app
+    command: pnpm serve @stax/example-server
+    ports:
+      - 7300:7301
+
+  # Angular App
+  app-3:
+    extends:
+      file: docker-compose.base.yml
+      service: base-app
+    command: npm run app-3:dev:docker
+    ports:
+      - 4203:4200
+
+  # Express App
+  api-1:
+    extends:
+      file: docker-compose.base.yml
+      service: base-app
+    command: npm run api-1:dev:docker
+    ports:
+      - 4310:3333 # API Entry port
+      - 4311:4311 # Server Debugging port
