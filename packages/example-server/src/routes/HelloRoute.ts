@@ -1,5 +1,6 @@
 import { z } from 'zod'
-import { AbstractRoute } from '../utils/AbstractRoute'
+
+import { AbstractRoute } from './AbstractRoute'
 
 export class HelloRoute extends AbstractRoute {
   name = 'hello'

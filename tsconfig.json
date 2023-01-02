@@ -1,6 +1,12 @@
 {
   "compilerOptions": {
+    "target": "ESNext",
+    "lib": ["esnext"],
+    "module": "commonjs",
+    "isolatedModules": true,
+    "incremental": true,
     "allowUnreachableCode": false,
+    "skipLibCheck": false,
     "allowUnusedLabels": false,
     "alwaysStrict": true,
     "exactOptionalPropertyTypes": true,
@@ -14,6 +20,5 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "strict": true
-  },
-  "include": ["packages/*/src"]
+  }
 }

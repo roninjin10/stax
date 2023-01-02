@@ -6,7 +6,9 @@ import superjson from 'superjson'
  *
  * TRPC is a typesafe way of a making an api server and a client
  * The typescript types are shared between the two keeping them in sync
- * The strength of trpc is how quickly you can add new endpoints so
+ * The strength of trpc is how quickly you can add new endpoints
+ *
+ * @see https://trpc.io
  */
 export class Trpc {
   private readonly trpc = initTRPC.create({

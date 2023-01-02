@@ -1,3 +1,5 @@
-import { Server } from './Server'
+import type { Api } from './api/Api'
 
-new Server().start()
+export { Server } from './Server'
+
+export type AppRouter = Api['handler']

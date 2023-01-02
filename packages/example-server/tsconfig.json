@@ -3,11 +3,8 @@
   "compilerOptions": {
     "rootDir": "src",
     "composite": true,
-    "target": "ESNext",
-    "lib": ["esnext"],
-    "module": "commonjs",
-    "skipLibCheck": true,
-    "outDir": "build"
+    "outDir": "dist",
+    "skipLibCheck": true
   },
   "include": ["src", "src/**/*.json"]
 }

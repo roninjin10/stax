@@ -6,7 +6,6 @@
   "recommendations": [
     "ms-azuretools.vscode-docker",
     "dbaeumer.vscode-eslint",
-    "strigo.linear",
     "ms-vsliveshare.vsliveshare",
     "esbenp.prettier-vscode",
     "JuanBlanco.solidity"

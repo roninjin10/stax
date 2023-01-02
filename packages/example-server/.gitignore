@@ -5,8 +5,8 @@ forge-artifacts
 broadcast
 
 # compiled output
-build
-packages/*/build
+dist
+packages/*/dist
 tmp
 /out-tsc
 **/tsconfig.tsbuildinfo
