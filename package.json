@@ -12,12 +12,14 @@
     ]
   },
   "scripts": {
+    "typecheck": "nx run-many --target=typecheck",
+    "typecheck:ci": "nx run-many --target=typecheck:ci --parallel=3",
     "test": "nx run-many --target=test",
-    "test:ci": "nx run-many --target=test --parallel=3",
+    "test:ci": "nx run-many --target=test:ci --parallel=3",
     "build": "nx run-many --target=build",
-    "build:ci": "nx run-many --target=build --parallel=3",
+    "build:ci": "nx run-many --target=build:ci --parallel=3",
     "lint": "nx run-many --target=lint",
-    "lint:ci": "nx run-many --target=lint --parallel=3",
+    "lint:ci": "nx run-many --target=lint:ci --parallel=3",
     "postinstall": "forge install"
   },
   "license": "MIT",
