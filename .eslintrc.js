@@ -5,7 +5,12 @@ module.exports = {
     'plugin:@typescript-eslint/recommended',
     'prettier',
   ],
-  ignorePatterns: ['node_modules', 'dist', 'coverage', '.eslintrc.js'],
+  ignorePatterns: [
+    '**/node_modules',
+    '**/dist',
+    '**/coverage',
+    '**/.eslintrc.js',
+  ],
   root: true,
   // the built in import sort rule doesn't autofix which is annoying
   // so we use a third party library that does work

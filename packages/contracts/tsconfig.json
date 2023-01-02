@@ -7,7 +7,7 @@
     "lib": ["esnext"],
     "strict": true,
     "module": "commonjs",
-    "outDir": "build",
+    "outDir": "dist",
     "jsx": "react-jsx"
   },
   "files": ["global.d.ts"],
