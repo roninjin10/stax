@@ -17,6 +17,7 @@
     "test": "nx run-many --target=test",
     "test:ci": "nx run-many --target=test:ci --parallel=3",
     "build": "nx run-many --target=build",
+    "serve": "nx run-many --target=serve",
     "build:ci": "nx run-many --target=build:ci --parallel=3",
     "lint": "nx run-many --target=lint",
     "lint:ci": "nx run-many --target=lint:ci --parallel=3",

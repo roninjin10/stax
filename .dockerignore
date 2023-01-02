@@ -1,17 +1,10 @@
 .github
 
 node_modules
+packages/*/node_modules
 .env
+.vscode
+forge-artifacts
+cache
 **/.env
-
-test
-**/*_test.go
-build/_workspace
-build/bin
-build/_bin
-tests/testdata
-l2geth/signer/fourbyte
-l2geth/cmd/puppeth
-l2geth/cmd/clef
-go/gas-oracle/gas-oracle
-go/batch-submitter/batch-submitter
+lib/*/*
