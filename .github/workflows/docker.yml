@@ -1,0 +1,24 @@
+name: Publish docker image
+
+on:
+  workflow_dispatch:
+  release:
+
+jobs:
+  backend:
+    name: Build and publish docker image
+    runs-on: ubuntu-latest
+    environment: dockerhub
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: 'Setup docker'
+        uses: ./.github/actions/setup-docker
+
+      - name: Publish server image to docker
+        uses: docker/build-push-action@v3
+        with:
+          context: .
+          push: true
+          tags: 'willcory10/roninjin10-example-server:latest'
