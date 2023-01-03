@@ -15,6 +15,9 @@ jobs:
 
       - name: 'Setup docker'
         uses: ./.github/actions/setup-docker
+        with:
+          username: ${{ secrets.DOCKERHUB_ACCESS_TOKEN_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_ACCESS_TOKEN_SECRET }}
 
       - name: Publish server image to docker
         uses: docker/build-push-action@v3

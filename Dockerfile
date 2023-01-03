@@ -18,13 +18,14 @@ RUN . "$NVM_DIR/nvm.sh" --install \
 WORKDIR /app
 
 RUN npm i pnpm@7.18.2 --global
-RUN npm i -g nx@15.4.2
 
 COPY . .
 
 RUN pnpm i --frozen-lockfile
 
 ENV NX_CLOUD_ACCESS_TOKEN NWMxN2ZlYzUtNDRmMi00OTk1LTg2YmMtNDU5OTAwYWFlNWRjfHJlYWQ=
+
+RUN npm i -g nx@15.4.2
 
 RUN . "$NVM_DIR/nvm.sh" --install \
   && nvm install $NODE_VERSION \
