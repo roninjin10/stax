@@ -18,6 +18,8 @@ COPY ./ /app
 
 RUN pnpm i && pnpm build
 
+ENV HOST '0.0.0.0'
+
 EXPOSE 3000
 EXPOSE 7300
 
