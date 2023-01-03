@@ -31,6 +31,10 @@
     "typecheck": {
       "dependsOn": ["^build"]
     },
+    "serve": {
+      "dependsOn": ["build"],
+      "outputs": ["{projectRoot}/dist"]
+    },
     "build": {
       "dependsOn": ["^build"],
       "outputs": ["{projectRoot}/dist"]
