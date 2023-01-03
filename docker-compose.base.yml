@@ -1,7 +1,7 @@
 version: '3.4'
 
 services:
-  nx-app-base:
+  base-app:
     restart: always
     build:
       context: .

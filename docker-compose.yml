@@ -24,6 +24,6 @@ services:
     extends:
       file: docker-compose.base.yml
       service: base-app
-    command: pnpm serve @stax/example-ui
+    command: anvil
     ports:
-      - 4203:4200
+      - 8545:8545
