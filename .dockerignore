@@ -7,4 +7,3 @@ packages/*/node_modules
 forge-artifacts
 cache
 **/.env
-lib/*/*
