@@ -21,11 +21,11 @@
     "start:devnet": "anvil",
     "predeploy": "source ../../.env",
     "deploy:goerli": "pnpm predeploy && forge script script/AppEntrypoint.s.sol:Deploy --fork-url http://localhost:8545 --broadcast --verify -vvvv",
-    "deploy:devnet": "pnpm predeploy && forge script script/AppEntrypoint.s.sol:Deploy --rpc-url http://localhost:8545 --broadcast -vvvv",
+    "deploy:devnet": "forge script script/AppEntrypoint.s.sol:Deploy --rpc-url http://localhost:8545 --broadcast -vvvv",
     "deploy:optimism": "pnpm predeploy && forge script script/AppEntrypoint.s.sol:Deploy --rpc-url $OPTIMISM_RPC_URL --broadcast --verify -vvvv"
   },
   "devDependencies": {
+    "concurrently": "^7.6.0",
     "solhint": "^3.3.7"
-  },
-  "dependencies": {}
+  }
 }

@@ -42,10 +42,12 @@
     "@types/node": "^18.11.18",
     "@typescript-eslint/parser": "^5.47.1",
     "babel": "^6.23.0",
+    "concurrently": "^7.6.0",
     "eslint": "^8.31.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-jsdoc": "^39.6.4",
     "eslint-plugin-simple-import-sort": "^8.0.0",
-    "ts-node": "^10.9.1"
+    "ts-node": "^10.9.1",
+    "wait-on": "^7.0.1"
   }
 }
