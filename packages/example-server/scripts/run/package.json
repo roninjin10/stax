@@ -1,0 +1,4 @@
+{
+  "main": "dist/roninjin10-example-server-scripts-run.cjs.js",
+  "module": "dist/roninjin10-example-server-scripts-run.esm.js"
+}

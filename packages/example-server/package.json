@@ -4,13 +4,19 @@
   "main": "dist/roninjin10-example-server.cjs.js",
   "module": "dist/roninjin10-example-server.esm.js",
   "license": "MIT",
+  "private": true,
+  "files": [
+    "dist",
+    "scripts/run"
+  ],
   "engines": {
     "node": ">=18",
     "pnpm": ">=7"
   },
   "preconstruct": {
     "entrypoints": [
-      "index.ts"
+      "index.ts",
+      "scripts/run.ts"
     ]
   },
   "publishConfig": {
@@ -22,7 +28,7 @@
     "build": "preconstruct build",
     "kill": "npx kill-port 7300",
     "start": "nodemon src/scripts/run.ts",
-    "serve": "node dist/scripts/run.js",
+    "serve": "node scripts/run/dist/roninjin10-example-server-scripts-run.cjs.js",
     "test": "echo 'No tests implemented'",
     "postinstall": "preconstruct dev",
     "lint": "eslint \"**/*.{ts,tsx}\" --fix && prettier \"src/**/*.{ts,tsx}\" --write",
