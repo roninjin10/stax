@@ -29,10 +29,10 @@ RUN pnpm i --frozen-lockfile --ignore-scripts
 
 COPY ./ /app
 
-RUN pnpm nx build @stax/example-ui
+RUN pnpm nx build @roninjin10/example-ui
 # server build needs to run after client build because the client build using Vite
 # removes the dist/ folder before compiling its code
 
 EXPOSE 3000
 
-CMD ["pnpm", "nx", "serve", "@stax/example-ui"]
+CMD ["pnpm", "nx", "serve", "@roninjin10/example-ui"]

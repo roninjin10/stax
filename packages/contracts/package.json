@@ -1,6 +1,6 @@
 {
   "private": true,
-  "name": "@stax/contracts",
+  "name": "@roninjin10/contracts",
   "version": "0.0.0",
   "main": "src/AppEntrypoint.sol",
   "license": "MIT",
