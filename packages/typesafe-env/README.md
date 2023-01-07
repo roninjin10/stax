@@ -8,19 +8,19 @@ Simple package for creating typesafe envs. It is a very light wrapper around [zo
 
 ## Getting started
 
-1. Install typesafe-env
+1. Install @roninjin10/typesafe-env
 
 ```bash
-npm i -D @roninjin10/typesafe-env
+npm i @roninjin10/typesafe-env
 ```
 
-2. Install peer dependencies if not already installed
+2. Install peer dependencies
 
 ```bash
-npm i -D @roninjin10/typesafe-env
+npm i zod
 ```
 
-3. Use the library
+3. Import typesafeEnv and create validators
 
 ```typescript
 import { typesafeEnv } from '@roninjin10/typesafe-env'
@@ -28,10 +28,10 @@ import { z } from 'zod'
 
 export const validators = {
   // Provide a description if you want to automatically generate documentation
-  SERVICE_URI: z.string().url().describe('The URI to connect to ')
+  SERVICE_URI: z.string().url().describe('The URI to connect to '),
 
   HOST: z.string().default('localhost').describe(`HOST server should connect to
-       Must be set to 0.0.0.0 in a docker container`),
+Must be set to 0.0.0.0 in a docker container`),
 
   PORT: z
     .string()
