@@ -18,14 +18,3 @@ services:
     command: pnpm nx serve @stax/example-server
     ports:
       - 7300:7301
-
-  devnet:
-    environment:
-      - HOST=0.0.0.0
-      - PORT=8545
-    extends:
-      file: docker-compose.base.yml
-      service: base-app
-    command: pnpm concurrently -n anvil,contracts "anvil" "npx wait-on http://0.0.0.0:8545 && forge script packages/contracts/script/AppEntrypoint.s.sol:Deploy --rpc-url http://localhost:8545 --broadcast -vvvv"
-    ports:
-      - 8545:8545
