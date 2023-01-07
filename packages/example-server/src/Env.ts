@@ -1,22 +1,21 @@
+import { generateEnvDocs, typesafeEnv } from '@roninjin10/typesafe-env'
 import { z } from 'zod'
-
-import { getEnvSchema, getTypesafeEnv } from './lib/TypesafeEnv'
 
 /**
  * A typesafe wrapper around process.env
  */
 export class Env {
   public static getEnv() {
-    return getTypesafeEnv(Env.validators)
+    return typesafeEnv(Env.validators)
   }
 
   public static getEnvSchema() {
-    return getEnvSchema(Env.validators)
+    return generateEnvDocs(Env.validators)
   }
 
   private static readonly validators = {
     HOST: z.string().default('localhost')
-      .describe(`HOST server should connect to 
+      .describe(`HOST server should connect to
        Must be set to 0.0.0.0 in a docker container`),
 
     PORT: z

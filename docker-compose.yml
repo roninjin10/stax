@@ -6,7 +6,7 @@ services:
     extends:
       file: docker-compose.base.yml
       service: base-app
-    command: pnpm nx serve @stax/example-ui
+    command: pnpm nx serve @roninjin10/example-ui
     ports:
       - 3000:3001
 
@@ -15,6 +15,6 @@ services:
     extends:
       file: docker-compose.base.yml
       service: base-app
-    command: pnpm nx serve @stax/example-server
+    command: pnpm nx serve @roninjin10/example-server
     ports:
       - 7300:7301

@@ -26,7 +26,7 @@ A node library for interacting with evm based chains using the native solidity p
 
 #### packages/ts-sol-react
 
-A wrapper around ts-solidity based on wagmi and @stax/ts-solidity
+A wrapper around ts-solidity based on wagmi and @roninjin10/ts-solidity
 
 #### packages/ts-sol-plugin
 
