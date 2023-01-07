@@ -36,7 +36,6 @@ export const typesafeEnv = <TValidators extends Record<string, z.ZodType>>(
   ) as { [TKey in keyof TValidators]: z.infer<TValidators[TKey]> }
 
   if (errors.length) {
-    console.error(...errors)
     throw errors[0]
   }
 

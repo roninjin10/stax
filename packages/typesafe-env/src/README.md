@@ -1,23 +1,11 @@
 # src
 
-Source code
+Source code. Tested with [vitest](https://vitest.dev/)
 
-## Env.ts
+## typesafeEnv
 
-The wrapper around process.env
+Creates a typesafe wrapper around process.env or any other object
 
-## src/lib
+## generateEnvDocs.ts
 
-External libraries such as TRPC and Fastify are wrapped here
-
-## src/api
-
-Where Apis are defined
-
-## src/routes
-
-All TRPC routes are defined here
-
-## src/scripts
-
-ts-node scripts for running and interacting with the server
+generates documentation from env validators
