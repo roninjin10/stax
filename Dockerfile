@@ -1,27 +1,24 @@
 FROM node:18.12.1-bullseye
 
-WORKDIR /app
-
+# Add the Foundry CLI to the PATH
 RUN curl -L https://foundry.paradigm.xyz | bash
-
 ENV PATH "$PATH:/root/.foundry/bin"
 RUN foundryup \
   && forge --version \
   && anvil --version \
   && cast --version
 
-ENV NX_DAEMON=false
+WORKDIR /monorepo
 
+# Install pnpm
 RUN npm i pnpm@7.18.2 --global
 
-COPY ./ /app
+ENV NX_DAEMON=false
 
+# Install dependencies and build the project
+COPY ./ /monorepo
 RUN pnpm i && pnpm build
 
-ENV HOST '0.0.0.0'
-
-EXPOSE 3000
-EXPOSE 7300
-EXPOSE 8545
+EXPOSE 3000 7300 8545
 
 CMD ["pnpm", "serve"]

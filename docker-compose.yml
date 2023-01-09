@@ -1,43 +1,42 @@
-version: '3'
+version: '3.4'
 
 services:
-  # React App
   example-ui:
+    environment:
+      - HOST=0.0.0.0
     extends:
       file: docker-compose.base.yml
-      service: base-app
-    command: pnpm nx serve @roninjin10/example-ui
+      service: monorepo
+    command: pnpm -F @roninjin10/example-ui serve
     ports:
-      - 3000:3001
+      - 3000:3000
 
-  # Fastify server
   example-server:
+    environment:
+      - HOST=0.0.0.0
     extends:
       file: docker-compose.base.yml
-      service: base-app
-    command: pnpm nx serve @roninjin10/example-server
+      service: monorepo
+    command: pnpm -F @roninjin10/example-server serve
     ports:
-      - 7300:7301
+      - 7300:7300
 
   anvil:
     environment:
       - ANVIL_IP_ADDR=0.0.0.0
     extends:
       file: docker-compose.base.yml
-      service: base-app
+      service: monorepo
     command: anvil
     ports:
       - 8545:8545
     healthcheck:
       test: cast block-number --rpc-url http://0.0.0.0:8545
-      interval: 10s
-      timeout: 5s
-      retries: 5
 
   contracts:
     extends:
       file: docker-compose.base.yml
-      service: base-app
+      service: monorepo
     restart: "no"
     command: forge script packages/contracts/script/AppEntrypoint.s.sol:Deploy --rpc-url http://anvil:8545 --broadcast -vvvv
     depends_on:

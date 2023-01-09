@@ -1,7 +1,7 @@
 version: '3.4'
 
 services:
-  base-app:
+  monorepo:
     restart: always
     build:
       context: .
@@ -9,5 +9,5 @@ services:
     environment:
       - DEV_PLATFORM=DOCKER
     volumes:
-      - ./:/app
+      - ./:/monorepo
 
