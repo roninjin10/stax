@@ -4,6 +4,8 @@ services:
   example-ui:
     environment:
       - HOST=0.0.0.0
+      - PORT=3000
+      - VITE_API_URI=http://example-server:7300
     extends:
       file: docker-compose.base.yml
       service: monorepo
@@ -16,6 +18,7 @@ services:
   example-server:
     environment:
       - HOST=0.0.0.0
+      - PORT=7300
     extends:
       file: docker-compose.base.yml
       service: monorepo
@@ -28,6 +31,7 @@ services:
   anvil:
     environment:
       - ANVIL_IP_ADDR=0.0.0.0
+      - PORT=8545
     extends:
       file: docker-compose.base.yml
       service: monorepo

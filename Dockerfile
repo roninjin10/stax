@@ -19,6 +19,6 @@ ENV NX_DAEMON=false
 COPY ./ /monorepo
 RUN pnpm i && pnpm build
 
-EXPOSE 3000 7300 8545
+EXPOSE $PORT
 
 CMD ["pnpm", "serve"]
