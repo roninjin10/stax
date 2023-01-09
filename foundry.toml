@@ -1,18 +1,10 @@
 [profile.default]
-# The source directory
 src = 'packages/contracts/src'
-# The test directory
 test = 'packages/contracts/test'
 no_match_test = "FFI|LongRunning"
-# We need to build seperate artifacts for forge and hh, because they each expect a different
-# structure for the artifacts directory.
-# The artifact directory
 out = 'packages/contracts/dist'
-# Enables or disables the optimizer
 optimizer = true
-# The number of optimizer runs
 optimizer_runs = 1000000
-# The metadata hash can be removed from the bytecode by setting "none"
 bytecode_hash = "none"
 
 solc = "0.8.17"
