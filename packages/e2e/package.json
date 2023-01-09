@@ -1,0 +1,10 @@
+{
+  "name": "@roninjin10/e2e",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "test": "echo \"Error: no test specified\""
+  },
+  "dependencies": {},
+  "devDependencies": {}
+}

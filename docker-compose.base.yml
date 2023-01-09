@@ -11,3 +11,12 @@ services:
     volumes:
       - ./:/monorepo
 
+  monorepo-e2e:
+    restart: "no"
+    build:
+      context: .
+      dockerfile: Dockerfile.e2e
+    environment:
+      - DEV_PLATFORM=DOCKER
+    volumes:
+      - ./:/monorepo-e2e

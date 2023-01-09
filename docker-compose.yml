@@ -10,6 +10,8 @@ services:
     command: pnpm -F @roninjin10/example-ui serve
     ports:
       - 3000:3000
+    healthcheck:
+      test: curl http://0.0.0.0:7300
 
   example-server:
     environment:
@@ -20,6 +22,8 @@ services:
     command: pnpm -F @roninjin10/example-server serve
     ports:
       - 7300:7300
+    healthcheck:
+      test: curl http://0.0.0.0:3000/api/healthz
 
   anvil:
     environment:
@@ -41,4 +45,18 @@ services:
     command: forge script packages/contracts/script/AppEntrypoint.s.sol:Deploy --rpc-url http://anvil:8545 --broadcast -vvvv
     depends_on:
       anvil:
+        condition: service_healthy
+
+  e2e:
+    environment:
+      - BASE_URL=http://example-ui:3000
+    extends:
+      file: docker-compose.base.yml
+      service: monorepo-e2e
+    depends_on:
+      contracts:
+        condition: service_completed_successfully
+      example-ui:
+        condition: service_healthy
+      example-server:
         condition: service_healthy
