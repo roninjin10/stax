@@ -25,10 +25,11 @@
   "scripts": {
     "typecheck": "tsc --noEmit",
     "envSchema": "ts-node src/scripts/envSchema.ts",
-    "build": "preconstruct build",
+    "build": "preconstruct build && pnpm bundle",
+    "bundle": "npx esbuild src/scripts/run.ts --platform=node --bundle --outfile=dist/run.bundle.js",
     "kill": "npx kill-port 7300",
     "start": "nodemon src/scripts/run.ts",
-    "serve": "node scripts/run/dist/roninjin10-example-server-scripts-run.cjs.js",
+    "serve": "node dist/run.bundle.js",
     "test": "echo 'No tests implemented'",
     "postinstall": "preconstruct dev",
     "lint": "eslint \"**/*.{ts,tsx}\" --fix && prettier \"src/**/*.{ts,tsx}\" --write",
@@ -48,6 +49,7 @@
   },
   "devDependencies": {
     "@preconstruct/cli": "^2.3.0",
+    "esbuild": "^0.16.16",
     "nodemon": "^2.0.20"
   }
 }

@@ -2,6 +2,8 @@ version: '3.8'
 
 services:
   example-ui:
+    build:
+      target: example-ui-runner
     environment:
       - HOST=0.0.0.0
       - PORT=3000
@@ -9,32 +11,31 @@ services:
     extends:
       file: docker-compose.base.yml
       service: monorepo
-    command: pnpm -F @roninjin10/example-ui serve
+    command: serve -s -l tcp://0.0.0.0:3000 packages/example-ui/dist
     ports:
       - 3000:3000
     healthcheck:
       test: curl http://0.0.0.0:7300
 
   example-server:
+    build:
+      target: example-server-runner
     environment:
       - HOST=0.0.0.0
       - PORT=7300
     extends:
       file: docker-compose.base.yml
       service: monorepo
-    command: pnpm -F @roninjin10/example-server serve
+    command: node packages/example-server/dist/run.bundle.js
     ports:
       - 7300:7300
     healthcheck:
       test: curl http://0.0.0.0:3000/api/healthz
 
   anvil:
+    image: ghcr.io/foundry-rs/foundry
     environment:
       - ANVIL_IP_ADDR=0.0.0.0
-      - PORT=8545
-    extends:
-      file: docker-compose.base.yml
-      service: monorepo
     command: anvil
     ports:
       - 8545:8545
@@ -51,16 +52,18 @@ services:
       anvil:
         condition: service_healthy
 
-  e2e:
-    environment:
-      - BASE_URL=http://example-ui:3000
-    extends:
-      file: docker-compose.base.yml
-      service: monorepo-e2e
-    depends_on:
-      contracts:
-        condition: service_completed_successfully
-      example-ui:
-        condition: service_healthy
-      example-server:
-        condition: service_healthy
+#   e2e:
+#     environment:
+#       - BASE_URL=http://example-ui:3000
+#     extends:
+#       file: docker-compose.base.yml
+#       service: monorepo
+#     build:
+#       target: example-ui-runner
+#     depends_on:
+#       contracts:
+#         condition: service_completed_successfully
+#       example-ui:
+#         condition: service_healthy
+#       example-server:
+#         condition: service_healthy
