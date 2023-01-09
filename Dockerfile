@@ -61,4 +61,4 @@ FROM builder as contracts-runner
 
 EXPOSE $ANVIL_PORT
 
-CMD ["node", "packages/example-server/dist/run.bundle.js"]
+CMD ["forge" "script" "packages/contracts/script/AppEntrypoint.s.sol:Deploy" "--rpc-url" "http://anvil:8545" "--broadcast" "-vvvv"]
