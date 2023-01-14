@@ -4,13 +4,9 @@ pragma solidity 0.8.17;
 contract Counter {
     uint256 public count = 0;
 
-    event CountIncremented(
-        address indexed messageSender
-    );
+    event CountIncremented(address indexed messageSender);
 
-    event CountDecremented(
-        address indexed messageSender
-    );
+    event CountDecremented(address indexed messageSender);
 
     function plusOne() public {
         count += 1;
