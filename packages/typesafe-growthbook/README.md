@@ -38,7 +38,7 @@ export const growthbook = new TypesafeGrowthbook(flags)
 4. Initialize the react api if you are using react
 
 ```typescript
-export const { useFeature, IfFeatureEnabled, FeatureString } =
+export const { Provider, useFeature, IfFeatureEnabled, FeatureString } =
   initGrowthbookReact(growthbook)
 ```
 

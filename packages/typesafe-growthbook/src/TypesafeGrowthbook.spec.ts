@@ -1,8 +1,21 @@
 import type { FeatureDefinition } from '@growthbook/growthbook-react'
-import { describe, expect, it } from 'vitest'
+import matchers from '@testing-library/jest-dom/matchers'
+import { cleanup, render } from '@testing-library/react'
+import { renderHook } from '@testing-library/react-hooks'
+import { afterEach, describe, expect, it } from 'vitest'
 import { z } from 'zod'
 
-import { flag, TypesafeGrowthbook } from './TypesafeGrowthbook'
+import {
+  flag,
+  initGrowthbookReact,
+  TypesafeGrowthbook,
+} from './TypesafeGrowthbook'
+
+expect.extend(matchers)
+
+afterEach(() => {
+  cleanup()
+})
 
 const flagTypes = {
   bool: flag.bool,
@@ -381,5 +394,23 @@ describe('TypesafeGrowthbook', () => {
     `)
     // @ts-expect-error testing
     gb.evalFeature('not a feature')
+  })
+
+  describe('React API', () => {
+    const gb = new TypesafeGrowthbook(flagTypes)
+    gb.setFeatures(features)
+    const { FeatureString, IfFeatureEnabled, useFeature, Provider } =
+      initGrowthbookReact(gb)
+
+    describe('useFeatureValue', () => {
+      it('should be typesafe', () => {
+        // @ts-expect-error testing
+        useFeature('not a feature')
+        const { result } = renderHook(() => useFeature('bool'), {
+          wrapper: Provider,
+        })
+        expect(result.current).toMatchInlineSnapshot()
+      })
+    })
   })
 })

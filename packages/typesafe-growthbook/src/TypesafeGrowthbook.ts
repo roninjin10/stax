@@ -6,6 +6,7 @@ import type {
 import {
   FeatureString as FeatureStringGrowthbook,
   GrowthBook,
+  GrowthBookProvider,
   IfFeatureEnabled as IfFeatureEnabledGrowthbook,
   useFeature as useFeatureGrowthbook,
 } from '@growthbook/growthbook-react'
@@ -25,8 +26,11 @@ export const flag = {
 } as const
 
 export class TypesafeGrowthbook<
-  TFlagTypes extends Record<string, z.ZodType<any>>,
-> extends GrowthBook {
+    TFlagTypes extends Record<string, z.ZodType<any>>,
+  >
+  extends GrowthBook
+  implements GrowthBook
+{
   constructor(
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     public readonly flagTypes: TFlagTypes,
@@ -131,7 +135,7 @@ export const initGrowthbookReact = <
   >(
     id: TFeature,
   ) => {
-    return useFeatureGrowthbook(id) as TValue
+    return useFeatureGrowthbook(id) as FeatureResult<TValue>
   }
 
   const IfFeatureEnabled = <
@@ -157,10 +161,15 @@ export const initGrowthbookReact = <
     return React.createElement(FeatureStringGrowthbook, props)
   }
 
+  const Provider = ({ children }: React.PropsWithChildren) => {
+    return React.createElement(GrowthBookProvider, { children, growthbook })
+  }
+
   return {
     useFeature,
     IfFeatureEnabled,
     growthbookVanilla: growthbook,
     FeatureString,
+    Provider,
   }
 }
