@@ -15,7 +15,7 @@ import { z } from 'zod'
 /**
  * Types of feature flags that can be configured by growthbook
  */
-export const flagType = {
+export const flag = {
   bool: z.boolean(),
   url: z.string().url(),
   string: z.string(),

@@ -2,15 +2,15 @@ import type { FeatureDefinition } from '@growthbook/growthbook-react'
 import { describe, expect, it } from 'vitest'
 import { z } from 'zod'
 
-import { flagType, TypesafeGrowthbook } from './TypesafeGrowthbook'
+import { flag, TypesafeGrowthbook } from './TypesafeGrowthbook'
 
 const flagTypes = {
-  bool: flagType.bool,
-  url: flagType.url,
-  string: flagType.string,
-  number: flagType.number,
-  stringArray: flagType.stringArray,
-  numberArray: flagType.numberArray,
+  bool: flag.bool,
+  url: flag.url,
+  string: flag.string,
+  number: flag.number,
+  stringArray: flag.stringArray,
+  numberArray: flag.numberArray,
   json: z.object({
     foo: z.string(),
   }),

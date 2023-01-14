@@ -2,9 +2,9 @@
     <img alt="Twitter" src="https://img.shields.io/twitter/url.svg?label=%40fucory&style=social&url=https%3A%2F%2Ftwitter.com%2Ffucory" />
 </a>
 
-# typesafe-env
+# typesafe-growthbook
 
-Simple package for creating typesafe envs. It is a very light wrapper around [zod](https://github.com/colinhacks/zod)
+A light easy to configure typesafe wrapper around [@growthbook/react](https://docs.growthbook.io/) providing runtime validation and typesafety with [zod](https://github.com/colinhacks/zod)
 
 ## Getting started
 
@@ -17,66 +17,85 @@ npm i @roninjin10/typesafe-env
 2. Install peer dependencies
 
 ```bash
-npm i zod
+npm i @growthbook/growthbook-react zod react
 ```
 
-3. Import typesafeEnv and create validators
+3. Specify your flags and initialize Growthbook
 
 ```typescript
-import { typesafeEnv } from '@roninjin10/typesafe-env'
-import { z } from 'zod'
+import { flag, TypesafeGrowthbook } from '@roninjin10/typesafe-growthbook'
 
-export const validators = {
-  // Provide a description if you want to automatically generate documentation
-  SERVICE_URI: z.string().url().describe('The URI to connect to '),
-
-  HOST: z.string().default('localhost').describe(`HOST server should connect to
-Must be set to 0.0.0.0 in a docker container`),
-
-  PORT: z
-    .string()
-    .transform((val) => Number.parseInt(val))
-    .default('7300')
-    .describe('PORT server should connect to'),
+const flags = {
+  myBoolFlag: flag.bool,
+  myStringFLag: flag.string,
+  myUrlFlag: flag.url,
+  myNumberFlag: flag.number,
 }
 
-export const env = typesafeEnv(validators, process.env)
-
-env.PORT // type number
-env.HOST // type string
-// @ts-expect-error
-env.NOT_ON_ENV
+export const growthbook = new TypesafeGrowthbook(flags)
 ```
 
-You now have an env object that will be 100% typesafe with autocompletion in your editor! This will defend against misconfigurations.
-
-### Automatically generate documentation
-
-typesafe-env provides an easy way of turning your env validators into documentation
-
-`envSchema.ts`
+4. Initialize the react api if you are using react
 
 ```typescript
-import { validators } from './env'
-import { generateEnvDocs } from '@roninjin10/typesafe-env'
-
-console.log(generateEnvDocs(validators))
+export const { useFeature, IfFeatureEnabled, FeatureString } =
+  initGrowthbookReact(growthbook)
 ```
 
-Then if you run `ts-node envSchema` you will get this printed to console
+You now have a version of growthbook that has full typesafety! The zod validators will validate your feature flags and throw an error if they are misconfigured.
 
+All react hooks and growthbook methods will infer flag ids and value types from the flag object you provided!
+
+### Flag validators
+
+Flag validators are provided for all types of flags supported by growthbook.
+
+- flag.bool
+- flag.url
+- flag.string
+- flag.number
+- flag.stringArray
+- flag.numberArray
+
+To make a JSON feature flag use [z.object from zod](https://zod.dev/?id=objects)
+
+```typescript
+import {z} from 'zod'
+
+const flags = {
+  myJsonFlag: z.object({
+    ...
+  })
+}
 ```
-Environment Variables schema
 
-SERVICE_URI
-    The URI to connect to
+### Creating a default fallback
 
-HOST
-    HOST server should connect to
+Sometimes we don't want to crash the entire app when flag validation fails. In this case you can create a fallback value.
 
-PORT
-    PORT server should ocnnect to
+```typescript
+import { flag } from '@roninjin10/typesafe-growthbook'
+const flags = {
+  backedUrl: flag.url().catch('http://default-url-fallback'),
+}
 ```
+
+### Creating an optional value
+
+We can also create optional values with zod if the flag is optional
+
+```typescript
+import { flag } from '@roninjin10/typesafe-growthbook'
+const flags = {
+  backedUrl: flag.bool().optional(),
+}
+```
+
+### What's changed from growthbook
+
+TypesafeGrowthbook is a typesafe wrapper around growthbook with no changes to the Growthbook API. It simply adds type safety.
+
+Refer to the [growthbook docs](https://docs.growthbook.io/lib/js) for more information on their api
 
 ### Contributing
 
@@ -88,5 +107,7 @@ All of @roninjin10 is open to contributions! To get started follow these steps
 4. Cd to typesafe-env `cd packages/typesafe-env`
 5. Run the tests `pnpm test`
 6. Run the build `pnpm build`
+7. Optionally spin up the example app `nx dev` or `docker-compose up`
+8. Run only typesafe growthbook tests `nx test @roninjin10/typesafe-gorwthbook`
 
 #### Author: Will Cory 👨🏻‍💻
