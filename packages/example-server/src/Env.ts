@@ -32,7 +32,11 @@ export class Env {
       .describe('PORT server should connect to'),
 
     NODE_ENV: z
-      .string()
+      .union([
+        z.literal('development'),
+        z.literal('test'),
+        z.literal('production'),
+      ])
       .default('production')
       .describe('NODE_ENV development,test,production'),
 

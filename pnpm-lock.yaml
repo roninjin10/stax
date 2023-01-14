@@ -55,6 +55,9 @@ importers:
       concurrently: 7.6.0
       solhint: 3.3.7
 
+  packages/e2e:
+    specifiers: {}
+
   packages/example-server:
     specifiers:
       '@preconstruct/cli': ^2.3.0
@@ -92,6 +95,7 @@ importers:
       '@babel/plugin-syntax-flow': ^7.18.6
       '@babel/plugin-transform-react-jsx': ^7.20.7
       '@playwright/test': ^1.29.2
+      '@roninjin10/typesafe-env': workspace:*
       '@tanstack/query-core': ^4.20.9
       '@tanstack/react-query': ^4.20.9
       '@types/react': ^18.0.26
@@ -115,8 +119,10 @@ importers:
       util: ^0.12.5
       vite: ^3.2.5
       wagmi: ~0.9.6
+      zod: ^3.20.2
     dependencies:
       '@babel/core': 7.20.12
+      '@roninjin10/typesafe-env': link:../typesafe-env
       '@tanstack/query-core': 4.20.9
       '@tanstack/react-query': 4.20.9_biqbaboplfbrettd7655fr4n2y
       buffer: 6.0.3
@@ -128,7 +134,8 @@ importers:
       react-dom: 18.2.0_react@18.2.0
       react-is: 18.2.0
       util: 0.12.5
-      wagmi: 0.9.6_f3jn3xbs4uawab6fh4rpppqdgi
+      wagmi: 0.9.6_6c7f4thcz2mwmgehpjowlh3kam
+      zod: 3.20.2
     devDependencies:
       '@babel/plugin-syntax-flow': 7.18.6_@babel+core@7.20.12
       '@babel/plugin-transform-react-jsx': 7.20.7_@babel+core@7.20.12
@@ -2996,7 +3003,7 @@ packages:
     dependencies:
       '@coinbase/wallet-sdk': 3.6.3_@babel+core@7.20.12
       '@ledgerhq/connect-kit-loader': 1.0.2
-      '@wagmi/core': 0.8.6_vhv6xxlfpwiqyzkguvjk4mknfm
+      '@wagmi/core': 0.8.6_e2rpdcyxymacj5sqppogk5xsc4
       '@walletconnect/ethereum-provider': 1.8.0
       abitype: 0.1.8_typescript@4.9.4
       ethers: 5.7.2
@@ -3011,7 +3018,7 @@ packages:
       - utf-8-validate
     dev: false
 
-  /@wagmi/core/0.8.6_vhv6xxlfpwiqyzkguvjk4mknfm:
+  /@wagmi/core/0.8.6_e2rpdcyxymacj5sqppogk5xsc4:
     resolution: {integrity: sha512-z1Sg/gNJGv8qlorYWkjK6f+nXhLfQ/VRxMoqXt0rsTEjZVJlIC5JldQ7v0RIlDA++QQgYn8UG2IJ2kr7oVbbhQ==}
     peerDependencies:
       '@coinbase/wallet-sdk': '>=3.6.0'
@@ -3027,7 +3034,7 @@ packages:
       '@wagmi/chains': 0.1.7
       '@wagmi/connectors': 0.1.2_oquyrnevlw4ewhlmygopws274u
       '@walletconnect/ethereum-provider': 1.8.0
-      abitype: 0.2.5_typescript@4.9.4
+      abitype: 0.2.5_4umapwpw55xijlh2mknjgcn4rq
       ethers: 5.7.2
       eventemitter3: 4.0.7
       zustand: 4.2.0_react@18.2.0
@@ -3292,7 +3299,7 @@ packages:
       typescript: 4.9.4
     dev: false
 
-  /abitype/0.2.5_typescript@4.9.4:
+  /abitype/0.2.5_4umapwpw55xijlh2mknjgcn4rq:
     resolution: {integrity: sha512-t1iiokWYpkrziu4WL2Gb6YdGvaP9ZKs7WnA39TI8TsW2E99GVRgDPW/xOKhzoCdyxOYt550CNYEFluCwGaFHaA==}
     engines: {pnpm: '>=7'}
     peerDependencies:
@@ -3303,6 +3310,7 @@ packages:
         optional: true
     dependencies:
       typescript: 4.9.4
+      zod: 3.20.2
     dev: false
 
   /abort-controller/3.0.0:
@@ -4251,7 +4259,7 @@ packages:
       react-use-measure: 2.1.1_biqbaboplfbrettd7655fr4n2y
       resize-observer-polyfill: 1.5.1
       styled-components: 5.3.6_7i5myeigehqah43i5u7wbekgba
-      wagmi: 0.9.6_f3jn3xbs4uawab6fh4rpppqdgi
+      wagmi: 0.9.6_6c7f4thcz2mwmgehpjowlh3kam
     transitivePeerDependencies:
       - react-is
     dev: false
@@ -9147,7 +9155,7 @@ packages:
       - terser
     dev: true
 
-  /wagmi/0.9.6_f3jn3xbs4uawab6fh4rpppqdgi:
+  /wagmi/0.9.6_6c7f4thcz2mwmgehpjowlh3kam:
     resolution: {integrity: sha512-Y+ikhwyU7+iWHn/GbEkC42c0GBW+ZUzaxTQKyESun2yqrhnxQNhIZSSNnhqw1mws3bjDeUrUeEj3kk0ML6VbgQ==}
     peerDependencies:
       ethers: '>=5.5.1'
@@ -9157,9 +9165,9 @@ packages:
       '@tanstack/query-sync-storage-persister': 4.20.9_wk7fpynjpvb4hxuiukdy2vekrm
       '@tanstack/react-query': 4.20.9_biqbaboplfbrettd7655fr4n2y
       '@tanstack/react-query-persist-client': 4.20.9_pzelq4zc3svuizkvynp4e636ei
-      '@wagmi/core': 0.8.6_vhv6xxlfpwiqyzkguvjk4mknfm
+      '@wagmi/core': 0.8.6_e2rpdcyxymacj5sqppogk5xsc4
       '@walletconnect/ethereum-provider': 1.8.0
-      abitype: 0.2.5_typescript@4.9.4
+      abitype: 0.2.5_4umapwpw55xijlh2mknjgcn4rq
       ethers: 5.7.2
       react: 18.2.0
       use-sync-external-store: 1.2.0_react@18.2.0

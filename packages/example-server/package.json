@@ -28,7 +28,7 @@
     "build": "preconstruct build && pnpm bundle",
     "bundle": "npx esbuild src/scripts/run.ts --platform=node --bundle --outfile=dist/run.bundle.js",
     "kill": "npx kill-port 7300",
-    "start": "nodemon src/scripts/run.ts",
+    "dev": "nodemon src/scripts/run.ts",
     "serve": "node dist/run.bundle.js",
     "test": "echo 'No tests implemented'",
     "postinstall": "preconstruct dev",
