@@ -1,4 +1,4 @@
-import { abi as counterAbi } from '@roninjin10/contracts/dist/Counter.sol/Counter.json'
+import { counterABI } from '@roninjin10/contracts'
 import { ConnectKitButton } from 'connectkit'
 import { useAccount, usePrepareContractWrite } from 'wagmi'
 
@@ -17,7 +17,7 @@ import { Account } from './components/Account'
 export const App = () => {
   const { isConnected } = useAccount()
   const { config } = usePrepareContractWrite({
-    abi: counterAbi,
+    abi: counterABI,
   })
   return (
     <div>

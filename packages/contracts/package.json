@@ -2,13 +2,13 @@
   "private": true,
   "name": "@roninjin10/contracts",
   "version": "0.0.0",
-  "main": "src/AppEntrypoint.sol",
+  "main": "dist/generatedWagmi.ts",
   "files": [
     "dist/**/*.json"
   ],
   "scripts": {
     "typecheck": "pnpm tsc --noEmit",
-    "build": "forge build",
+    "build": "wagmi generate",
     "build:optimized": "FOUNDRY_PROFILE=optimized forge build",
     "prettier": "prettier --check src/**/*.sol",
     "prettier:list": "prettier --list-different src/**/*.sol",
@@ -27,7 +27,9 @@
     "deploy:optimism": "pnpm predeploy && forge script script/Deploy.s.sol:Deploy --rpc-url $OPTIMISM_RPC_URL --broadcast --verify -vvvv"
   },
   "devDependencies": {
+    "@wagmi/cli": "^0.0.4",
     "concurrently": "^7.6.0",
-    "solhint": "^3.3.7"
+    "solhint": "^3.3.7",
+    "typescript": "^4.9.4"
   }
 }
