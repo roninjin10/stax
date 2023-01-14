@@ -1,31 +1,47 @@
 import { ConnectKitButton } from 'connectkit'
 import { useAccount } from 'wagmi'
 
+import {
+  footerStyle,
+  mainContentStyle,
+  navbarLiAStyle,
+  navbarLiStyle,
+  navbarStyle,
+  navbarUlStyle,
+  sideNavLiStyle,
+  sideNavStyle,
+  sideNavUlStyle,
+} from './App.css'
 import { Account } from './components/Account'
 
 export const App = () => {
   const { isConnected } = useAccount()
   return (
     <div>
-      <div className="navbar">
-        <ul>
-          <li>Home</li>
-          <li>About</li>
-          <li>Contact</li>
+      <div className={navbarStyle}>
+        <ul className={navbarUlStyle}>
+          <li className={navbarLiStyle}>
+            <a className={navbarLiAStyle}>Home</a>
+          </li>
+          <li className={navbarLiStyle}>
+            <a className={navbarLiAStyle}>About</a>
+          </li>
+          <li className={navbarLiStyle}>
+            <a className={navbarLiAStyle}>Contact</a>
+          </li>
         </ul>
       </div>
       <div className="container">
-        <div className="side-nav">
-          <ul>
-            <li>Link 1</li>
-            <li>Link 2</li>
-            <li>Link 3</li>
+        <div className={sideNavStyle}>
+          <ul className={sideNavUlStyle}>
+            <li className={sideNavLiStyle}>Link 1</li>
+            <li className={sideNavLiStyle}>Link 2</li>
+            <li className={sideNavLiStyle}>Link 3</li>
           </ul>
+          <div className={mainContentStyle}>{<ConnectKitButton />}</div>
+          {isConnected && <Account />}
         </div>
-        <div className="main-content">{<ConnectKitButton />}</div>
-        {isConnected && <Account />}
       </div>
-      <footer>&copy; 2020</footer>
     </div>
   )
 }
