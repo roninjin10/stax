@@ -27,10 +27,10 @@
     "lint": "eslint \"**/*.{ts,tsx}\" --fix && prettier \"src/**/*.{ts,tsx}\" --write",
     "lint:ci": "eslint \"**/*.{ts,tsx}\" && prettier --check \"src/**/*.{ts,tsx}\""
   },
-  "peerdependencies": {
-    "zod": "*",
+  "peerDependencies": {
+    "@growthbook/growthbook-react": "^0.10.0-0",
     "react": "^16.8.0-0 || ^17.0.0-0 || ^18.0.0-0",
-    "@growthbook/growthbook-react": "^0.10.0-0"
+    "zod": "*"
   },
   "devDependencies": {
     "@growthbook/growthbook-react": "^0.10.1",

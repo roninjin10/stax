@@ -32,7 +32,7 @@
     "lint": "eslint \"**/*.{ts,tsx}\" --fix && prettier \"src/**/*.{ts,tsx}\" --write",
     "lint:ci": "eslint \"**/*.{ts,tsx}\" && prettier --check \"src/**/*.{ts,tsx}\""
   },
-  "peerdependencies": {
+  "peerDependencies": {
     "zod": "*"
   },
   "devDependencies": {
