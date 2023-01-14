@@ -1,8 +1,8 @@
+import counterAbi from '@roninjin10/contracts/dist/Counter.sol/Counter.json'
 import { ConnectKitButton } from 'connectkit'
-import { useAccount } from 'wagmi'
+import { useAccount, usePrepareContractWrite } from 'wagmi'
 
 import {
-  footerStyle,
   mainContentStyle,
   navbarLiAStyle,
   navbarLiStyle,
@@ -16,6 +16,9 @@ import { Account } from './components/Account'
 
 export const App = () => {
   const { isConnected } = useAccount()
+  const { config } = usePrepareContractWrite({
+    abi: counterAbi,
+  })
   return (
     <div>
       <div className={navbarStyle}>
