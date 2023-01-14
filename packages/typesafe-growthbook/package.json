@@ -11,7 +11,7 @@
   ],
   "preconstruct": {
     "entrypoints": [
-      "TypesafeGrowthbook.ts"
+      "index.ts"
     ]
   },
   "publishConfig": {
@@ -24,7 +24,6 @@
     "test": "vitest",
     "test:ui": "vitest --ui",
     "test:run": "vitest run",
-    "postinstall": "preconstruct dev",
     "lint": "eslint \"**/*.{ts,tsx}\" --fix && prettier \"src/**/*.{ts,tsx}\" --write",
     "lint:ci": "eslint \"**/*.{ts,tsx}\" && prettier --check \"src/**/*.{ts,tsx}\""
   },
@@ -40,7 +39,10 @@
     "@testing-library/react-hooks": "^8.0.1",
     "@types/react": "^18.0.26",
     "@types/react-dom": "^18.0.10",
+    "@types/testing-library__jest-dom": "^5.14.5",
+    "@vitejs/plugin-react": "^2.2.0",
     "@vitest/ui": "^0.26.3",
+    "jsdom": "^21.0.0",
     "nodemon": "^2.0.20",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -50,6 +52,8 @@
     "zod": "^3.20.2"
   },
   "dependencies": {
-    "@testing-library/jest-dom": "^5.16.5"
+    "@testing-library/jest-dom": "^5.16.5",
+    "jest-dom": "link:@types/@testing-library/jest-dom",
+    "matchers": "link:@types/@testing-library/jest-dom/matchers"
   }
 }

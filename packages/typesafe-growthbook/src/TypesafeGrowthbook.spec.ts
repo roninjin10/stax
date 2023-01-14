@@ -1,7 +1,8 @@
 import type { FeatureDefinition } from '@growthbook/growthbook-react'
 import matchers from '@testing-library/jest-dom/matchers'
-import { cleanup, render } from '@testing-library/react'
+import { cleanup, render, screen } from '@testing-library/react'
 import { renderHook } from '@testing-library/react-hooks'
+import React = require('react')
 import { afterEach, describe, expect, it } from 'vitest'
 import { z } from 'zod'
 
@@ -286,7 +287,7 @@ describe('TypesafeGrowthbook', () => {
         ],
       }
     `)
-    // @ts-expect-error testing
+    // @ts-expect-error should throw an error
     gb.feature('not a feature')
   })
 
@@ -317,13 +318,13 @@ describe('TypesafeGrowthbook', () => {
       ]
     `)
     expect(() =>
-      // @ts-expect-error testing
+      // @ts-expect-error should throw an error
       gb.getFeatureValue('not a feature', 'default'),
     ).toThrowErrorMatchingInlineSnapshot(
       '"No validator found for feature flag not a feature"',
     )
     const uninitializedGrowthbook = new TypesafeGrowthbook(flagTypes)
-    // @ts-expect-error testing
+    // @ts-expect-error should throw an error
     uninitializedGrowthbook.getFeatureValue('bool', 'bad fallback')
   })
 
@@ -392,7 +393,7 @@ describe('TypesafeGrowthbook', () => {
         ],
       }
     `)
-    // @ts-expect-error testing
+    // @ts-expect-error should throw an error
     gb.evalFeature('not a feature')
   })
 
@@ -402,14 +403,58 @@ describe('TypesafeGrowthbook', () => {
     const { FeatureString, IfFeatureEnabled, useFeature, Provider } =
       initGrowthbookReact(gb)
 
-    describe('useFeatureValue', () => {
+    describe('useFeature', () => {
       it('should be typesafe', () => {
-        // @ts-expect-error testing
-        useFeature('not a feature')
+        // @ts-expect-error should throw an error
+        renderHook(() => useFeature('not a flag'), {
+          wrapper: Provider,
+        })
         const { result } = renderHook(() => useFeature('bool'), {
           wrapper: Provider,
         })
-        expect(result.current).toMatchInlineSnapshot()
+        // useFeature('not a feature')
+        expect(result.current).toMatchInlineSnapshot(`
+          {
+            "off": false,
+            "on": true,
+            "ruleId": "",
+            "source": "defaultValue",
+            "value": true,
+          }
+        `)
+      })
+    })
+
+    describe('IFFeatureEnabled', () => {
+      it('should work', () => {
+        React.createElement(IfFeatureEnabled, {
+          // @ts-expect-error should throw an error
+          feature: 'not a feature',
+        })
+        const expected = 'I should be showing'
+        const el = React.createElement(IfFeatureEnabled, {
+          feature: 'string',
+          children: expected,
+        })
+        const wrapper = React.createElement(Provider, {}, el)
+        render(wrapper)
+        expect(screen.getByText(expected)).toBeInTheDocument()
+      })
+    })
+    describe('FeatureString', () => {
+      it('should work', () => {
+        React.createElement(FeatureString, {
+          // @ts-expect-error should throw an error
+          feature: 'not a feature',
+          default: 'string',
+        })
+        render(
+          React.createElement(FeatureString, {
+            feature: 'string',
+            default: 'defualt string',
+          }),
+        )
+        expect(screen.getByText('defualt string')).toBeInTheDocument()
       })
     })
   })
