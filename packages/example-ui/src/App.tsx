@@ -1,4 +1,4 @@
-import counterAbi from '@roninjin10/contracts/dist/Counter.sol/Counter.json'
+import { abi as counterAbi } from '@roninjin10/contracts/dist/Counter.sol/Counter.json'
 import { ConnectKitButton } from 'connectkit'
 import { useAccount, usePrepareContractWrite } from 'wagmi'
 
