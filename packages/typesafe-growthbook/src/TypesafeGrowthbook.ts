@@ -69,8 +69,10 @@ export class TypesafeGrowthbook<
     )
 
     if (errors.length) {
-      console.error(...errors)
-      throw new Error('There were errors validating growthbook feature flags')
+      throw new AggregateError(
+        errors,
+        'There were errors validating growthbook feature flags',
+      )
     }
 
     super.setFeatures(validatedFeatures as typeof features)
@@ -102,9 +104,7 @@ export class TypesafeGrowthbook<
     if (!validator) {
       throw new Error(`No validator found for feature flag ${String(id)}`)
     }
-    return validator.parse(
-      super.getFeatureValue(id, fallback) as z.infer<TFlagTypes[TFeature]>,
-    )
+    return super.getFeatureValue(id, fallback) as z.infer<TFlagTypes[TFeature]>
   }
 
   public override readonly isOn = <TFeature extends keyof TFlagTypes & string>(
