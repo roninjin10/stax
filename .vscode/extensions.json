@@ -8,6 +8,9 @@
     "dbaeumer.vscode-eslint",
     "ms-vsliveshare.vsliveshare",
     "esbenp.prettier-vscode",
-    "JuanBlanco.solidity"
+    "JuanBlanco.solidity",
+    // there is no angular in this repo!
+    // but this is useful for running nx commands in vscode
+    "nrwl.angular-console"
   ]
 }

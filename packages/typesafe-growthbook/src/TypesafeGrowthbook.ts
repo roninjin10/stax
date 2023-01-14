@@ -26,11 +26,8 @@ export const flag = {
 } as const
 
 export class TypesafeGrowthbook<
-    TFlagTypes extends Record<string, z.ZodType<any>>,
-  >
-  extends GrowthBook
-  implements GrowthBook
-{
+  TFlagTypes extends Record<string, z.ZodType<any>>,
+> extends GrowthBook {
   constructor(
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     public readonly flagTypes: TFlagTypes,
@@ -95,7 +92,9 @@ export class TypesafeGrowthbook<
   >(
     id: TFeature,
   ) => {
-    return super.evalFeature(id) as FeatureResult<z.infer<TFlagTypes[TFeature]>>
+    return super.evalFeature(id) as FeatureResult<z.infer<
+      TFlagTypes[TFeature]
+    > | null>
   }
 
   public override readonly getFeatureValue = <

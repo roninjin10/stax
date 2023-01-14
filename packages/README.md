@@ -1,8 +1,4 @@
-# Stax
-
-Stax is a collection of open source libraries and experimental evm based packages by roninjin10
-
-## packages/\*
+# Packages
 
 All apps and packages are in packages folder
 
@@ -59,48 +55,3 @@ A simple webpack plugin for consuming typescript modules
 ### packages/ts-sol-server
 
 A solidity based way of building and consuming trustless blockchain based indexers deployed as app chains
-
-## Other
-
-### .github
-
-Contains github actions for ci/cd
-
-### .vscode
-
-Contains basic vscode settings and recomended extensions to get you up and running
-
-### lib/\*
-
-Git submodules of outside repos
-
-### node_modules/\*
-
-Globally installed node modules and hoisted node modules
-
-### packages/\*
-
-All internal packages regardless of language live in packages/\*
-
-### .env
-
-Env variables for docker-compose
-
-### docker-compose.yml Dockerfile
-
-A docker compose file for spinning up the example app in docker.
-
-Alternatively can run `nx serve` to start the example app outside of docker
-
-### foundry.toml
-
-Configures foundry contracts in packages/contracts
-
-### nx.json
-
-Configures nx. Nx is used for incremental and cached builds. Running `npm foo` as `nx foo` has
-the advantage of nx being smart enough to rebuild subdependencies if they need built.
-
-### tsconfig.json .prettierignore .eslintrc.js
-
-Configs that packages extend from. The tsconfig.json has the absolute strictest settings possible. Much stricter than strict mode.
