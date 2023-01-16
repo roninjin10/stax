@@ -114,3 +114,7 @@ the advantage of nx being smart enough to rebuild subdependencies if they need b
 ### tsconfig.json .prettierignore .eslintrc.js
 
 Configs that packages extend from. The tsconfig.json has the absolute strictest settings possible. Much stricter than strict mode.
+
+## License
+
+[MIT](LICENSE) © 2023 roninjin10
