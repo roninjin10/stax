@@ -2,7 +2,7 @@
     <img alt="Twitter" src="https://img.shields.io/twitter/url.svg?label=%40fucory&style=social&url=https%3A%2F%2Ftwitter.com%2Ffucory" />
 </a>
 
-# typesafe-growthbook
+# Typesafe Growthbook • [![CI](https://github.com/roninjin10/stax/actions/workflows/tests.yml/badge.svg)](https://github.com/roninjin10/stax/actions/workflows/tests.yml)
 
 A light easy to configure typesafe wrapper around [@growthbook/react](https://docs.growthbook.io/) providing runtime validation and typesafety with [zod](https://github.com/colinhacks/zod)
 

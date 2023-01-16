@@ -2,7 +2,7 @@
     <img alt="Twitter" src="https://img.shields.io/twitter/url.svg?label=%40fucory&style=social&url=https%3A%2F%2Ftwitter.com%2Ffucory" />
 </a>
 
-# typesafe-env
+# Typesafe Env • [![CI](https://github.com/roninjin10/stax/actions/workflows/tests.yml/badge.svg)](https://github.com/roninjin10/stax/actions/workflows/tests.yml)
 
 Simple package for creating typesafe envs. It is a very light wrapper around [zod](https://github.com/colinhacks/zod)
 

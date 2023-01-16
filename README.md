@@ -8,7 +8,7 @@
   />
 </a>
 
-# Stax
+# Stax • [![CI](https://github.com/roninjin10/stax/actions/workflows/tests.yml/badge.svg)](https://github.com/roninjin10/stax/actions/workflows/tests.yml)
 
 Stax is a collection of open source libraries and experimental evm based packages by roninjin10
 
