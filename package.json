@@ -49,6 +49,7 @@
     "eslint-config-prettier": "^8.6.0",
     "eslint-plugin-jsdoc": "^39.6.4",
     "eslint-plugin-simple-import-sort": "^8.0.0",
+    "gitmoji-cli": "^7.0.3",
     "ts-node": "^10.9.1",
     "wait-on": "^7.0.1"
   }
