@@ -1,6 +1,10 @@
-<a href="https://twitter.com/fucory">
-    <img alt="Twitter" src="https://img.shields.io/twitter/url.svg?label=%40fucory&style=social&url=https%3A%2F%2Ftwitter.com%2Ffucory" />
-</a>
+<p align="center"><a href="https://www.growthbook.io"><img src="https://cdn.growthbook.io/growthbook-logo@2x.png" width="400px" alt="GrowthBook - Open Source Feature Flagging and A/B Testing" /></a></p>
+<p align="center"><b>Community created typesafe feature flags with Growthbook</b></p>
+<p align="center"><b>
+  <a href="https://twitter.com/fucory">
+      <img alt="Twitter" src="https://img.shields.io/twitter/url.svg?label=%40fucory&style=social&url=https%3A%2F%2Ftwitter.com%2Ffucory" />
+  </a>
+</b></p>
 
 # Typesafe Growthbook • [![CI](https://github.com/roninjin10/stax/actions/workflows/tests.yml/badge.svg)](https://github.com/roninjin10/stax/actions/workflows/tests.yml)
 
