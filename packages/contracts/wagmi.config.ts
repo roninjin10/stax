@@ -11,7 +11,6 @@ export default defineConfig({
     }),
     foundry({
       project: '../..',
-      artifacts: 'packages/contracts/dist',
     }),
   ],
 })
