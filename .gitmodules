@@ -7,3 +7,6 @@
 [submodule "lib/wagmi-references"]
 	path = lib/wagmi-references
 	url = git@github.com:roninjin10/references.git
+[submodule "lib/wagmi"]
+	path = lib/wagmi
+	url = git@github.com:wagmi-dev/wagmi.git
