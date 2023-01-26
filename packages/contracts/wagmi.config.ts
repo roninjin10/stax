@@ -1,5 +1,5 @@
 import { defineConfig } from '@wagmi/cli'
-import { erc, foundry } from '@wagmi/cli/plugins'
+import { erc, foundry, react } from '@wagmi/cli/plugins'
 
 export default defineConfig({
   out: 'dist/generatedWagmi.ts',
@@ -12,5 +12,6 @@ export default defineConfig({
     foundry({
       project: '../..',
     }),
+    react(),
   ],
 })
