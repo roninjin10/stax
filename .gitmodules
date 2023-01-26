@@ -10,3 +10,6 @@
 [submodule "lib/wagmi"]
 	path = lib/wagmi
 	url = git@github.com:wagmi-dev/wagmi.git
+[submodule "lib/helios"]
+	path = lib/helios
+	url = git@github.com:a16z/helios.git
