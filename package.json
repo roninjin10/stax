@@ -22,6 +22,7 @@
     "build:ci": "nx run-many --target=build --parallel=3",
     "lint": "nx run-many --target=lint",
     "lint:ci": "nx run-many --target=lint:ci --parallel=3",
+    "preinstall": "pnpm --dir lib/wagmi install && pnpm --dir lib/wagmi build",
     "postinstall": "forge install",
     "release": "pnpm publish -r --access=public",
     "release:dry": "pnpm publish -r --access=public --dry-run"
