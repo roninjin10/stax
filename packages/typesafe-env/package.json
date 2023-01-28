@@ -2,33 +2,24 @@
   "name": "@roninjin10/typesafe-env",
   "description": "A light wrapper around zod for validating environment variables",
   "version": "0.0.1",
-  "main": "dist/roninjin10-typesafe-env.cjs.js",
-  "module": "dist/roninjin10-typesafe-env.esm.js",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "src/index.ts",
   "license": "MIT",
   "private": false,
-  "files": [
-    "dist"
-  ],
   "engines": {
     "node": ">=18",
     "pnpm": ">=7"
-  },
-  "preconstruct": {
-    "entrypoints": [
-      "index.ts"
-    ]
   },
   "publishConfig": {
     "access": "public"
   },
   "scripts": {
     "typecheck": "tsc --noEmit",
-    "envSchema": "ts-node src/scripts/envSchema.ts",
-    "build": "preconstruct build",
+    "build": "tsup",
     "test": "vitest",
     "test:ui": "vitest --ui",
     "test:run": "vitest run",
-    "postinstall": "preconstruct dev",
     "lint": "eslint \"**/*.{ts,tsx}\" --fix && prettier \"src/**/*.{ts,tsx}\" --write",
     "lint:ci": "eslint \"**/*.{ts,tsx}\" && prettier --check \"src/**/*.{ts,tsx}\""
   },
@@ -36,9 +27,9 @@
     "zod": "*"
   },
   "devDependencies": {
-    "@preconstruct/cli": "^2.3.0",
     "@vitest/ui": "^0.26.3",
     "nodemon": "^2.0.20",
+    "tsup": "^6.5.0",
     "typescript": "^4.9.4",
     "vite": "^3.2.5",
     "vitest": "^0.26.3",

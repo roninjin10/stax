@@ -36,7 +36,7 @@ Note: This boilerplate can work as an external facing API if using Open API as d
 - [pnpm](https://pnpm.io/) for fast node module installation
 - [nvm](https://github.com/nvm-sh/nvm) for consistent node versions locally and on CI
 - [zod](https://github.com/colinhacks/zod) for typesafety
-- [preconstruct](https://preconstruct.tools/guides/building-typescript-packages) for generating packages to be consumed in monorepo or on npm
+- [tsup](https://github.com/egoist/tsup) for generating packages to be consumed in monorepo or on npm
 - [docker](https://www.docker.com/) as an optional way to deploy app
 - [github actions](https://docs.github.com/en/actions) for basic CI/CD
 - [prettier](https://prettier.io/) for code formatting
@@ -141,7 +141,7 @@ Prettier is configured in [.prettierrc](https://github.com/roninjin10/server-boi
 
 ### eslint
 
-Eslint is a tool for linting JavaScript code.  
+Eslint is a tool for linting JavaScript code.
 Eslint is configured in [.eslintrc.js](https://github.com/roninjin10/server-boilerplate/blob/master/.eslintrc.js)
 
 The included eslint config prefers rules with autofixers and rules that can catch actual bugs (such as no floating promise)

@@ -58,7 +58,7 @@ export class Server {
    *
    * @returns the fastify server
    */
-  private readonly init = async () => {
+  public readonly init = async () => {
     if (this.fastifyServer) {
       return this.fastifyServer
     }

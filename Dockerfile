@@ -49,11 +49,11 @@ FROM node:18.12.1-alpine3.16 as example-server-runner
 
 WORKDIR /monorepo
 
-COPY --from=builder /monorepo/packages/example-server/dist/run.bundle.js ./packages/example-server/dist/run.bundle.js
+COPY --from=builder /monorepo/packages/example-server/dist/run.js ./packages/example-server/dist/run.js
 
 EXPOSE $EXAMPLE_SERVER_PORT
 
-CMD ["node", "packages/example-server/dist/run.bundle.js"]
+CMD ["node", "packages/example-server/dist/run.js"]
 
 # This image is used to run the contracts
 # Since it's only used in dev we use entire builder image

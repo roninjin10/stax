@@ -31,7 +31,7 @@ export class TypesafeGrowthbook<
   constructor(
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     public readonly flagTypes: TFlagTypes,
-    private readonly growthbookContext: Context = {},
+    growthbookContext: Context = {},
   ) {
     super(growthbookContext)
   }

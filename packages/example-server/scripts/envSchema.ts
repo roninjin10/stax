@@ -1,3 +1,3 @@
-import { Env } from '../Env'
+import { Env } from '../src/Env'
 
 console.log(Env.getEnvSchema())
