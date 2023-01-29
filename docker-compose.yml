@@ -53,6 +53,11 @@ services:
       anvil:
         condition: service_healthy
 
+  forgecli:
+    build:
+      context: .
+      target: forgecli
+
   e2e:
     environment:
       - BASE_URL=http://example-ui:3000
