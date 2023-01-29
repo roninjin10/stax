@@ -2,13 +2,10 @@ import { defineConfig } from 'tsup'
 
 export default defineConfig({
   name: '@gateway/common-ts',
-  entry: ['src/index.ts', 'src/run.ts'],
+  entry: ['dist/generatedWagmi.ts'],
   outDir: 'dist',
-  noExternal: [/.*/],
   format: ['esm', 'cjs', 'iife'],
-  target: 'node18',
-  minify: true,
   splitting: false,
   sourcemap: true,
-  clean: true,
+  clean: false,
 })

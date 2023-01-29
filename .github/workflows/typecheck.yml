@@ -2,7 +2,7 @@ on:
   workflow_dispatch:
   push:
     branches:
-      - master
+      - main
   pull_request:
 
 concurrency:
@@ -12,14 +12,19 @@ concurrency:
 name: Typecheck
 
 jobs:
-  build:
+  typecheck:
     name: Typecheck
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+          submodules: recursive
 
       - name: 'Setup'
         uses: ./.github/actions/setup
 
       - name: Run typechecker
-        run: pnpm typecheck:ci
+        run: pnpm typecheck
+        env:
+          NX_CLOUD_ACCESS_TOKEN: ${{ secrets.NX_CLOUD_ACCESS_TOKEN }}

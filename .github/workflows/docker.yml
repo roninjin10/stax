@@ -3,6 +3,10 @@ name: Build and publish docker image
 on:
   workflow_dispatch:
   release:
+  pull_request:
+  push:
+    branches:
+      - main
 
 jobs:
   backend:
@@ -13,7 +17,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
         with:
-          fetch-depth: 0
+          fetch-depth: 1
           submodules: recursive
 
       - name: Login to Docker Hub
@@ -24,10 +28,54 @@ jobs:
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2
+        with:
+          install: true
+
+      - name: Cache Docker layers
+        uses: actions/cache@v2
+        with:
+          path: /tmp/.buildx-cache
+          key: ${{ runner.os }}-multi-buildx-${{ github.sha }}
+          restore-keys: |
+            ${{ runner.os }}-multi-buildx
+
+      - name: Publish monorepo
+        uses: docker/build-push-action@v3
+        with:
+          context: .
+          push: false
+          tags: 'willcory10/tests:latest'
+          target: 'monorepo'
+          cache-from: type=local,src=/tmp/.buildx-cache
+          cache-to: type=local,mode=max,dest=/tmp/.buildx-cache-new
+        env:
+          NX_CLOUD_ACCESS_TOKEN: ${{ secrets.NX_CLOUD_ACCESS_TOKEN }}
 
       - name: Publish server image to docker
         uses: docker/build-push-action@v3
         with:
           context: .
-          push: true
+          push: ${{ github.event_name == 'push' }}
+          target: 'example-server-runner'
           tags: 'willcory10/roninjin10-example-server:latest'
+          cache-from: type=local,src=/tmp/.buildx-cache
+          cache-to: type=local,mode=max,dest=/tmp/.buildx-cache-new
+        env:
+          NX_CLOUD_ACCESS_TOKEN: ${{ secrets.NX_CLOUD_ACCESS_TOKEN }}
+
+      - name: Publish frontend image to docker
+        uses: docker/build-push-action@v3
+        with:
+          context: .
+          push: ${{ github.event_name == 'push' }}
+          target: 'example-ui-runner'
+          tags: 'willcory10/roninjin10-example-ui:latest'
+          cache-from: type=local,src=/tmp/.buildx-cache
+          cache-to: type=local,mode=max,dest=/tmp/.buildx-cache-new
+        env:
+          NX_CLOUD_ACCESS_TOKEN: ${{ secrets.NX_CLOUD_ACCESS_TOKEN }}
+
+      - name: Clean cache
+        run: |
+          rm -rf /tmp/.buildx-cache
+          mv /tmp/.buildx-cache-new /tmp/.buildx-cache

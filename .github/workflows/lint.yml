@@ -24,6 +24,6 @@ jobs:
         uses: ./.github/actions/setup
 
       - name: Run Linters
-        run: pnpm lint:ci
+        run: pnpm lint:check
         env:
           NX_CLOUD_ACCESS_TOKEN: ${{ secrets.NX_CLOUD_ACCESS_TOKEN }}

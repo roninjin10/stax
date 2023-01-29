@@ -2,38 +2,37 @@ version: '3.8'
 
 services:
   example-ui:
-    build:
-      target: example-ui-runner
     environment:
       - HOST=0.0.0.0
       - PORT=3000
       - VITE_API_URI=http://example-server:7300
-    extends:
-      file: docker-compose.base.yml
-      service: monorepo
-    command: serve -s -l tcp://0.0.0.0:3000 packages/example-ui/dist
+      - NX_CLOUD_ACCESS_TOKEN=${NX_CLOUD_ACCESS_TOKEN}
+    build:
+      context: .
+      target: example-ui-runner
     ports:
-      - 3000:3000
+      - 3000:80
     healthcheck:
-      test: curl http://0.0.0.0:7300
+      # curl is not installed on this container so we use wget
+      test: wget localhost:80 -q -O - > /dev/null 2>&1
 
   example-server:
-    build:
-      target: example-server-runner
     environment:
       - HOST=0.0.0.0
       - PORT=7300
-    extends:
-      file: docker-compose.base.yml
-      service: monorepo
-    command: node packages/example-server/dist/run.bundle.js
+      - NX_CLOUD_ACCESS_TOKEN=${NX_CLOUD_ACCESS_TOKEN}
+    build:
+      context: .
+      target: example-server-runner
     ports:
       - 7300:7300
     healthcheck:
-      test: curl http://0.0.0.0:3000/api/healthz
+      # curl is not installed on this container so we use wget
+      test: wget localhost:7300/api/healthz -q -O - > /dev/null 2>&1
 
   anvil:
     image: ghcr.io/foundry-rs/foundry
+    platform: linux/amd64
     environment:
       - ANVIL_IP_ADDR=0.0.0.0
     command: anvil
@@ -42,28 +41,36 @@ services:
     healthcheck:
       test: cast block-number --rpc-url http://0.0.0.0:8545
 
-  contracts:
-    extends:
-      file: docker-compose.base.yml
-      service: monorepo
+  contracts-deployer:
+    platform: linux/amd64
+    environment:
+      - DEPLOYER_PRIVATE_KEY=${DEPLOYER_PRIVATE_KEY}
+    build:
+      context: .
+      target: contracts-deployer
     restart: "no"
-    command: forge script packages/contracts/script/AppEntrypoint.s.sol:Deploy --rpc-url http://anvil:8545 --broadcast -vvvv
     depends_on:
       anvil:
         condition: service_healthy
 
-#   e2e:
-#     environment:
-#       - BASE_URL=http://example-ui:3000
-#     extends:
-#       file: docker-compose.base.yml
-#       service: monorepo
-#     build:
-#       target: example-ui-runner
-#     depends_on:
-#       contracts:
-#         condition: service_completed_successfully
-#       example-ui:
-#         condition: service_healthy
-#       example-server:
-#         condition: service_healthy
+  e2e:
+    environment:
+      - BASE_URL=http://example-ui:3000
+      - NX_CLOUD_ACCESS_TOKEN=${NX_CLOUD_ACCESS_TOKEN}
+    build:
+      target: e2e
+      context: .
+    depends_on:
+      contracts-deployer:
+        condition: service_completed_successfully
+      example-ui:
+        condition: service_healthy
+      example-server:
+        condition: service_healthy
+
+  tests:
+    build:
+      target: monorepo
+      context: .
+    environment:
+      - NX_CLOUD_ACCESS_TOKEN=${NX_CLOUD_ACCESS_TOKEN}

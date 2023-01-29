@@ -1,14 +1,18 @@
+[![CI](https://github.com/roninjin10/stax/actions/workflows/tests.yml/badge.svg)](https://github.com/roninjin10/stax/actions/workflows/tests.yml)
+[![CI](https://github.com/roninjin10/stax/actions/workflows/lint.yml/badge.svg)](https://github.com/roninjin10/stax/actions/workflows/lint.yml)
+[![CI](https://github.com/roninjin10/stax/actions/workflows/typecheck.yml/badge.svg)](https://github.com/roninjin10/stax/actions/workflows/typecheck.yml)
+[![CI](https://github.com/roninjin10/stax/actions/workflows/docker.yml/badge.svg)](https://github.com/roninjin10/stax/actions/workflows/docker.yml)
 <a href="https://twitter.com/fucory">
-    <img alt="Twitter" src="https://img.shields.io/twitter/url.svg?label=%40fucory&style=social&url=https%3A%2F%2Ftwitter.com%2Ffucory" />
+<img alt="Twitter" src="https://img.shields.io/twitter/url.svg?label=%40fucory&style=social&url=https%3A%2F%2Ftwitter.com%2Ffucory" />
 </a>
 <a href="https://gitmoji.dev">
-  <img
+<img
     src="https://img.shields.io/badge/gitmoji-%20😜%20😍-FFDD67.svg?style=flat-square"
     alt="Gitmoji"
   />
 </a>
 
-# Stax • [![CI](https://github.com/roninjin10/stax/actions/workflows/tests.yml/badge.svg)](https://github.com/roninjin10/stax/actions/workflows/tests.yml)
+# Stax
 
 Stax is a collection of open source libraries and experimental evm based packages by roninjin10
 

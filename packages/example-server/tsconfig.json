@@ -6,8 +6,7 @@
     "rootDir": "src",
     "composite": true,
     "outDir": "dist",
-    "skipLibCheck": true,
-    "types": ["vite/client"]
+    "skipLibCheck": true
   },
-  "include": ["src", "src/**/*.json", "scripts"]
+  "include": ["src", "src/**/*.json"]
 }
