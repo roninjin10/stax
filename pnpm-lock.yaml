@@ -59,7 +59,7 @@ importers:
       ts-node: 10.9.1_awa2wsr5thmg3i7jqycphctjfq
       wait-on: 7.0.1
 
-  packages/blog:
+  apps/blog:
     specifiers:
       '@astrojs/mdx': ^0.15.1
       '@astrojs/rss': ^2.1.0
@@ -71,27 +71,10 @@ importers:
       '@astrojs/sitemap': 1.0.0
       astro: 2.0.2
 
-  packages/contracts:
-    specifiers:
-      '@wagmi/cli': ^0.1.2
-      concurrently: ^7.6.0
-      solhint: ^3.3.8
-      tsup: ^6.5.0
-      typescript: ^4.9.4
-      wagmi: ~0.11.0
-    dependencies:
-      wagmi: 0.11.0_typescript@4.9.4
-    devDependencies:
-      '@wagmi/cli': 0.1.2_sc5zqy2ifbojqlygl4abm5h7ha
-      concurrently: 7.6.0
-      solhint: 3.3.8
-      tsup: 6.5.0_typescript@4.9.4
-      typescript: 4.9.4
-
-  packages/e2e:
+  apps/e2e:
     specifiers: {}
 
-  packages/example-server:
+  apps/example-server:
     specifiers:
       '@prisma/client': ^4.9.0
       '@roninjin10/typesafe-env': workspace:*
@@ -108,7 +91,7 @@ importers:
       zod: ^3.20.2
     dependencies:
       '@prisma/client': 4.9.0_prisma@4.9.0
-      '@roninjin10/typesafe-env': link:../typesafe-env
+      '@roninjin10/typesafe-env': link:../../packages/typesafe-env
       '@trpc/server': 10.9.0
       fastify: 4.12.0
       fastify-metrics: 10.0.2_fastify@4.12.0
@@ -122,7 +105,7 @@ importers:
       tsup: 6.5.0_typescript@4.9.4
       vitest: 0.28.3
 
-  packages/next-app:
+  apps/next-app:
     specifiers:
       '@types/node': ^18.11.18
       '@types/react': ^18.0.27
@@ -149,6 +132,84 @@ importers:
       '@types/react-dom': 18.0.10
       eslint: 8.33.0
       eslint-config-next: 13.1.6_zkdaqh7it7uc4cvz2haft7rc6u
+      typescript: 4.9.4
+
+  apps/vite-app:
+    specifiers:
+      '@babel/core': ^7.20.12
+      '@babel/plugin-syntax-flow': ^7.18.6
+      '@babel/plugin-transform-react-jsx': ^7.20.13
+      '@playwright/test': ^1.30.0
+      '@roninjin10/contracts': workspace:*
+      '@roninjin10/typesafe-env': workspace:*
+      '@tanstack/query-core': ^4.22.4
+      '@tanstack/react-query': ^4.23.0
+      '@types/react': ^18.0.27
+      '@types/react-dom': ^18.0.10
+      '@types/react-helmet': ^6.1.6
+      '@vanilla-extract/css': ^1.9.3
+      '@vanilla-extract/vite-plugin': ^3.7.1
+      '@vitejs/plugin-react': ^3.0.1
+      buffer: ^6.0.3
+      connectkit: ^1.1.2
+      ethers: ^5.7.2
+      process: ^0.11.10
+      react: ^18.2.0
+      react-dom: ^18.2.0
+      react-helmet: ^6.1.0
+      react-is: ^18.2.0
+      serve: ^14.2.0
+      typescript: ^4.9.4
+      util: ^0.12.5
+      vite: ^4.0.4
+      wagmi: ~0.11.0
+      zod: ^3.20.2
+    dependencies:
+      '@babel/core': 7.20.12
+      '@roninjin10/contracts': link:../../packages/contracts
+      '@roninjin10/typesafe-env': link:../../packages/typesafe-env
+      '@tanstack/query-core': 4.22.4
+      '@tanstack/react-query': 4.23.0_biqbaboplfbrettd7655fr4n2y
+      '@vanilla-extract/css': 1.9.3
+      buffer: 6.0.3
+      connectkit: 1.1.2_g3jsqm3f62znzhkkgwdwd3vhnu
+      ethers: 5.7.2
+      process: 0.11.10
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
+      react-is: 18.2.0
+      util: 0.12.5
+      wagmi: 0.11.0_43uqimb7uasx42equ24o2fizpu
+      zod: 3.20.2
+    devDependencies:
+      '@babel/plugin-syntax-flow': 7.18.6_@babel+core@7.20.12
+      '@babel/plugin-transform-react-jsx': 7.20.13_@babel+core@7.20.12
+      '@playwright/test': 1.30.0
+      '@types/react': 18.0.27
+      '@types/react-dom': 18.0.10
+      '@types/react-helmet': 6.1.6
+      '@vanilla-extract/vite-plugin': 3.7.1_vite@4.0.4
+      '@vitejs/plugin-react': 3.0.1_vite@4.0.4
+      react-helmet: 6.1.0_react@18.2.0
+      serve: 14.2.0
+      typescript: 4.9.4
+      vite: 4.0.4
+
+  packages/contracts:
+    specifiers:
+      '@wagmi/cli': ^0.1.2
+      concurrently: ^7.6.0
+      solhint: ^3.3.8
+      tsup: ^6.5.0
+      typescript: ^4.9.4
+      wagmi: ~0.11.0
+    dependencies:
+      wagmi: 0.11.0_typescript@4.9.4
+    devDependencies:
+      '@wagmi/cli': 0.1.2_sc5zqy2ifbojqlygl4abm5h7ha
+      concurrently: 7.6.0
+      solhint: 3.3.8
+      tsup: 6.5.0_typescript@4.9.4
       typescript: 4.9.4
 
   packages/typesafe-env:
@@ -212,67 +273,6 @@ importers:
       vite: 4.0.4
       vitest: 0.28.3_a7aimjszcawcicrmfep77vgtlm
       zod: 3.20.2
-
-  packages/vite-app:
-    specifiers:
-      '@babel/core': ^7.20.12
-      '@babel/plugin-syntax-flow': ^7.18.6
-      '@babel/plugin-transform-react-jsx': ^7.20.13
-      '@playwright/test': ^1.30.0
-      '@roninjin10/contracts': workspace:*
-      '@roninjin10/typesafe-env': workspace:*
-      '@tanstack/query-core': ^4.22.4
-      '@tanstack/react-query': ^4.23.0
-      '@types/react': ^18.0.27
-      '@types/react-dom': ^18.0.10
-      '@types/react-helmet': ^6.1.6
-      '@vanilla-extract/css': ^1.9.3
-      '@vanilla-extract/vite-plugin': ^3.7.1
-      '@vitejs/plugin-react': ^3.0.1
-      buffer: ^6.0.3
-      connectkit: ^1.1.2
-      ethers: ^5.7.2
-      process: ^0.11.10
-      react: ^18.2.0
-      react-dom: ^18.2.0
-      react-helmet: ^6.1.0
-      react-is: ^18.2.0
-      serve: ^14.2.0
-      typescript: ^4.9.4
-      util: ^0.12.5
-      vite: ^4.0.4
-      wagmi: ~0.11.0
-      zod: ^3.20.2
-    dependencies:
-      '@babel/core': 7.20.12
-      '@roninjin10/contracts': link:../contracts
-      '@roninjin10/typesafe-env': link:../typesafe-env
-      '@tanstack/query-core': 4.22.4
-      '@tanstack/react-query': 4.23.0_biqbaboplfbrettd7655fr4n2y
-      '@vanilla-extract/css': 1.9.3
-      buffer: 6.0.3
-      connectkit: 1.1.2_g3jsqm3f62znzhkkgwdwd3vhnu
-      ethers: 5.7.2
-      process: 0.11.10
-      react: 18.2.0
-      react-dom: 18.2.0_react@18.2.0
-      react-is: 18.2.0
-      util: 0.12.5
-      wagmi: 0.11.0_43uqimb7uasx42equ24o2fizpu
-      zod: 3.20.2
-    devDependencies:
-      '@babel/plugin-syntax-flow': 7.18.6_@babel+core@7.20.12
-      '@babel/plugin-transform-react-jsx': 7.20.13_@babel+core@7.20.12
-      '@playwright/test': 1.30.0
-      '@types/react': 18.0.27
-      '@types/react-dom': 18.0.10
-      '@types/react-helmet': 6.1.6
-      '@vanilla-extract/vite-plugin': 3.7.1_vite@4.0.4
-      '@vitejs/plugin-react': 3.0.1_vite@4.0.4
-      react-helmet: 6.1.0_react@18.2.0
-      serve: 14.2.0
-      typescript: 4.9.4
-      vite: 4.0.4
 
 packages:
 
@@ -3484,7 +3484,7 @@ packages:
   /@types/connect/3.4.35:
     resolution: {integrity: sha512-cdeYyv4KWoEgpBISTxWvqYsVy444DOqehiF3fM3ne10AmJ62RSyNkUnxMJXHQWRQQX2eR94m5y1IZyDwBjV9FQ==}
     dependencies:
-      '@types/node': 12.20.55
+      '@types/node': 18.11.18
 
   /@types/debug/4.1.7:
     resolution: {integrity: sha512-9AonUzyTjXXhEOa0DnqpzZi6VHlqKMswga9EXjpXnnqxwLtdvPPtlO8evrI5D9S6asFRCQ6v+wpiUKbw+vKqyg==}
@@ -3628,7 +3628,7 @@ packages:
   /@types/sax/1.2.4:
     resolution: {integrity: sha512-pSAff4IAxJjfAXUG6tFkO7dsSbTmf8CtUpfhhZ5VhkRpC4628tJhh3+V6H1E+/Gs9piSzYKT5yzHO5M4GG9jkw==}
     dependencies:
-      '@types/node': 17.0.45
+      '@types/node': 18.11.18
     dev: false
 
   /@types/scheduler/0.16.2:
@@ -3664,7 +3664,7 @@ packages:
   /@types/ws/7.4.7:
     resolution: {integrity: sha512-JQbbmxZTZehdc2iszGKs5oC3NFnjeay7mtAWrdt7qNtAVK0g19muApzAy4bm9byz79xa2ZnO/BOBC2R8RC5Lww==}
     dependencies:
-      '@types/node': 12.20.55
+      '@types/node': 18.11.18
 
   /@types/yargs-parser/21.0.0:
     resolution: {integrity: sha512-iO9ZQHkZxHn4mSakYV0vFHAVDyEOIJQrV2uZ06HxEPcx+mt8swXoZHIbaaJ2crJYFfErySgktuTZ3BeLz+XmFA==}
@@ -5504,7 +5504,7 @@ packages:
     dependencies:
       ansi-align: 3.0.1
       camelcase: 7.0.1
-      chalk: 5.0.1
+      chalk: 5.2.0
       cli-boxes: 3.0.0
       string-width: 5.1.2
       type-fest: 2.19.0

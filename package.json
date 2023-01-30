@@ -6,11 +6,6 @@
     "node": ">=18",
     "pnpm": ">=7"
   },
-  "workspaces": {
-    "packages": [
-      "packages/*"
-    ]
-  },
   "scripts": {
     "typecheck": "nx run-many --target=typecheck",
     "test": "nx run-many --target=test",

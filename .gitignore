@@ -9,6 +9,7 @@ broadcast
 
 # compiled output
 packages/*/dist
+apps/*/dist
 tmp
 /out-tsc
 **/tsconfig.tsbuildinfo

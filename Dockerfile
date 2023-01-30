@@ -40,6 +40,7 @@ RUN apk add coreutils
 WORKDIR /tmp
 COPY tsconfig.json .gitmodules pnpm-workspace.yaml pnpm-lock.yaml .nvmrc package.json ./src/
 COPY packages src/packages/
+COPY apps src/apps/
 RUN mkdir manifests && \
   cd src && \
   # copy package.json recursively
@@ -112,9 +113,9 @@ ENV NODE_ENV=production
 COPY . .
 # remove rust which is built in it's own seperate step for now
 # later we want to add rust to this image
-RUN rm -rf packages/forgecli
+RUN rm -rf apps/forgecli
 
-# build all packages
+# build all apps and packages
 RUN pnpm build && rm -rf node_modules/.cache
 
 CMD ["pnpm", "nx", "run-many", "--targets=test,lint,typecheck", "--all", "--parallel"]
@@ -153,8 +154,8 @@ CMD ["pnpm", "nx", "run-many", "--targets=test,lint,typecheck", "--all", "--para
 # it only supports very specific node.js versions (well) for the most part
 # and it's even more difficult to get playwright or puppeteer to work on it.
 FROM nginx:stable-alpine as vite-app-runner
-COPY --from=monorepo /monorepo/packages/vite-app/dist /usr/share/nginx/html
-COPY packages/vite-app/nginx.conf /etc/nginx/conf.d/default.conf
+COPY --from=monorepo /monorepo/apps/vite-app/dist /usr/share/nginx/html
+COPY apps/vite-app/nginx.conf /etc/nginx/conf.d/default.conf
 EXPOSE 80
 CMD ["nginx", "-g", "daemon off;"]
 
@@ -172,8 +173,8 @@ CMD ["nginx", "-g", "daemon off;"]
 # ██████╦╝███████╗╚█████╔╝╚██████╔╝
 # ╚═════╝░╚══════╝░╚════╝░░╚═════╝░
 FROM nginx:stable-alpine as blog-runner
-COPY --from=monorepo /monorepo/packages/blog/dist /usr/share/nginx/html
-COPY packages/blog/nginx.conf /etc/nginx/conf.d/default.conf
+COPY --from=monorepo /monorepo/apps/blog/dist /usr/share/nginx/html
+COPY apps/blog/nginx.conf /etc/nginx/conf.d/default.conf
 EXPOSE 80
 CMD ["nginx", "-g", "daemon off;"]
 
@@ -200,9 +201,9 @@ ENV NODE_ENV production
 RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 nextjs
 
-COPY --from=monorepo /monorepo/packages/next-app/public ./public
-COPY --from=monorepo --chown=nextjs:nodejs /monorepo/packages/next-app/.next/standalone ./
-COPY --from=monorepo --chown=nextjs:nodejs /monorepo/packages/next-app/.next/static ./.next/static
+COPY --from=monorepo /monorepo/apps/next-app/public ./public
+COPY --from=monorepo --chown=nextjs:nodejs /monorepo/apps/next-app/.next/standalone ./
+COPY --from=monorepo --chown=nextjs:nodejs /monorepo/apps/next-app/.next/static ./.next/static
 
 USER nextjs
 
@@ -244,11 +245,11 @@ ENV NODE_ENV=production
 
 WORKDIR /monorepo
 
-COPY --from=monorepo /monorepo/packages/example-server/dist/run.js ./packages/example-server/dist/run.js
+COPY --from=monorepo /monorepo/apps/example-server/dist/run.js ./apps/example-server/dist/run.js
 
 EXPOSE $EXAMPLE_SERVER_PORT
 
-CMD ["packages/example-server/dist/run.js"]
+CMD ["apps/example-server/dist/run.js"]
 
 # ░██████╗████████╗░█████╗░░██████╗░███████╗  ░█████╗░
 # ██╔════╝╚══██╔══╝██╔══██╗██╔════╝░██╔════╝  ██╔═══╝░
@@ -267,7 +268,7 @@ CMD ["packages/example-server/dist/run.js"]
 FROM rust:1.24.0 as forgecli
 
 WORKDIR /monorepo
-COPY Cargo.lock Cargo.toml rust-toolchain.toml rustfmt.toml packages/forgecli ./
+COPY Cargo.lock Cargo.toml rust-toolchain.toml rustfmt.toml apps/forgecli ./
 
 RUN cargo install && cargo build
 
@@ -350,7 +351,7 @@ WORKDIR /monorepo
 # Copy manifest files into the image in
 # preparation for `yarn install`.
 COPY pnpm-workspace.yaml pnpm-lock.yaml .nvmrc package.json ./
-COPY ./packages/e2e ./packages/e2e/
+COPY ./apps/e2e ./apps/e2e/
 
 # ignore scripts dealing with presinstall and postinstall
 RUN pnpm i --frozen-lockfile --ignore-scripts
