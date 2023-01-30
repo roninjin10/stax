@@ -32,7 +32,7 @@ E2e tests with playwright (WIP)
 
 The fastify/trpc based server of an example app being built to use all packages
 
-### packages/example-ui
+### packages/vite-app
 
 The ui of an example app being built to use all packages
 
