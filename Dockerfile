@@ -191,27 +191,27 @@ CMD ["nginx", "-g", "daemon off;"]
 # ██║╚████║██╔══╝░░░██╔██╗░░░░██║░░░  ██╔══██║██╔═══╝░██╔═══╝░
 # ██║░╚███║███████╗██╔╝╚██╗░░░██║░░░  ██║░░██║██║░░░░░██║░░░░░
 # ╚═╝░░╚══╝╚══════╝╚═╝░░╚═╝░░░╚═╝░░░  ╚═╝░░╚═╝╚═╝░░░░░╚═╝░░░░░
-FROM gcr.io/distroless/nodejs18 AS next-app-runner
-WORKDIR /app
+# FROM gcr.io/distroless/nodejs18 AS next-app-runner
+# WORKDIR /app
 
-ENV NODE_ENV production
+# ENV NODE_ENV production
 # Uncomment the following line in case you want to disable telemetry during runtime.
 # ENV NEXT_TELEMETRY_DISABLED 1
 
-RUN addgroup --system --gid 1001 nodejs
-RUN adduser --system --uid 1001 nextjs
+# RUN addgroup --system --gid 1001 nodejs
+# RUN adduser --system --uid 1001 nextjs
 
-COPY --from=monorepo /monorepo/apps/next-app/public ./public
-COPY --from=monorepo --chown=nextjs:nodejs /monorepo/apps/next-app/.next/standalone ./
-COPY --from=monorepo --chown=nextjs:nodejs /monorepo/apps/next-app/.next/static ./.next/static
+# COPY --from=monorepo /monorepo/apps/next-app/public ./public
+# COPY --from=monorepo --chown=nextjs:nodejs /monorepo/apps/next-app/.next/standalone ./
+# COPY --from=monorepo --chown=nextjs:nodejs /monorepo/apps/next-app/.next/static ./.next/static
 
-USER nextjs
+# USER nextjs
 
-EXPOSE 3000
+# EXPOSE 3000
 
-ENV PORT 3000
+# ENV PORT 3000
 
-CMD ["node", "server.js"]
+# CMD ["node", "server.js"]
 
 # ░██████╗████████╗░█████╗░░██████╗░███████╗  ███████╗
 # ██╔════╝╚══██╔══╝██╔══██╗██╔════╝░██╔════╝  ██╔════╝
