@@ -1,0 +1,45 @@
+{
+  "name": "@roninjin10/forge-smithy",
+  "description": "A cli wrapper around forge especially useful for beginners",
+  "version": "0.0.1",
+  "type": "module",
+  "main": "dist/index.cjs",
+  "module": "dist/index.js",
+  "types": "src/index.ts",
+  "bin": {
+    "forge-smithy": "dist/index.js"
+  },
+  "license": "MIT",
+  "private": false,
+  "engines": {
+    "node": ">=18",
+    "pnpm": ">=7"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "build": "tsup",
+    "test": "vitest",
+    "test:ui": "vitest --ui",
+    "test:run": "vitest run",
+    "lint": "eslint \"**/*.{ts,tsx}\" --fix && prettier \"src/**/*.{ts,tsx}\" --write",
+    "lint:check": "eslint \"**/*.{ts,tsx}\" && prettier --check \"src/**/*.{ts,tsx}\""
+  },
+  "peerDependencies": {
+    "zod": "*"
+  },
+  "devDependencies": {
+    "@vitest/ui": "^0.28.3",
+    "nodemon": "^2.0.20",
+    "tsup": "^6.5.0",
+    "typescript": "^4.9.4",
+    "vite": "^4.0.4",
+    "vitest": "^0.28.3",
+    "zod": "^3.20.2"
+  },
+  "dependencies": {
+    "cac": "^6.7.14"
+  }
+}
