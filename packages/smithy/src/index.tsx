@@ -10,51 +10,11 @@ import * as React from 'react'
 
 import { Link } from './components'
 import type { Screen } from './constants'
-import { useFlux } from './hooks/useFlux'
-import { useScreenNavigation } from './hooks/useScreenNavigation'
+import { useFlux } from './hooks'
+import { useScreenNavigation } from './hooks'
+import { Main } from './screens'
 
 const screenComponents = {
-  Main: () => {
-    useScreenNavigation()
-    const { screen } = useFlux()
-    return (
-      <>
-        <Text color="white">Welcome to the Forge Smithy</Text>
-        <Text color="gray">{screen}</Text>
-        <Text color="white">Select an option</Text>
-        <Box>
-          <Text color="gray">{'> Press '}</Text>
-          <Text color="white">f</Text>
-          <Text color="gray">{' to select forge'}</Text>
-        </Box>
-        <Box>
-          <Text color="gray">{'> Press '}</Text>
-          <Text color="white">c</Text>
-          <Text color="gray">{' to select cast'}</Text>
-        </Box>
-        <Box>
-          <Text color="gray">{'> Press '}</Text>
-          <Text color="white">a</Text>
-          <Text color="gray">{' to select anvil'}</Text>
-        </Box>
-        <Box>
-          <Text color="gray">{'> Press '}</Text>
-          <Text color="white">j</Text>
-          <Text color="gray">{' to select chisel'}</Text>
-        </Box>
-        <Box>
-          <Text color="gray">{'> Press '}</Text>
-          <Text color="white">d</Text>
-          <Text color="gray">{' for links to docs'}</Text>
-        </Box>
-        <Box>
-          <Text color="gray">{'> Press '}</Text>
-          <Text color="white">h</Text>
-          <Text color="gray">{' to view help page'}</Text>
-        </Box>
-      </>
-    )
-  },
   Forge: () => {
     useScreenNavigation()
     return <Text color="white">Forge</Text>
@@ -161,7 +121,7 @@ const screenComponents = {
 const Screen = () => {
   const { screen } = useFlux()
   if (screen === 'main') {
-    return <screenComponents.Main />
+    return <Main />
   }
   if (screen === 'forge') {
     return <screenComponents.Forge />
