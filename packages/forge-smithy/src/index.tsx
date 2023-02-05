@@ -9,41 +9,58 @@ import * as React from 'react'
 import { Box, render, Text, useInput } from 'ink'
 import { create } from 'zustand'
 
-const foundryOptions = ['forge', 'cast', 'anvil', 'chisel'] as const
-type FoundryOption = (typeof foundryOptions)[number]
+const screens = ['main', 'forge', 'cast', 'anvil', 'chisel', 'help'] as const
+type Screen = (typeof screens)[number]
 
-const useFlux = create<{
+const store = create<{
   screen: 'help' | 'main' | 'forge' | 'cast' | 'anvil' | 'chisel'
-  foundryOption: string
-  setFoundryOption: (foundryOption: FoundryOption) => void
+  setScreen: (screen: Screen) => void
 }>((set) => ({
-  screen: 'main' as 'main' | 'forge' | 'cast' | 'anvil' | 'chisel',
-  foundryOption: foundryOptions[0],
-  setFoundryOption: (foundryOption: string) =>
-    set({ foundryOption, screen: foundryOption }),
+  screen: 'main' as Screen,
+  setScreen: (screen: Screen) => set({ screen }),
 }))
 
-const MainScreen = () => {
-  const { foundryOption, setFoundryOption } = useFlux()
-  useInput((input, key) => {
+const useFlux = () => {
+  // zustand not playing nice with ink or react17 triggering rerenders
+  // I haven't debugged at all just did this quick workaround
+  const [state, setState] = React.useState(store.getState())
+  React.useEffect(() => {
+    return store.subscribe(setState)
+  }, [])
+  return state
+}
+
+const useScreenNavigation = () => {
+  const { setScreen } = useFlux()
+  useInput((input) => {
     if (input === 'f') {
-      setFoundryOption(foundryOptions[0])
+      setScreen('forge')
     }
     if (input === 'c') {
-      setFoundryOption(foundryOptions[1])
+      setScreen('cast')
     }
     if (input === 'a') {
-      setFoundryOption(foundryOptions[2])
+      setScreen('anvil')
     }
     if (input === 'j') {
-      setFoundryOption(foundryOptions[3])
+      setScreen('chisel')
     }
     if (input === 'h') {
+      setScreen('help')
+    }
+    if (input === 'm') {
+      setScreen('main')
     }
   })
+}
 
+const MainScreen = () => {
+  useScreenNavigation()
+  const { screen } = useFlux()
   return (
     <>
+      <Text color="white">Welcome to the Forge Smithy</Text>
+      <Text color="gray">{screen}</Text>
       <Text color="white">Select an option</Text>
       <Box>
         <Text color="gray">{'> Press '}</Text>
@@ -69,12 +86,31 @@ const MainScreen = () => {
   )
 }
 
-const Counter = () => {
+const ForgeScreen = () => {
+  useScreenNavigation()
+  return <Text color="white">Forge</Text>
+}
+
+const NotImplementedScreen = () => {
+  useScreenNavigation()
+  return <Text>Not implemented yet</Text>
+}
+
+const Screen = () => {
   const { screen } = useFlux()
   if (screen === 'main') {
     return <MainScreen />
   }
-  throw new Error('Unknown screen!')
+  if (screen === 'forge') {
+    return <ForgeScreen />
+  }
+  return <NotImplementedScreen />
+  // console.error('Not implemented yet')
+  // process.exit(1)
+}
+
+const App = () => {
+  return <Screen />
 }
 
 const exec = promisify(execCallback)
@@ -100,7 +136,7 @@ async function runCommand(command: string): Promise<string> {
 }
 
 export function forgeWrapper() {
-  return render(<Counter />)
+  return render(<App />)
 }
 
 export function castWrapper() {
