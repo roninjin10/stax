@@ -10,17 +10,7 @@ import * as React from 'react'
 
 import { create } from 'zustand'
 import { Link } from './components/Link'
-
-const screens = [
-  'main',
-  'forge',
-  'cast',
-  'anvil',
-  'chisel',
-  'docs',
-  'help',
-] as const
-type Screen = (typeof screens)[number]
+import type { Screen } from './constants/screens'
 
 const store = create<{
   screen: Screen
