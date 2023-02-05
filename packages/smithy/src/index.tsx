@@ -8,44 +8,7 @@ import packageJson from '../package.json'
 import { render } from 'ink'
 import * as React from 'react'
 
-import type { Screen } from './constants'
-import { useFlux } from './hooks'
-import { Main } from './screens'
-import { Forge } from './screens/Forge'
-import { NotImplemented } from './screens/NotImplemented'
-import { Docs } from './screens/Docs'
-import { Chisel } from './screens/Chisel'
-import { Anvil } from './screens/Anvil'
-import { Cast } from './screens/Cast'
-
-const Screen = () => {
-  const { screen } = useFlux()
-  if (screen === 'main') {
-    return <Main />
-  }
-  if (screen === 'forge') {
-    return <Forge />
-  }
-  if (screen === 'cast') {
-    return <Cast />
-  }
-  if (screen === 'anvil') {
-    return <Anvil />
-  }
-  if (screen === 'chisel') {
-    return <Chisel />
-  }
-  if (screen === 'docs') {
-    return <Docs />
-  }
-  return <NotImplemented />
-  // console.error('Not implemented yet')
-  // process.exit(1)
-}
-
-const App = () => {
-  return <Screen />
-}
+import { App } from './App'
 
 const exec = promisify(execCallback)
 
