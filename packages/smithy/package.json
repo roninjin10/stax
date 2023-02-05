@@ -7,7 +7,7 @@
   "module": "dist/index.js",
   "types": "src/index.tsx",
   "bin": {
-    "forge-smithy": "dist/index.js"
+    "smithy": "dist/index.js"
   },
   "license": "MIT",
   "private": false,
