@@ -13,12 +13,9 @@ import type { Screen } from './constants'
 import { useFlux } from './hooks'
 import { useScreenNavigation } from './hooks'
 import { Main } from './screens'
+import { Forge } from './screens/Forge'
 
 const screenComponents = {
-  Forge: () => {
-    useScreenNavigation()
-    return <Text color="white">Forge</Text>
-  },
   Cast: () => {
     useScreenNavigation()
     return <Text color="white">Cast</Text>
@@ -124,7 +121,7 @@ const Screen = () => {
     return <Main />
   }
   if (screen === 'forge') {
-    return <screenComponents.Forge />
+    return <Forge />
   }
   if (screen === 'cast') {
     return <screenComponents.Cast />
