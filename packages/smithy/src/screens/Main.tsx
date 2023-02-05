@@ -17,17 +17,17 @@ export const Main: React.FC<{}> = () => {
       <Box>
         <Text color="gray">{'> Press '}</Text>
         <Text color="white">c</Text>
-        <Text color="gray">{' to select smith-cast'}</Text>
+        <Text color="gray">{' to select smithy-cast'}</Text>
       </Box>
       <Box>
         <Text color="gray">{'> Press '}</Text>
         <Text color="white">a</Text>
-        <Text color="gray">{' to select smith-anvil'}</Text>
+        <Text color="gray">{' to select smithy-anvil'}</Text>
       </Box>
       <Box>
         <Text color="gray">{'> Press '}</Text>
         <Text color="white">j</Text>
-        <Text color="gray">{' to select smith-chisel'}</Text>
+        <Text color="gray">{' to select smithy-chisel'}</Text>
       </Box>
       <Box>
         <Text color="gray">{'> Press '}</Text>
