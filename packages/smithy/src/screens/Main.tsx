@@ -35,11 +35,13 @@ export const Main: React.FC<{}> = () => {
         <Text color="white">d</Text>
         <Text color="gray">{' for links to docs'}</Text>
       </Box>
+      {/*
       <Box>
         <Text color="gray">{'> Press '}</Text>
         <Text color="white">h</Text>
         <Text color="gray">{' to view help page'}</Text>
       </Box>
+        */}
     </>
   )
 }

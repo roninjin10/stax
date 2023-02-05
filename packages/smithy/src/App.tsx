@@ -10,8 +10,12 @@ import {
 } from './screens'
 import * as React from 'react'
 import { Screen } from './constants'
+import { validateFoundry } from './lib/validateFoundry'
 
 const Screen = () => {
+  React.useEffect(() => {
+    validateFoundry
+  }, [])
   const { screen } = useFlux()
   if (screen === 'main') {
     return <Main />
