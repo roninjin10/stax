@@ -7,28 +7,37 @@ export const Main: React.FC<{}> = () => {
   const { screen } = useFlux()
   return (
     <>
-      <Text color="white">Welcome to the Forge Smithy</Text>
-      <Text color="gray">{screen}</Text>
+      <Text color="white">Welcome to Smithy for Forge</Text>
       <Text color="white">Select an option</Text>
       <Box>
         <Text color="gray">{'> Press '}</Text>
         <Text color="white">f</Text>
-        <Text color="gray">{' to select forge'}</Text>
+        <Text color="gray">{' to select smithy-forge'}</Text>
       </Box>
       <Box>
         <Text color="gray">{'> Press '}</Text>
         <Text color="white">c</Text>
-        <Text color="gray">{' to select cast'}</Text>
+        <Text color="gray">{' to select smith-cast'}</Text>
       </Box>
       <Box>
         <Text color="gray">{'> Press '}</Text>
         <Text color="white">a</Text>
-        <Text color="gray">{' to select anvil'}</Text>
+        <Text color="gray">{' to select smith-anvil'}</Text>
       </Box>
       <Box>
         <Text color="gray">{'> Press '}</Text>
         <Text color="white">j</Text>
-        <Text color="gray">{' to select chisel'}</Text>
+        <Text color="gray">{' to select smith-chisel'}</Text>
+      </Box>
+      <Box>
+        <Text color="gray">{'> Press '}</Text>
+        <Text color="white">w</Text>
+        <Text color="gray">{' for wagmi cli'}</Text>
+      </Box>
+      <Box>
+        <Text color="gray">{'> Press '}</Text>
+        <Text color="white">g</Text>
+        <Text color="gray">{' for code gen'}</Text>
       </Box>
       <Box>
         <Text color="gray">{'> Press '}</Text>

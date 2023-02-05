@@ -46,6 +46,7 @@ cli.version(packageJson.version)
 
 void (async () => {
   try {
+    console.clear()
     // Parse CLI args without running command
     cli.parse(process.argv, { run: false })
     if (!cli.matchedCommand && cli.args.length === 0) {
