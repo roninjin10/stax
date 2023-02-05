@@ -5,7 +5,7 @@ import { promisify } from 'util'
 import { cac } from 'cac'
 // @ts-ignore it's mad about me importing something not in tsconfig.includes
 import packageJson from '../package.json'
-import { Box, Newline, render, Spacer, Text, Transform, useInput } from 'ink'
+import { Box, Newline, render, Text, Transform, useInput } from 'ink'
 import * as React from 'react'
 import terminalLink from 'terminal-link'
 
