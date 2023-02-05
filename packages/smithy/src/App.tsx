@@ -1,4 +1,4 @@
-import { useFlux } from './hooks'
+import { FluxProvider, useFlux } from './hooks'
 import {
   Anvil,
   Cast,
@@ -9,8 +9,9 @@ import {
   NotImplemented,
 } from './screens'
 import * as React from 'react'
+import { Screen } from './constants'
 
-export const App = () => {
+const Screen = () => {
   const { screen } = useFlux()
   if (screen === 'main') {
     return <Main />
@@ -33,4 +34,14 @@ export const App = () => {
   return <NotImplemented />
   // console.error('Not implemented yet')
   // process.exit(1)
+}
+
+export const App: React.FC<{
+  initalScreen?: Screen
+}> = ({ initalScreen = 'main' }) => {
+  return (
+    <FluxProvider initialScreen={initalScreen}>
+      <Screen />
+    </FluxProvider>
+  )
 }
