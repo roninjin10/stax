@@ -54,57 +54,85 @@ const useScreenNavigation = () => {
   })
 }
 
-const MainScreen = () => {
-  useScreenNavigation()
-  const { screen } = useFlux()
-  return (
-    <>
-      <Text color="white">Welcome to the Forge Smithy</Text>
-      <Text color="gray">{screen}</Text>
-      <Text color="white">Select an option</Text>
-      <Box>
-        <Text color="gray">{'> Press '}</Text>
-        <Text color="white">f</Text>
-        <Text color="gray">{' to select forge'}</Text>
-      </Box>
-      <Box>
-        <Text color="gray">{'> Press '}</Text>
-        <Text color="white">c</Text>
-        <Text color="gray">{' to select cast'}</Text>
-      </Box>
-      <Box>
-        <Text color="gray">{'> Press '}</Text>
-        <Text color="white">a</Text>
-        <Text color="gray">{' to select anvil'}</Text>
-      </Box>
-      <Box>
-        <Text color="gray">{'> Press '}</Text>
-        <Text color="white">j</Text>
-        <Text color="gray">{' to select chisel'}</Text>
-      </Box>
-    </>
-  )
-}
-
-const ForgeScreen = () => {
-  useScreenNavigation()
-  return <Text color="white">Forge</Text>
-}
-
-const NotImplementedScreen = () => {
-  useScreenNavigation()
-  return <Text>Not implemented yet</Text>
+const screenComponents = {
+  Main: () => {
+    useScreenNavigation()
+    const { screen } = useFlux()
+    return (
+      <>
+        <Text color="white">Welcome to the Forge Smithy</Text>
+        <Text color="gray">{screen}</Text>
+        <Text color="white">Select an option</Text>
+        <Box>
+          <Text color="gray">{'> Press '}</Text>
+          <Text color="white">f</Text>
+          <Text color="gray">{' to select forge'}</Text>
+        </Box>
+        <Box>
+          <Text color="gray">{'> Press '}</Text>
+          <Text color="white">c</Text>
+          <Text color="gray">{' to select cast'}</Text>
+        </Box>
+        <Box>
+          <Text color="gray">{'> Press '}</Text>
+          <Text color="white">a</Text>
+          <Text color="gray">{' to select anvil'}</Text>
+        </Box>
+        <Box>
+          <Text color="gray">{'> Press '}</Text>
+          <Text color="white">j</Text>
+          <Text color="gray">{' to select chisel'}</Text>
+        </Box>
+      </>
+    )
+  },
+  Forge: () => {
+    useScreenNavigation()
+    return <Text color="white">Forge</Text>
+  },
+  Cast: () => {
+    useScreenNavigation()
+    return <Text color="white">Cast</Text>
+  },
+  Anvil: () => {
+    useScreenNavigation()
+    return <Text color="white">Anvil</Text>
+  },
+  Chisel: () => {
+    useScreenNavigation()
+    return <Text color="white">Chisel</Text>
+  },
+  Help: () => {
+    useScreenNavigation()
+    return <Text color="white">Help</Text>
+  },
+  NotImplemented: () => {
+    useScreenNavigation()
+    return <Text>Not implemented yet</Text>
+  },
 }
 
 const Screen = () => {
   const { screen } = useFlux()
   if (screen === 'main') {
-    return <MainScreen />
+    return <screenComponents.Main />
   }
   if (screen === 'forge') {
-    return <ForgeScreen />
+    return <screenComponents.Forge />
   }
-  return <NotImplementedScreen />
+  if (screen === 'cast') {
+    return <screenComponents.Cast />
+  }
+  if (screen === 'anvil') {
+    return <screenComponents.Anvil />
+  }
+  if (screen === 'chisel') {
+    return <screenComponents.Chisel />
+  }
+  if (screen === 'help') {
+    return <screenComponents.Help />
+  }
+  return <screenComponents.NotImplemented />
   // console.error('Not implemented yet')
   // process.exit(1)
 }
