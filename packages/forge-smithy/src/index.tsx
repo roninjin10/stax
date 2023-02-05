@@ -5,9 +5,26 @@ import { promisify } from 'util'
 import { cac } from 'cac'
 // @ts-ignore it's mad about me importing something not in tsconfig.includes
 import packageJson from '../package.json'
+import { Box, Newline, render, Spacer, Text, Transform, useInput } from 'ink'
 import * as React from 'react'
-import { Box, render, Text, useInput } from 'ink'
+import terminalLink from 'terminal-link'
+
 import { create } from 'zustand'
+/**
+ * Copied from ink-link https://github.com/sindresorhus/ink-link/blob/main/index.js
+ * ink-link is not maintained
+ */
+export const Link: React.FC<
+  React.PropsWithChildren<{
+    url: string
+  }>
+> = (props) => {
+  return (
+    <Transform transform={(children) => terminalLink(children, props.url)}>
+      <Text>{props.children}</Text>
+    </Transform>
+  )
+}
 
 const screens = ['main', 'forge', 'cast', 'anvil', 'chisel', 'help'] as const
 type Screen = (typeof screens)[number]
@@ -104,7 +121,31 @@ const screenComponents = {
   },
   Help: () => {
     useScreenNavigation()
-    return <Text color="white">Help</Text>
+    const columnWidth = 14
+    return (
+      <>
+        <Text color="white">Help</Text>
+        <Newline />
+        <Box>
+          <Box width={columnWidth}>
+            <Text color="gray">{'Github: '}</Text>
+          </Box>
+          <Box>
+            <Link url="https://github.com/foundry-rs/foundry">
+              <Text color="cyan">foundry-rs/foundry</Text>
+            </Link>
+          </Box>
+        </Box>
+        <Box>
+          <Box width={columnWidth}>
+            <Text color="gray">{'Foundry book: '}</Text>
+          </Box>
+          <Link url="https://book.getfoundry.sh/">
+            <Text color="cyan">book.getfoundry.sh</Text>
+          </Link>
+        </Box>
+      </>
+    )
   },
   NotImplemented: () => {
     useScreenNavigation()
