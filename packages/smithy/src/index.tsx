@@ -121,14 +121,33 @@ const screenComponents = {
   },
   Help: () => {
     useScreenNavigation()
-    const columnWidth = 14
+    const columnWidth = 15
     return (
       <>
         <Text color="white">Help</Text>
-        <Newline />
         <Box>
           <Box width={columnWidth}>
-            <Text color="gray">{'Github: '}</Text>
+            <Text color="gray">{'Cheatsheet: '}</Text>
+          </Box>
+          <Box>
+            <Link url="https://github.com/dabit3/foundry-cheatsheet">
+              <Text color="cyan">dabit3/foundry-cheatsheet</Text>
+            </Link>
+          </Box>
+        </Box>
+        <Box>
+          <Box width={columnWidth}>
+            <Text color="gray">{'Smithy github: '}</Text>
+          </Box>
+          <Box>
+            <Link url="https://github.com/roninjin10/stax/tree/main/packages/smithy">
+              <Text color="cyan">roninjin10/stax</Text>
+            </Link>
+          </Box>
+        </Box>
+        <Box>
+          <Box width={columnWidth}>
+            <Text color="gray">{'Forge github: '}</Text>
           </Box>
           <Box>
             <Link url="https://github.com/foundry-rs/foundry">
@@ -143,6 +162,20 @@ const screenComponents = {
           <Link url="https://book.getfoundry.sh/">
             <Text color="cyan">book.getfoundry.sh</Text>
           </Link>
+        </Box>
+        <Box>
+          <Box width={columnWidth}>
+            <Text color="gray">{'Forge reference: '}</Text>
+          </Box>
+          <Link url="">
+            <Text color="cyan">book.getfoundry.sh</Text>
+          </Link>
+        </Box>
+        <Newline />
+        <Box>
+          <Text color="gray">{'> Press '}</Text>
+          <Text color="white">m</Text>
+          <Text color="gray">{' to return to main screen'}</Text>
         </Box>
       </>
     )
