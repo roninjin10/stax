@@ -26,11 +26,19 @@ export const Link: React.FC<
   )
 }
 
-const screens = ['main', 'forge', 'cast', 'anvil', 'chisel', 'help'] as const
+const screens = [
+  'main',
+  'forge',
+  'cast',
+  'anvil',
+  'chisel',
+  'docs',
+  'help',
+] as const
 type Screen = (typeof screens)[number]
 
 const store = create<{
-  screen: 'help' | 'main' | 'forge' | 'cast' | 'anvil' | 'chisel'
+  screen: Screen
   setScreen: (screen: Screen) => void
 }>((set) => ({
   screen: 'main' as Screen,
@@ -61,6 +69,9 @@ const useScreenNavigation = () => {
     }
     if (input === 'j') {
       setScreen('chisel')
+    }
+    if (input === 'd') {
+      setScreen('docs')
     }
     if (input === 'h') {
       setScreen('help')
@@ -100,6 +111,16 @@ const screenComponents = {
           <Text color="white">j</Text>
           <Text color="gray">{' to select chisel'}</Text>
         </Box>
+        <Box>
+          <Text color="gray">{'> Press '}</Text>
+          <Text color="white">d</Text>
+          <Text color="gray">{' for links to docs'}</Text>
+        </Box>
+        <Box>
+          <Text color="gray">{'> Press '}</Text>
+          <Text color="white">h</Text>
+          <Text color="gray">{' to view help page'}</Text>
+        </Box>
       </>
     )
   },
@@ -119,9 +140,9 @@ const screenComponents = {
     useScreenNavigation()
     return <Text color="white">Chisel</Text>
   },
-  Help: () => {
+  Docs: () => {
     useScreenNavigation()
-    const columnWidth = 15
+    const columnWidth = 17
     return (
       <>
         <Text color="white">Help</Text>
@@ -167,8 +188,28 @@ const screenComponents = {
           <Box width={columnWidth}>
             <Text color="gray">{'Forge reference: '}</Text>
           </Box>
-          <Link url="">
-            <Text color="cyan">book.getfoundry.sh</Text>
+          <Link url="https://book.getfoundry.sh/reference/forge">
+            <Text color="cyan">
+              https://book.getfoundry.sh/reference/forge/
+            </Text>
+          </Link>
+        </Box>
+        <Box>
+          <Box width={columnWidth}>
+            <Text color="gray">{'Cast reference: '}</Text>
+          </Box>
+          <Link url="https://book.getfoundry.sh/reference/cast">
+            <Text color="cyan">https://book.getfoundry.sh/reference/cast</Text>
+          </Link>
+        </Box>
+        <Box>
+          <Box width={columnWidth}>
+            <Text color="gray">{'Anvil reference: '}</Text>
+          </Box>
+          <Link url="https://book.getfoundry.sh/reference/anvil/">
+            <Text color="cyan">
+              https://book.getfoundry.sh/reference/anvil/
+            </Text>
           </Link>
         </Box>
         <Newline />
@@ -203,8 +244,8 @@ const Screen = () => {
   if (screen === 'chisel') {
     return <screenComponents.Chisel />
   }
-  if (screen === 'help') {
-    return <screenComponents.Help />
+  if (screen === 'docs') {
+    return <screenComponents.Docs />
   }
   return <screenComponents.NotImplemented />
   // console.error('Not implemented yet')
