@@ -5,115 +5,18 @@ import { promisify } from 'util'
 import { cac } from 'cac'
 // @ts-ignore it's mad about me importing something not in tsconfig.includes
 import packageJson from '../package.json'
-import { Box, Newline, render, Text } from 'ink'
+import { render } from 'ink'
 import * as React from 'react'
 
-import { Link } from './components'
 import type { Screen } from './constants'
 import { useFlux } from './hooks'
-import { useScreenNavigation } from './hooks'
 import { Main } from './screens'
 import { Forge } from './screens/Forge'
-
-const screenComponents = {
-  Cast: () => {
-    useScreenNavigation()
-    return <Text color="white">Cast</Text>
-  },
-  Anvil: () => {
-    useScreenNavigation()
-    return <Text color="white">Anvil</Text>
-  },
-  Chisel: () => {
-    useScreenNavigation()
-    return <Text color="white">Chisel</Text>
-  },
-  Docs: () => {
-    useScreenNavigation()
-    const columnWidth = 17
-    return (
-      <>
-        <Text color="white">Help</Text>
-        <Box>
-          <Box width={columnWidth}>
-            <Text color="gray">{'Cheatsheet: '}</Text>
-          </Box>
-          <Box>
-            <Link url="https://github.com/dabit3/foundry-cheatsheet">
-              <Text color="cyan">dabit3/foundry-cheatsheet</Text>
-            </Link>
-          </Box>
-        </Box>
-        <Box>
-          <Box width={columnWidth}>
-            <Text color="gray">{'Smithy github: '}</Text>
-          </Box>
-          <Box>
-            <Link url="https://github.com/roninjin10/stax/tree/main/packages/smithy">
-              <Text color="cyan">roninjin10/stax</Text>
-            </Link>
-          </Box>
-        </Box>
-        <Box>
-          <Box width={columnWidth}>
-            <Text color="gray">{'Forge github: '}</Text>
-          </Box>
-          <Box>
-            <Link url="https://github.com/foundry-rs/foundry">
-              <Text color="cyan">foundry-rs/foundry</Text>
-            </Link>
-          </Box>
-        </Box>
-        <Box>
-          <Box width={columnWidth}>
-            <Text color="gray">{'Foundry book: '}</Text>
-          </Box>
-          <Link url="https://book.getfoundry.sh/">
-            <Text color="cyan">book.getfoundry.sh</Text>
-          </Link>
-        </Box>
-        <Box>
-          <Box width={columnWidth}>
-            <Text color="gray">{'Forge reference: '}</Text>
-          </Box>
-          <Link url="https://book.getfoundry.sh/reference/forge">
-            <Text color="cyan">
-              https://book.getfoundry.sh/reference/forge/
-            </Text>
-          </Link>
-        </Box>
-        <Box>
-          <Box width={columnWidth}>
-            <Text color="gray">{'Cast reference: '}</Text>
-          </Box>
-          <Link url="https://book.getfoundry.sh/reference/cast">
-            <Text color="cyan">https://book.getfoundry.sh/reference/cast</Text>
-          </Link>
-        </Box>
-        <Box>
-          <Box width={columnWidth}>
-            <Text color="gray">{'Anvil reference: '}</Text>
-          </Box>
-          <Link url="https://book.getfoundry.sh/reference/anvil/">
-            <Text color="cyan">
-              https://book.getfoundry.sh/reference/anvil/
-            </Text>
-          </Link>
-        </Box>
-        <Newline />
-        <Box>
-          <Text color="gray">{'> Press '}</Text>
-          <Text color="white">m</Text>
-          <Text color="gray">{' to return to main screen'}</Text>
-        </Box>
-      </>
-    )
-  },
-  NotImplemented: () => {
-    useScreenNavigation()
-    return <Text>Not implemented yet</Text>
-  },
-}
+import { NotImplemented } from './screens/NotImplemented'
+import { Docs } from './screens/Docs'
+import { Chisel } from './screens/Chisel'
+import { Anvil } from './screens/Anvil'
+import { Cast } from './screens/Cast'
 
 const Screen = () => {
   const { screen } = useFlux()
@@ -124,18 +27,18 @@ const Screen = () => {
     return <Forge />
   }
   if (screen === 'cast') {
-    return <screenComponents.Cast />
+    return <Cast />
   }
   if (screen === 'anvil') {
-    return <screenComponents.Anvil />
+    return <Anvil />
   }
   if (screen === 'chisel') {
-    return <screenComponents.Chisel />
+    return <Chisel />
   }
   if (screen === 'docs') {
-    return <screenComponents.Docs />
+    return <Docs />
   }
-  return <screenComponents.NotImplemented />
+  return <NotImplemented />
   // console.error('Not implemented yet')
   // process.exit(1)
 }
