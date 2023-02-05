@@ -8,27 +8,9 @@ import packageJson from '../package.json'
 import { Box, Newline, render, Text, useInput } from 'ink'
 import * as React from 'react'
 
-import { create } from 'zustand'
 import { Link } from './components'
 import type { Screen } from './constants'
-
-const store = create<{
-  screen: Screen
-  setScreen: (screen: Screen) => void
-}>((set) => ({
-  screen: 'main' as Screen,
-  setScreen: (screen: Screen) => set({ screen }),
-}))
-
-const useFlux = () => {
-  // zustand not playing nice with ink or react17 triggering rerenders
-  // I haven't debugged at all just did this quick workaround
-  const [state, setState] = React.useState(store.getState())
-  React.useEffect(() => {
-    return store.subscribe(setState)
-  }, [])
-  return state
-}
+import { useFlux } from './store'
 
 const useScreenNavigation = () => {
   const { setScreen } = useFlux()
