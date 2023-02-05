@@ -5,26 +5,11 @@ import { promisify } from 'util'
 import { cac } from 'cac'
 // @ts-ignore it's mad about me importing something not in tsconfig.includes
 import packageJson from '../package.json'
-import { Box, Newline, render, Text, Transform, useInput } from 'ink'
+import { Box, Newline, render, Text, useInput } from 'ink'
 import * as React from 'react'
-import terminalLink from 'terminal-link'
 
 import { create } from 'zustand'
-/**
- * Copied from ink-link https://github.com/sindresorhus/ink-link/blob/main/index.js
- * ink-link is not maintained
- */
-export const Link: React.FC<
-  React.PropsWithChildren<{
-    url: string
-  }>
-> = (props) => {
-  return (
-    <Transform transform={(children) => terminalLink(children, props.url)}>
-      <Text>{props.children}</Text>
-    </Transform>
-  )
-}
+import { Link } from './components/Link'
 
 const screens = [
   'main',
