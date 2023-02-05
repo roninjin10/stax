@@ -37,8 +37,8 @@ const Screen = () => {
 }
 
 export const App: React.FC<{
-  initalScreen?: Screen
-}> = ({ initalScreen = 'main' }) => {
+  initalScreen: Screen
+}> = ({ initalScreen }) => {
   return (
     <FluxProvider initialScreen={initalScreen}>
       <Screen />
