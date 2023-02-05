@@ -5,39 +5,13 @@ import { promisify } from 'util'
 import { cac } from 'cac'
 // @ts-ignore it's mad about me importing something not in tsconfig.includes
 import packageJson from '../package.json'
-import { Box, Newline, render, Text, useInput } from 'ink'
+import { Box, Newline, render, Text } from 'ink'
 import * as React from 'react'
 
 import { Link } from './components'
 import type { Screen } from './constants'
-import { useFlux } from './store'
-
-const useScreenNavigation = () => {
-  const { setScreen } = useFlux()
-  useInput((input) => {
-    if (input === 'f') {
-      setScreen('forge')
-    }
-    if (input === 'c') {
-      setScreen('cast')
-    }
-    if (input === 'a') {
-      setScreen('anvil')
-    }
-    if (input === 'j') {
-      setScreen('chisel')
-    }
-    if (input === 'd') {
-      setScreen('docs')
-    }
-    if (input === 'h') {
-      setScreen('help')
-    }
-    if (input === 'm') {
-      setScreen('main')
-    }
-  })
-}
+import { useFlux } from './hooks/useFlux'
+import { useScreenNavigation } from './hooks/useScreenNavigation'
 
 const screenComponents = {
   Main: () => {

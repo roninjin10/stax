@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { create } from 'zustand'
-import type { Screen } from './constants'
+import type { Screen } from '../constants'
 
 const store = create<{
   screen: Screen
