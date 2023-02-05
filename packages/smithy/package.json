@@ -1,5 +1,5 @@
 {
-  "name": "@roninjin10/forge-smithy",
+  "name": "@roninjin10/smithy",
   "description": "A cli wrapper around forge especially useful for beginners",
   "version": "0.0.1",
   "type": "module",

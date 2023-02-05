@@ -62,7 +62,7 @@ Examples:
 `)
 }
 
-const cli = cac('forge-smithy')
+const cli = cac('smithy')
 
 cli.command('forge', 'Runs the forge library').action(async () => {
   return forgeWrapper()
