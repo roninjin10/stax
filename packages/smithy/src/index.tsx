@@ -9,8 +9,8 @@ import { Box, Newline, render, Text, useInput } from 'ink'
 import * as React from 'react'
 
 import { create } from 'zustand'
-import { Link } from './components/Link'
-import type { Screen } from './constants/screens'
+import { Link } from './components'
+import type { Screen } from './constants'
 
 const store = create<{
   screen: Screen
