@@ -1,10 +1,10 @@
 #!/usr/bin/env node
 import { cac } from 'cac'
-// @ts-ignore it's mad about me importing something not in tsconfig.includes
-import packageJson from '../package.json'
 import { render } from 'ink'
 import * as React from 'react'
 
+// @ts-ignore it's mad about me importing something not in tsconfig.includes
+import packageJson from '../package.json'
 import { App } from './App'
 
 const cli = cac('smithy')

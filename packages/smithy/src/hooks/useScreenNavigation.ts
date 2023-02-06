@@ -1,4 +1,5 @@
 import { useInput } from 'ink'
+
 import { useFlux } from './useFlux'
 
 export const useScreenNavigation = () => {

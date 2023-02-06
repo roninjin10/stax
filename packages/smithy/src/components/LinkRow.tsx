@@ -1,5 +1,6 @@
 import { Box, Text } from 'ink'
 import * as React from 'react'
+
 import { Link } from '.'
 
 const columnWidth = 17

@@ -1,9 +1,10 @@
 import { Box, Newline, Text } from 'ink'
 import * as React from 'react'
-import { LinkRow } from '../components/LinkRow'
-import { useFlux, useScreenNavigation } from '../hooks'
 
-export const Docs: React.FC<{}> = () => {
+import { LinkRow } from '../components/LinkRow'
+import { useScreenNavigation } from '../hooks'
+
+export const Docs: React.FC = () => {
   useScreenNavigation()
   return (
     <>

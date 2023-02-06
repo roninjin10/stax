@@ -1,6 +1,7 @@
-import { create } from 'zustand'
-import type { Screen } from '../constants'
 import * as React from 'react'
+import { create } from 'zustand'
+
+import type { Screen } from '../constants'
 
 const createStore = (initialScreen: Screen) => {
   return create<{

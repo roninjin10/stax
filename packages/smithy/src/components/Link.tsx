@@ -1,5 +1,3 @@
-// @ts-ignore it's mad about me importing something not in tsconfig.includes
-import packageJson from '../package.json'
 import { Text, Transform } from 'ink'
 import * as React from 'react'
 import terminalLink from 'terminal-link'

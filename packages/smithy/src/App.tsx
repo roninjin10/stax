@@ -1,4 +1,8 @@
+import * as React from 'react'
+
+import { Screen } from './constants'
 import { FluxProvider, useFlux } from './hooks'
+import { validateFoundry } from './lib/validateFoundry'
 import {
   Anvil,
   Cast,
@@ -8,9 +12,6 @@ import {
   Main,
   NotImplemented,
 } from './screens'
-import * as React from 'react'
-import { Screen } from './constants'
-import { validateFoundry } from './lib/validateFoundry'
 
 const Screen = () => {
   React.useEffect(() => {

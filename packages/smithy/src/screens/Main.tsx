@@ -1,10 +1,10 @@
 import { Box, Text } from 'ink'
 import * as React from 'react'
-import { useFlux, useScreenNavigation } from '../hooks'
 
-export const Main: React.FC<{}> = () => {
+import { useScreenNavigation } from '../hooks'
+
+export const Main: React.FC = () => {
   useScreenNavigation()
-  const { screen } = useFlux()
   return (
     <>
       <Text color="white">Welcome to Smithy for Forge</Text>
