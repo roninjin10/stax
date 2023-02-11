@@ -2,7 +2,7 @@ import { useQuery } from '@tanstack/react-query'
 import { tsSol, run } from '@roninjin10/ts-sol/src'
 
 const forgeScript = tsSol`
-contract HelloWorld is Script {
+contract HelloWorld {
     function run() external {
         return 'Hello, World!';
     }
