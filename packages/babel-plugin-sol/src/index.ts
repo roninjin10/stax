@@ -83,6 +83,9 @@ src = "src"
 out = "dist"
 solc = ${solc}
 `
+  if (fs.existsSync(tempForgeProjectPath)) {
+    fs.rmdirSync(tempForgeProjectPath, { recursive: true })
+  }
   fs.mkdirSync(tempForgeProjectPath)
   fs.writeFileSync(foundryTomlPath, foundryToml, { encoding: 'utf-8' })
   fs.mkdirSync(nodePath.join(tempForgeProjectPath, 'src'))
@@ -112,10 +115,6 @@ solc = ${solc}
         const isTsSolTag = tag.type === 'Identifier' && tag.name === 'tsSol'
         if (!isTsSolTag) {
           return
-        }
-
-        if (fs.existsSync(tempForgeProjectPath)) {
-          fs.rmdirSync(tempForgeProjectPath, { recursive: true })
         }
 
         /*
