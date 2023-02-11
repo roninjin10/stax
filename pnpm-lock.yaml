@@ -196,6 +196,7 @@ importers:
       '@types/babel__helper-plugin-utils': ^7.10.0
       '@vitest/ui': ^0.28.4
       core: link:@types/babel/core
+      ethers: ^6.0.2
       helper-plugin-utils: link:@types/babel/helper-plugin-utils
       traverse: link:@types/babel/traverse
       tsup: ^6.6.0
@@ -206,6 +207,7 @@ importers:
     dependencies:
       '@babel/helper-plugin-utils': 7.20.2
       '@types/babel-core': 6.25.7
+      ethers: 6.0.2
     devDependencies:
       '@babel/core': 7.20.12
       '@babel/traverse': 7.20.13
