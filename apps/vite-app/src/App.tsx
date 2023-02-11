@@ -8,11 +8,19 @@ contract HelloWorld is Script {
 }
 `
 
-const run = async (script: string) => {}
+const run = async (script: string) => {
+  return 'Hello, World!'
+}
 
 export const App = () => {
   const { data, error, isLoading } = useQuery(['forgeScript'], async () => {
     return run(forgeScript)
   })
-  return <div></div>
+  return (
+    <div>
+      {isLoading && <div>Loading...</div>}
+      {error && <div>Error: {(error as Error).message}</div>}
+      {data && <div>{data}</div>}
+    </div>
+  )
 }
