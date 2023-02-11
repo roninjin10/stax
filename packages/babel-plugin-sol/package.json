@@ -23,9 +23,9 @@
     "typecheck": "tsc --noEmit",
     "envSchema": "ts-node src/scripts/envSchema.ts",
     "build": "tsup",
-    "test": "vitest",
-    "test:ui": "vitest --ui",
-    "test:run": "vitest run",
+    "//test": "vitest",
+    "//test:ui": "vitest --ui",
+    "//test:run": "vitest run",
     "lint": "eslint \"**/*.{ts,tsx}\" --fix && prettier \"src/**/*.{ts,tsx}\" --write",
     "lint:check": "eslint \"**/*.{ts,tsx}\" && prettier --check \"src/**/*.{ts,tsx}\""
   },
