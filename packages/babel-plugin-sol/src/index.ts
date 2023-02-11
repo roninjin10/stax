@@ -78,7 +78,7 @@ export default declare((api, options: Options) => {
   )
   const foundryTomlPath = nodePath.join(tempForgeProjectPath, 'foundry.toml')
   const foundryToml = `
-[project]
+[profile.project]
 name = "temp-ts-sol-forge-project"
 src = "src"
 out = "dist"
