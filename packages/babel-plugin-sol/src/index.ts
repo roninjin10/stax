@@ -158,7 +158,7 @@ solc = "${solc}"
         /**
          * Read the artifact
          */
-        const bytecodeFilePath = nodePath.join(
+        const artifactsPath = nodePath.join(
           tempForgeProjectPath,
           'dist',
           `${contractName}.sol`,
@@ -166,7 +166,7 @@ solc = "${solc}"
         )
         const { abi, bytecode } = forgeArtifactsValidator.parse(
           JSON.parse(
-            fs.readFileSync(bytecodeFilePath, {
+            fs.readFileSync(artifactsPath, {
               encoding: 'utf-8',
             }),
           ),
