@@ -35,7 +35,12 @@
   "devDependencies": {
     "@babel/core": "^7.20.12",
     "@babel/traverse": "^7.20.13",
+    "@types/babel__core": "^7.20.0",
+    "@types/babel__helper-plugin-utils": "^7.10.0",
     "@vitest/ui": "^0.28.4",
+    "core": "link:@types/babel/core",
+    "helper-plugin-utils": "link:@types/babel/helper-plugin-utils",
+    "traverse": "link:@types/babel/traverse",
     "tsup": "^6.6.0",
     "typescript": "^4.9.5",
     "vite": "^4.1.1",
@@ -50,6 +55,7 @@
     "ts-sol"
   ],
   "dependencies": {
-    "@babel/helper-plugin-utils": "^7.20.2"
+    "@babel/helper-plugin-utils": "^7.20.2",
+    "@types/babel-core": "^6.25.7"
   }
 }
