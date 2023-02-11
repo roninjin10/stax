@@ -95,6 +95,12 @@ solc = ${solc}
 
   return {
     name: 'ts-sol',
+    post: () => {
+      /**
+       * Delete the forge project
+       */
+      return fs.rmdir(tempForgeProjectPath, { recursive: true })
+    },
     visitor: {
       /**
        * @see https://babeljs.io/docs/en/babel-types
