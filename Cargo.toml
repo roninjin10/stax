@@ -1,4 +1,5 @@
 [workspace]
 members = [
+    "apps/dfs-optimizer",
     "apps/forgecli"
 ]

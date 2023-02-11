@@ -3,5 +3,9 @@
 version = 3
 
 [[package]]
+name = "dfs_optimizer"
+version = "0.1.0"
+
+[[package]]
 name = "forgecli"
 version = "0.1.0"
