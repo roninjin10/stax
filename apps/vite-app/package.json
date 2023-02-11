@@ -7,6 +7,7 @@
     "dev": "vite --open",
     "build": "vite build",
     "serve": "serve -s -l tcp://0.0.0.0:3000 dist",
+    "test": "vitest",
     "lint": "eslint \"**/*.{ts,tsx}\" --fix && prettier \"**/*.{ts,tsx}\" --write --loglevel=warn",
     "lint:check": "eslint \"**/*.{ts,tsx}\" && prettier --check \"**/*.{ts,tsx}\"",
     "preview": "vite preview"
@@ -19,6 +20,7 @@
     "@tanstack/react-query": "^4.24.4",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
+    "@types/testing-library__jest-dom": "^5.14.5",
     "@vanilla-extract/css": "^1.9.5",
     "buffer": "^6.0.3",
     "connectkit": "^1.1.3",
