@@ -131,7 +131,11 @@ solc = "${solc}"
         /**
          * Write the solidity file to forge temp dir
          */
-        const solidityString = quasi.quasis[0]?.value.raw
+        const solidityString = `
+        pragma solidity ^${solc};
+
+        ${quasi.quasis[0]?.value.raw}
+        `
         console.log(solidityString)
         if (!solidityString) {
           throw new Error('tsSol tagged template literal must have a string')
