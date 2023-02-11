@@ -29,25 +29,25 @@
     "zod": "*"
   },
   "devDependencies": {
-    "@growthbook/growthbook-react": "^0.11.1",
+    "@growthbook/growthbook-react": "^0.11.2",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/react-hooks": "^8.0.1",
     "@types/react": "^18.0.27",
     "@types/react-dom": "^18.0.10",
     "@types/testing-library__jest-dom": "^5.14.5",
-    "@vitejs/plugin-react": "^3.0.1",
-    "@vitest/ui": "^0.28.3",
+    "@vitejs/plugin-react": "^3.1.0",
+    "@vitest/ui": "^0.28.4",
     "jest-dom": "link:@types/@testing-library/jest-dom",
     "jsdom": "^21.1.0",
     "matchers": "link:@types/@testing-library/jest-dom/matchers",
     "nodemon": "^2.0.20",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "tsup": "^6.5.0",
-    "typescript": "^4.9.4",
-    "vite": "^4.0.4",
-    "vitest": "^0.28.3",
-    "zod": "^3.20.2"
+    "tsup": "^6.6.0",
+    "typescript": "^4.9.5",
+    "vite": "^4.1.1",
+    "vitest": "^0.28.4",
+    "zod": "^3.20.6"
   }
 }
