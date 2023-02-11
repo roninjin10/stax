@@ -81,7 +81,6 @@ export default declare((api, options: Options) => {
 [profile.project]
 name = "temp-ts-sol-forge-project"
 src = "src"
-out = "dist"
 solc = "${solc}"
 `
   if (fs.existsSync(tempForgeProjectPath)) {
@@ -160,9 +159,9 @@ solc = "${solc}"
          */
         const artifactsPath = nodePath.join(
           tempForgeProjectPath,
-          'dist',
+          'out',
           `${contractName}.sol`,
-          `${contractName}.json`,
+          `Script.json`,
         )
         const { abi, bytecode } = forgeArtifactsValidator.parse(
           JSON.parse(
