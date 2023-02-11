@@ -9,15 +9,7 @@ export default defineConfig({
   build: {
     outDir: 'dist',
   },
-  define: {
-    global: 'globalThis',
-  },
-  resolve: {
-    alias: {
-      process: 'process/browser',
-      util: 'util',
-    },
-  },
+  resolve: {},
   test: {
     environment: 'jsdom',
   },
