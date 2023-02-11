@@ -13,8 +13,7 @@ export default declare((api, options: Options) => {
     visitor: {
       TaggedTemplateExpression(path) {
         const {
-          node,
-          node: { tag },
+          node: { tag, quasi },
         } = path
 
         const isTsSolTag = tag.type === 'Identifier' && tag.name === 'tsSol'
@@ -23,11 +22,11 @@ export default declare((api, options: Options) => {
           return
         }
 
-        const { quasi } = node
+        /*
+        we aren't handling string interpelation yet
 
         const strings: t.Node[] = []
         const raws = []
-
         for (const elem of quasi.quasis) {
           const { raw, cooked } = elem.value
           const value =
@@ -38,6 +37,14 @@ export default declare((api, options: Options) => {
           strings.push(value)
           raws.push(t.stringLiteral(raw))
         }
+        */
+        const solidityString = quasi.quasis[0]?.value.raw
+
+        if (!solidityString) {
+          throw new Error('tsSol tagged template literal must have a string')
+        }
+
+        console.log(solidityString)
       },
     },
   }
