@@ -12,7 +12,17 @@ export default declare((api, options: Options) => {
     name: 'ts-sol',
     visitor: {
       TaggedTemplateExpression(path) {
-        const { node } = path
+        const {
+          node,
+          node: { tag },
+        } = path
+
+        const isTsSolTag = tag.type === 'Identifier' && tag.name === 'tsSol'
+
+        if (!isTsSolTag) {
+          return
+        }
+
         const { quasi } = node
 
         const strings: t.Node[] = []
@@ -28,10 +38,6 @@ export default declare((api, options: Options) => {
           strings.push(value)
           raws.push(t.stringLiteral(raw))
         }
-      },
-
-      TemplateLiteral(path) {
-        console.log(path)
       },
     },
   }

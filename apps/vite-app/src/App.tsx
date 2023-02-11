@@ -1,6 +1,11 @@
 import { useQuery } from '@tanstack/react-query'
 
-const forgeScript = `
+const tsSol = (strings: TemplateStringsArray, ...literals: string[]) => {
+  console.log({ literals })
+  return strings.join('')
+}
+
+const forgeScript = tsSol`
 contract HelloWorld is Script {
     function run() external {
         return 'Hello, World!';
