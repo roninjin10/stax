@@ -1,0 +1,50 @@
+{
+  "name": "@roninjin10/babel-plugin-sol",
+  "description": "A babel plugin for ts-sol",
+  "version": "0.0.1",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "src/index.ts",
+  "type": "module",
+  "license": "MIT",
+  "private": false,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/roninjin10/stax.git",
+    "directory": "packages/babel-plugin-sol"
+  },
+  "files": [
+    "dist"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "envSchema": "ts-node src/scripts/envSchema.ts",
+    "build": "tsup",
+    "test": "vitest",
+    "test:ui": "vitest --ui",
+    "test:run": "vitest run",
+    "lint": "eslint \"**/*.{ts,tsx}\" --fix && prettier \"src/**/*.{ts,tsx}\" --write",
+    "lint:check": "eslint \"**/*.{ts,tsx}\" && prettier --check \"src/**/*.{ts,tsx}\""
+  },
+  "peerDependencies": {
+    "@babel/core": ">7.0.0"
+  },
+  "devDependencies": {
+    "@vitest/ui": "^0.28.4",
+    "tsup": "^6.6.0",
+    "typescript": "^4.9.5",
+    "vite": "^4.1.1",
+    "vitest": "^0.28.4",
+    "zod": "^3.20.6"
+  },
+  "keywords": [
+    "babel",
+    "plugin",
+    "solidity",
+    "sol",
+    "ts-sol"
+  ]
+}
