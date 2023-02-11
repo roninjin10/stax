@@ -1,50 +1,26 @@
-import { counterABI } from '@roninjin10/contracts'
-import { ConnectKitButton } from 'connectkit'
-import { useAccount, usePrepareContractWrite } from 'wagmi'
+const forgeScript = `
+// SPDX-License-Identifier: UNLICENSED
+pragma solidity ^0.8.17;
 
-import {
-  mainContentStyle,
-  navbarLiAStyle,
-  navbarLiStyle,
-  navbarStyle,
-  navbarUlStyle,
-  sideNavLiStyle,
-  sideNavStyle,
-  sideNavUlStyle,
-} from './App.css'
-import { Account } from './components/Account'
+import {Script} from "forge-std/Script.sol";
+import {AppEntrypoint} from "../src/AppEntrypoint.sol";
+import {Counter} from "../src/Counter.sol";
+
+contract Deploy is Script {
+    function run() external {
+        uint256 deployerPrivateKey = vm.envUint("DEPLOYER_PRIVATE_KEY");
+
+
+        vm.startBroadcast(deployerPrivateKey);
+
+        AppEntrypoint appEntrypoint = new AppEntrypoint();
+        Counter counter = new Counter();
+
+        vm.stopBroadcast();
+    }
+}
+`
 
 export const App = () => {
-  const { isConnected } = useAccount()
-  const { config } = usePrepareContractWrite({
-    abi: counterABI,
-  })
-  return (
-    <div>
-      <div className={navbarStyle}>
-        <ul className={navbarUlStyle}>
-          <li className={navbarLiStyle}>
-            <a className={navbarLiAStyle}>Home</a>
-          </li>
-          <li className={navbarLiStyle}>
-            <a className={navbarLiAStyle}>About</a>
-          </li>
-          <li className={navbarLiStyle}>
-            <a className={navbarLiAStyle}>Contact</a>
-          </li>
-        </ul>
-      </div>
-      <div className="container">
-        <div className={sideNavStyle}>
-          <ul className={sideNavUlStyle}>
-            <li className={sideNavLiStyle}>Link 1</li>
-            <li className={sideNavLiStyle}>Link 2</li>
-            <li className={sideNavLiStyle}>Link 3</li>
-          </ul>
-          <div className={mainContentStyle}>{<ConnectKitButton />}</div>
-          {isConnected && <Account />}
-        </div>
-      </div>
-    </div>
-  )
+  return <div></div>
 }
