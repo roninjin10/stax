@@ -13,5 +13,8 @@ export default defineConfig({
   test: {
     environment: 'jsdom',
   },
-  plugins: [react(), vanillaExtractPlugin()],
+  plugins: [
+    react({ babel: { configFile: './babel.config.js' } }),
+    vanillaExtractPlugin(),
+  ],
 })
