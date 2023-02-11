@@ -1,26 +1,18 @@
+import { useQuery } from '@tanstack/react-query'
+
 const forgeScript = `
-// SPDX-License-Identifier: UNLICENSED
-pragma solidity ^0.8.17;
-
-import {Script} from "forge-std/Script.sol";
-import {AppEntrypoint} from "../src/AppEntrypoint.sol";
-import {Counter} from "../src/Counter.sol";
-
-contract Deploy is Script {
+contract HelloWorld is Script {
     function run() external {
-        uint256 deployerPrivateKey = vm.envUint("DEPLOYER_PRIVATE_KEY");
-
-
-        vm.startBroadcast(deployerPrivateKey);
-
-        AppEntrypoint appEntrypoint = new AppEntrypoint();
-        Counter counter = new Counter();
-
-        vm.stopBroadcast();
+        return 'Hello, World!';
     }
 }
 `
 
+const run = async (script: string) => {}
+
 export const App = () => {
+  const { data, error, isLoading } = useQuery(['forgeScript'], async () => {
+    return run(forgeScript)
+  })
   return <div></div>
 }
