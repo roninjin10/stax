@@ -1,7 +1,6 @@
 import { /*NodePath, template,*/ types as t } from '@babel/core'
 import { declare } from '@babel/helper-plugin-utils'
 import * as childProcess from 'child_process'
-import { ethers } from 'ethers'
 import * as fs from 'fs'
 import * as os from 'os'
 import * as nodePath from 'path'
@@ -54,6 +53,8 @@ export type Options = z.infer<typeof optionsValidator>
 export default declare((api, options: Options) => {
   api.assertVersion(7)
 
+  let id = 0
+
   /**
    * Get solc string
    */
@@ -88,18 +89,11 @@ solc = ${solc}
   }
   fs.mkdirSync(tempForgeProjectPath)
   fs.writeFileSync(foundryTomlPath, foundryToml, { encoding: 'utf-8' })
-  fs.mkdirSync(nodePath.join(tempForgeProjectPath, 'src'))
+  const srcPath = nodePath.join(tempForgeProjectPath, 'src')
+  fs.mkdirSync(srcPath)
 
   return {
     name: 'ts-sol',
-    /**
-     * Delete the forge project
-     */
-    post: () => {
-      if (fs.existsSync(tempForgeProjectPath)) {
-        fs.rmdirSync(tempForgeProjectPath, { recursive: true })
-      }
-    },
     visitor: {
       /**
        * @see https://babeljs.io/docs/en/babel-types
@@ -142,17 +136,13 @@ solc = ${solc}
         if (!solidityString) {
           throw new Error('tsSol tagged template literal must have a string')
         }
-        const contractName = `TsSolScript_${ethers
-          .keccak256(Buffer.from(solidityString))
-          .slice(2, 10)}`
-        const solidityFilePath = nodePath.join(
-          tempForgeProjectPath,
-          'src',
-          `${contractName}.sol`,
-        )
+        const contractName = `TsSolScript_${id++}`
+        const solidityFilePath = nodePath.join(srcPath, `${contractName}.sol`)
         fs.writeFileSync(solidityFilePath, solidityString, {
           encoding: 'utf-8',
         })
+
+        console.log(childProcess.execSync(`cat ${foundryTomlPath}`).toString())
 
         /*
          * run forge build in project
