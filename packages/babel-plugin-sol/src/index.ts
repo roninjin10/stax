@@ -2,13 +2,10 @@ import { /*NodePath, template,*/ types as t } from '@babel/core'
 import { declare } from '@babel/helper-plugin-utils'
 import * as childProcess from 'child_process'
 import { ethers } from 'ethers'
-import * as fs from 'fs/promises'
+import * as fs from 'fs'
 import * as os from 'os'
 import * as nodePath from 'path'
-import * as util from 'util'
 import { z } from 'zod'
-
-const exec = util.promisify(childProcess.exec)
 
 /**
  * Parses whether a string is a propery solidity version e.g. 0.8.17
@@ -86,26 +83,25 @@ src = "src"
 out = "dist"
 solc = ${solc}
 `
-  const createProjectPromise = fs.mkdir(tempForgeProjectPath).then(() => {
-    return Promise.all([
-      fs.writeFile(foundryTomlPath, foundryToml, { encoding: 'utf-8' }),
-      fs.mkdir(nodePath.join(tempForgeProjectPath, 'src')),
-    ])
-  })
+  fs.mkdirSync(tempForgeProjectPath)
+  fs.writeFileSync(foundryTomlPath, foundryToml, { encoding: 'utf-8' })
+  fs.mkdirSync(nodePath.join(tempForgeProjectPath, 'src'))
 
   return {
     name: 'ts-sol',
+    /**
+     * Delete the forge project
+     */
     post: () => {
-      /**
-       * Delete the forge project
-       */
-      return fs.rmdir(tempForgeProjectPath, { recursive: true })
+      if (fs.existsSync(tempForgeProjectPath)) {
+        fs.rmdirSync(tempForgeProjectPath, { recursive: true })
+      }
     },
     visitor: {
       /**
        * @see https://babeljs.io/docs/en/babel-types
        */
-      TaggedTemplateExpression: async (path) => {
+      TaggedTemplateExpression: (path) => {
         const {
           node: { tag, quasi },
         } = path
@@ -118,10 +114,9 @@ solc = ${solc}
           return
         }
 
-        /**
-         * Wait for forge project to be created
-         */
-        await createProjectPromise
+        if (fs.existsSync(tempForgeProjectPath)) {
+          fs.rmdirSync(tempForgeProjectPath, { recursive: true })
+        }
 
         /*
         we aren't handling string interpelation yet
@@ -156,21 +151,16 @@ solc = ${solc}
           'src',
           `${contractName}.sol`,
         )
-        await fs.writeFile(solidityFilePath, solidityString, {
+        fs.writeFileSync(solidityFilePath, solidityString, {
           encoding: 'utf-8',
         })
 
         /*
          * run forge build in project
          */
-        const { stdout, stderr } = await exec(`${forgeExecutable} build`, {
+        childProcess.execSync(`${forgeExecutable} build`, {
           cwd: tempForgeProjectPath,
         })
-        if (stderr) {
-          console.error(stderr)
-          throw new Error('ts-sol: forge build failed')
-        }
-        console.log(stdout)
 
         /**
          * Read the artifact
@@ -183,7 +173,7 @@ solc = ${solc}
         )
         const { abi, bytecode } = forgeArtifactsValidator.parse(
           JSON.parse(
-            await fs.readFile(bytecodeFilePath, {
+            fs.readFileSync(bytecodeFilePath, {
               encoding: 'utf-8',
             }),
           ),
