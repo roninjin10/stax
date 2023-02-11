@@ -82,7 +82,7 @@ export default declare((api, options: Options) => {
 name = "temp-ts-sol-forge-project"
 src = "src"
 out = "dist"
-solc = ${solc}
+solc = "${solc}"
 `
   if (fs.existsSync(tempForgeProjectPath)) {
     fs.rmdirSync(tempForgeProjectPath, { recursive: true })
