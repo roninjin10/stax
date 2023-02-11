@@ -1,9 +1,5 @@
 import { useQuery } from '@tanstack/react-query'
-
-const tsSol = (strings: TemplateStringsArray, ...literals: string[]) => {
-  console.log({ literals })
-  return strings.join('')
-}
+import { tsSol, run } from '@roninjin10/ts-sol/src'
 
 const forgeScript = tsSol`
 contract HelloWorld is Script {
@@ -13,15 +9,8 @@ contract HelloWorld is Script {
 }
 `
 
-const run = async (script: string) => {
-  // turn it into op codes
-  // run it in the evm
-  // return the result
-  return 'Hello, World!'
-}
-
 export const App = () => {
-  const { data, error, isLoading } = useQuery(['forgeScript'], async () => {
+  const { data, error, isLoading } = useQuery(['helloWorldQuery'], async () => {
     return run(forgeScript)
   })
   return (
