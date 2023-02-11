@@ -161,7 +161,7 @@ solc = "${solc}"
         const bytecodeFilePath = nodePath.join(
           tempForgeProjectPath,
           'dist',
-          solidityFilePath,
+          `${contractName}.sol`,
           `${contractName}.json`,
         )
         const { abi, bytecode } = forgeArtifactsValidator.parse(
