@@ -3,7 +3,7 @@ import { tsSol, run } from '@roninjin10/ts-sol/src'
 
 const forgeScript = tsSol`
 contract HelloWorld {
-    function run() external returns (string) {
+    function run() external returns (string memory) {
         return "Hello, World!";
     }
 }
