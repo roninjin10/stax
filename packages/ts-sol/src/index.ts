@@ -4,6 +4,7 @@ export const tsSol = (strings: TemplateStringsArray, ...literals: string[]) => {
 }
 
 export const run = async (script: string) => {
+  console.log(script)
   // turn it into op codes
   // run it in the evm
   // return the result

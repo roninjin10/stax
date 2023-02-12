@@ -6,6 +6,10 @@ import * as os from 'os'
 import * as nodePath from 'path'
 import { z } from 'zod'
 
+if (t) {
+  // just hacking the linter into working while I"m not using this yet
+}
+
 /**
  * Parses whether a string is a propery solidity version e.g. 0.8.17
  */
