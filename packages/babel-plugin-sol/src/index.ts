@@ -5,6 +5,7 @@ import * as fs from 'fs'
 import * as os from 'os'
 import * as nodePath from 'path'
 import { z } from 'zod'
+import * as babelParser from '@babel/parser'
 
 if (t) {
   // just hacking the linter into working while I"m not using this yet
@@ -203,22 +204,6 @@ solc = "${solc}"
   }
 })
 
-const artifactsToAst = ({
-  abi,
-  bytecode,
-}: z.infer<typeof forgeArtifactsValidator>) => {
-  return t.objectExpression([
-    t.objectProperty(
-      t.identifier('abi'),
-      t.arrayExpression(abi.map((a) => t.stringLiteral(JSON.stringify(a)))),
-    ),
-    t.objectProperty(
-      t.identifier('bytecode'),
-      t.stringLiteral(bytecode.object),
-    ),
-    t.objectProperty(
-      t.identifier('sourceMap'),
-      t.stringLiteral(bytecode.sourceMap),
-    ),
-  ])
+const artifactsToAst = (artifacts: z.infer<typeof forgeArtifactsValidator>) => {
+  return babelParser.parseExpression(JSON.stringify(artifacts))
 }
