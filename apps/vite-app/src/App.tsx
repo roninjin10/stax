@@ -1,5 +1,5 @@
+import { run, tsSol } from '@roninjin10/ts-sol'
 import { useQuery } from '@tanstack/react-query'
-import { tsSol, run } from '@roninjin10/ts-sol'
 import { useState } from 'react'
 
 const forgeScript = tsSol`
