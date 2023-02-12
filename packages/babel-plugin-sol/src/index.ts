@@ -39,7 +39,27 @@ export const optionsValidator = z.object({
  * Expected shape of the forge artifacts
  */
 export const forgeArtifactsValidator = z.object({
-  abi: z.array(z.unknown()),
+  abi: z.array(
+    z.object({
+      inputs: z.array(
+        z.object({
+          internalType: z.string(),
+          name: z.string(),
+          type: z.string(),
+        }),
+      ),
+      name: z.string(),
+      outputs: z.array(
+        z.object({
+          internalType: z.string(),
+          name: z.string(),
+          type: z.string(),
+        }),
+      ),
+      stateMutability: z.string(),
+      type: z.string(),
+    }),
+  ),
   bytecode: z.object({
     object: z.string(),
     sourceMap: z.string(),
@@ -176,7 +196,29 @@ solc = "${solc}"
         )
 
         console.log({ abi, bytecode })
+
+        path.replaceWith(artifactsToAst({ abi, bytecode }))
       },
     },
   }
 })
+
+const artifactsToAst = ({
+  abi,
+  bytecode,
+}: z.infer<typeof forgeArtifactsValidator>) => {
+  return t.objectExpression([
+    t.objectProperty(
+      t.identifier('abi'),
+      t.arrayExpression(abi.map((a) => t.stringLiteral(JSON.stringify(a)))),
+    ),
+    t.objectProperty(
+      t.identifier('bytecode'),
+      t.stringLiteral(bytecode.object),
+    ),
+    t.objectProperty(
+      t.identifier('sourceMap'),
+      t.stringLiteral(bytecode.sourceMap),
+    ),
+  ])
+}
