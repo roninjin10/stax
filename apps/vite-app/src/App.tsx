@@ -10,11 +10,22 @@ contract Script {
 }
 `
 
+const w = window as any
+w.process = {
+  env: {
+    DEBUG: 'ethjs',
+  },
+}
+
 export const App = () => {
   const [isEnabled, setIsEnabled] = useState(false)
-  const { data, error, isLoading } = useQuery(['helloWorldQuery'], async () => {
-    return run(forgeScript)
-  })
+  const { data, error, isLoading } = useQuery(
+    ['helloWorldQuery'],
+    async () => {
+      return run(forgeScript)
+    },
+    { enabled: isEnabled },
+  )
   return (
     <div>
       <button onClick={() => setIsEnabled(!isEnabled)}>Click to run tx</button>
