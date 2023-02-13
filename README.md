@@ -14,41 +14,94 @@
 
 # Stax
 
-Stax is a collection of open source libraries and experimental evm based packages and apps by roninjin10
+Stax is a collection of open source libraries and experimental evm based packages and apps by roninjin10.
 
 ## Getting started
 
 ### Requirements
 
-1. [docker and docker-compose](https://docs.docker.com/get-docker/)
-2. [Rust](https://www.rust-lang.org/tools/install)
-3. [Node18](https://nodejs.org/en/) or use [NVM](https://github.com/nvm-sh/nvm)
-4. [Forge](https://github.com/foundry-rs/forge-std/tree/eb980e1d4f0e8173ec27da77297ae411840c8ccb)
-5. [pnpm](https://pnpm.io) install with `npm i pnpm --global`
+1. [Node18](https://nodejs.org/en/) or use [NVM](https://github.com/nvm-sh/nvm)
+2. [pnpm](https://pnpm.io) install with `npm i pnpm --global`
+3. [Forge](https://github.com/foundry-rs/forge-std/tree/eb980e1d4f0e8173ec27da77297ae411840c8ccb)
 
-Alternatively, the dev environment can be ran as a docker container by targeting monorepo target in the Dockerfile.
+Just pnpm and forge is enought o run much of the monorepo. To be able to run action and service you should also download the following:
+
+4. [docker and docker-compose](https://docs.docker.com/get-docker/)
+5. [Rust](https://www.rust-lang.org/tools/install)
+
+Alternatively, the dev environment can be ran as a docker container by targeting monorepo target in the Dockerfile. Rust
 
 ### Orchestrating monorepo
+
+### Install deps
+
+Install node modules with pnpm. Pnpm is approximately the same api as npm
+
+```
+pnpm i
+```
 
 #### nx
 
 This monorepo is orchestrated with [nx](https://nx.dev/). You can build lint or test entire monorepo using nx. There is also a vscode extension for nx.
 
-To build everything run `pnpm nx run-many --target=build`
+##### alias
 
-To test everything run `pnpm nx run-many --target=test`
+Consider adding an alias to your bashrc or zshrc`alias nx="pnpm nx"`
 
-To lint everything run `pnpm nx run-many --target=lint`
+##### Commands
 
-To typecheck typescript code run `pnpm nx run-many --target=typecheck`
+There is a readonly access token for access to the nx cache in the `nx.json`. Nx will also cache locally with no setup.
 
-To build an individual package like typesafe-growthbook `pnpm nx build @roninjin10/typesafe-growthbook`
+Nx help
 
-For more information run `pnpm nx --help`.
+```bash
+pnpm nx --help
+```
 
-Consider adding an alias `alias nx="pnpm nx"`
+Do everything
 
-You can also generate a new package with `nx generate`. For example `pnpm nx generate @nxrs/cargo:app new-rust-package` will generate a new rust app named new-rust-package. See [nx generator documentation](https://nx.dev/plugin-features/use-code-generators) for more information.
+```
+pnpm nx run-many --targets=build,test,lint,typecheck
+```
+
+Build everything
+
+```bash
+pnpm nx run-many --target=build
+```
+
+Test everything
+
+```bash
+pnpm nx run-many --target=test
+```
+
+Lint/prettier everything
+
+```bash
+pnpm nx run-many --target=lint
+```
+
+Run only tests that have changed vs origin/main
+
+```
+pnpm nx affected --target=test
+```
+
+So all tooling is fast we treat typechecking as a seperate lint step. No other pipeline including the production build runs the typechecker.
+
+```bash
+pnpm nx run-many --target=typecheck`
+```
+
+To build an individual package like typesafe-growthbook
+
+```bash
+pnpm nx build @roninjin10/typesafe-growthbook
+```
+
+You can also generate a new package with `nx generate`. For example `pnpm nx generate @nxrs/cargo:app new-rust-package` will generate a new rust app named new-rust-package. See [nx generator documentation](https://nx.dev/plugin-features/use-code-generators) for more information. Usually you will be better off copy pasting a similar package.
 
 Nx provides a uniform interface to build and test all packages regardless of language but all code can be run directly too using pnpm forge or cargo.
 

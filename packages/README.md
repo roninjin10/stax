@@ -1,15 +1,29 @@
 # Packages
 
-All apps and packages are in packages folder
+All packages are in /packages folder
 
-### packages/contracts
+Apps live in /apps
+
+## babel-plugin-sol
+
+A plugin used to compile solidity in javascript files
+
+## contracts
 
 All smart contracts are here
 
-### packages/typesafe-env
+## smithy
+
+A beginner friendly cli wrapper around foundry cli
+
+## ts-sol
+
+A libary that allows one to execute the evm clientside in typescript code
+
+## typesafe-env
 
 A utility for typeguarding process.env
 
-### packages/typesafe-growthbook
+## typesafe-growthbook
 
 A typesafe wrapper around growthbook

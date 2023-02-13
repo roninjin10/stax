@@ -4,6 +4,10 @@
 
 Astro blog app
 
+## dfs-optimizer
+
+A fast dfs optizer for optimizing daily fantasy lineups written in rust
+
 ## e2e
 
 E2e test suite WIP
@@ -18,8 +22,8 @@ Cli wrapper around forge
 
 ## next-app
 
-A next app currently with no identity
+A next app currently with no identity. (As of this comment nuked for breaking the ci build)
 
 ## vite-app
 
-A vite app currently with no identiy
+A vite app currently being used to to test the experimental ts-sol and sol-babel-plugin packages e2e
