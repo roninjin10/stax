@@ -1,7 +1,7 @@
 version: '3.8'
 
 services:
-  vite-app:
+  ts-sol-playground:
     environment:
       - HOST=0.0.0.0
       - PORT=3000
@@ -9,7 +9,7 @@ services:
       - NX_CLOUD_ACCESS_TOKEN=${NX_CLOUD_ACCESS_TOKEN}
     build:
       context: .
-      target: vite-app-runner
+      target: ts-sol-playground-runner
     ports:
       - 3000:80
     healthcheck:
@@ -60,7 +60,7 @@ services:
 
   e2e:
     environment:
-      - BASE_URL=http://vite-app:3000
+      - BASE_URL=http://ts-sol-playground:3000
       - NX_CLOUD_ACCESS_TOKEN=${NX_CLOUD_ACCESS_TOKEN}
     build:
       target: e2e
@@ -68,7 +68,7 @@ services:
     depends_on:
       contracts-deployer:
         condition: service_completed_successfully
-      vite-app:
+      ts-sol-playground:
         condition: service_healthy
       example-server:
         condition: service_healthy

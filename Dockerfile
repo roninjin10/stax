@@ -153,9 +153,9 @@ CMD ["pnpm", "nx", "run-many", "--targets=test,lint,typecheck", "--all", "--para
 # get the right dependencies installed for the various packages we use.
 # it only supports very specific node.js versions (well) for the most part
 # and it's even more difficult to get playwright or puppeteer to work on it.
-FROM nginx:stable-alpine as vite-app-runner
-COPY --from=monorepo /monorepo/apps/vite-app/dist /usr/share/nginx/html
-COPY apps/vite-app/nginx.conf /etc/nginx/conf.d/default.conf
+FROM nginx:stable-alpine as ts-sol-playground-runner
+COPY --from=monorepo /monorepo/apps/ts-sol-playground/dist /usr/share/nginx/html
+COPY apps/ts-sol-playground/nginx.conf /etc/nginx/conf.d/default.conf
 EXPOSE 80
 CMD ["nginx", "-g", "daemon off;"]
 

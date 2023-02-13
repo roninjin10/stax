@@ -24,6 +24,6 @@ Cli wrapper around forge
 
 A next app currently with no identity. (As of this comment nuked for breaking the ci build)
 
-## vite-app
+## ts-sol-playground
 
 A vite app currently being used to to test the experimental ts-sol and sol-babel-plugin packages e2e
