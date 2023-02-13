@@ -8,15 +8,15 @@ experimental evm based library to use forge scripts in clientside code
 // src/TransferAllMutation.s.sol
 pragma solidity ^0.8.17;
 
-import {ERC20} from "@openzeppelin/contracts/token/ERC20/ERC20.sol";
-import {Script} from "@ts-sol/contracts/Script";
+import { ERC20 } from '@openzeppelin/contracts/token/ERC20/ERC20.sol';
+import { Script } from '@ts-sol/contracts/Script';
 
 contract TransferAllMutation is Script {
   function run() external {
-    uint256 signerPublicKey = vm.envUint("SIGNER");
-    ERC20 tokenContract = new ERC20(vm.envUint("TOKEN_ADDRESS"));
+    uint256 signerPublicKey = vm.envUint('SIGNER');
+    ERC20 tokenContract = new ERC20(vm.envUint('TOKEN_ADDRESS'));
     uint256 tokenBalance = tokenContract.balanceOf(signerPublicKey);
-    uint256 to = vm.envUint("TO");
+    uint256 to = vm.envUint('TO');
 
     vm.prepareBroadcast(signerPublicKey);
     tokenContract.transfer(signer, tokenBalance);
@@ -134,7 +134,7 @@ Whatever is returned from the function is also returned in the typescript code i
 Note there is fundamentally no difference between queries and mutations other than semantic. It is a best practice to only mutate on state with mutations and use queries if only reading state
 
 ```solidity
-# src/TransferAllMutation.s.sol
+// src/TransferAllMutation.s.sol
 pragma solidity ^0.8.17;
 
 import {ERC20} from "@openzeppelin/contracts/token/ERC20/ERC20.sol";

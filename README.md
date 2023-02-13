@@ -16,7 +16,63 @@
 
 Stax is a collection of open source libraries and experimental evm based packages and apps by roninjin10.
 
-## Getting started
+## Currently being developed
+
+The current project being developed is a forge inspired [clientside library codenamed ts-sol](https://github.com/roninjin10/stax/tree/main/docs/ts-sol).
+
+1. Write a forge-like script
+
+```solidity
+// src/TransferAllMutation.s.sol
+pragma solidity ^0.8.17;
+
+import { ERC20 } from '@openzeppelin/contracts/token/ERC20/ERC20.sol';
+import { Script } from '@ts-sol/contracts/Script';
+
+contract TransferAllMutation is Script {
+  function run() external {
+    uint256 signerPublicKey = vm.envUint('SIGNER');
+    ERC20 tokenContract = new ERC20(vm.envUint('TOKEN_ADDRESS'));
+    uint256 tokenBalance = tokenContract.balanceOf(signerPublicKey);
+    uint256 to = vm.envUint('TO');
+
+    vm.prepareBroadcast(signerPublicKey);
+    tokenContract.transfer(signer, tokenBalance);
+    vm.stopPrepareBroadcast();
+  }
+}
+```
+
+2. Now execute that script in your clientside typescript code
+
+```typescript
+// src/index.ts
+import { TransferAllMutation } from './TransferAllMutation.s.sol'
+import { prepareMutate, mutate } from '@ts-sol/core'
+import detectEthereumProvider from '@metamask/detect-provider'
+import addresses from './my-constants/addresses'
+
+const signer = await detectEthereumProvider()
+
+const prepareConfig = await prepareMutate(TransferAllMutation, {
+  env: {
+    SIGNER: signer,
+    TOKEN_ADDRESS: addresses.myToken,
+    TO: addresses.someOtherWallet,
+  },
+})
+
+console.log(prepareConfig.gasLimit)
+console.log(prepareConfig.expectedEvents)
+
+const result = await mutate(prepareConfig)
+
+console.log(result.txHash)
+```
+
+See [docs/ts-sol](https://github.com/roninjin10/stax/tree/main/docs/ts-sol) for more.
+
+## Getting started with monorepo
 
 ### Requirements
 

@@ -1,3 +1,7 @@
+# Deprecated
+
+Moved to `apps/ts-sol-playground`
+
 This is a [wagmi](https://wagmi.sh) + [ConnectKit](https://docs.family.co/connectkit) + [Vite](https://vitejs.dev/) project bootstrapped with [`create-wagmi`](https://github.com/wagmi-dev/wagmi/tree/main/packages/create-wagmi)
 
 # Getting Started
