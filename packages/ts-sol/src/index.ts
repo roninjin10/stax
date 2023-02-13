@@ -1,18 +1,15 @@
+import { Block } from '@ethereumjs/block'
 import { Chain, Common, Hardfork } from '@ethereumjs/common'
-import { Transaction } from '@ethereumjs/tx'
-import { VM } from '@ethereumjs/vm'
-import {
-  Interface,
-  defaultAbiCoder as AbiCoder,
-  JsonFragment,
-} from '@ethersproject/abi'
-import {
+import type {
   AccessListEIP2930TxData,
   FeeMarketEIP1559TxData,
   TxData,
 } from '@ethereumjs/tx'
+import { Transaction } from '@ethereumjs/tx'
 import { Account, Address } from '@ethereumjs/util'
-import { Block } from '@ethereumjs/block'
+import { VM } from '@ethereumjs/vm'
+import type { JsonFragment } from '@ethersproject/abi'
+import { defaultAbiCoder as AbiCoder, Interface } from '@ethersproject/abi'
 
 export const keyPair = {
   secretKey:
@@ -138,6 +135,7 @@ export const run = async (script: string) => {
   }
   /**
    * Used ethereumjs-monorepo as example
+   *
    * @see https://github.com/ethereumjs/ethereumjs-monorepo/blob/master/packages/vm/examples/run-solidity-contract.ts
    */
   console.log('creating a new common chain')
@@ -159,7 +157,8 @@ export const run = async (script: string) => {
   await insertAccount(vm, accountAddress)
 
   console.log('deploying contract')
-  debugger
+  // eslint-disable-next-line no-debugger
+  debugger // broken here atm
   const contractAddress = await deployContract(
     vm,
     accountPk,

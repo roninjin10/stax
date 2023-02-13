@@ -190,6 +190,7 @@ importers:
     specifiers:
       '@babel/core': ^7.20.12
       '@babel/helper-plugin-utils': ^7.20.2
+      '@babel/parser': ^7.20.15
       '@babel/traverse': ^7.20.13
       '@types/babel-core': ^6.25.7
       '@types/babel__core': ^7.20.0
@@ -206,6 +207,7 @@ importers:
       zod: ^3.20.6
     dependencies:
       '@babel/helper-plugin-utils': 7.20.2
+      '@babel/parser': 7.20.15
       '@types/babel-core': 6.25.7
       ethers: 6.0.2
     devDependencies:

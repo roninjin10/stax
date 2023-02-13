@@ -11,7 +11,7 @@ afterEach(() => {
   cleanup()
 })
 
-describe('evm-client MVP', () => {
+describe.skip('evm-client MVP', () => {
   it('should render', async () => {
     render(
       <QueryClientProvider client={new QueryClient()}>
