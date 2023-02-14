@@ -13,3 +13,6 @@
 [submodule "lib/helios"]
 	path = lib/helios
 	url = https://github.com/a16z/helios
+[submodule "lib/ethereumjs-monorepo"]
+	path = lib/ethereumjs-monorepo
+	url = git@github.com:ethereumjs/ethereumjs-monorepo.git
