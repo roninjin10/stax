@@ -2,6 +2,7 @@
 pragma solidity ^0.8.17;
 
 import {Script} from "forge-std/Script.sol";
+import {AppEntrypoint} from "../src/AppEntrypoint.sol";
 import {Counter} from "../src/Counter.sol";
 
 contract Deploy is Script {
@@ -11,6 +12,7 @@ contract Deploy is Script {
 
         vm.startBroadcast(deployerPrivateKey);
 
+        AppEntrypoint appEntrypoint = new AppEntrypoint();
         Counter counter = new Counter();
 
         vm.stopBroadcast();

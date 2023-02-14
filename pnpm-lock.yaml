@@ -385,6 +385,27 @@ importers:
       vitest: 0.28.4_@vitest+ui@0.28.4
       zod: 3.20.6
 
+  packages/ts-sol-contracts:
+    specifiers:
+      '@wagmi/cli': ^0.1.6
+      concurrently: ^7.6.0
+      ethers: ^5.7.1
+      forge-std: ^1.1.2
+      solhint: ^3.3.8
+      tsup: ^6.6.0
+      typescript: ^4.9.5
+      wagmi: ~0.11.5
+    dependencies:
+      wagmi: 0.11.5_6la3wgdurc2byppalgze7lq2hy
+    devDependencies:
+      '@wagmi/cli': 0.1.6_ktlpezpp4zal7ifyajfutnbfv4
+      concurrently: 7.6.0
+      ethers: 5.7.2
+      forge-std: 1.1.2
+      solhint: 3.3.8
+      tsup: 6.6.0_typescript@4.9.5
+      typescript: 4.9.5
+
   packages/typesafe-env:
     specifiers:
       '@vitest/ui': ^0.28.4
@@ -4420,7 +4441,7 @@ packages:
       picocolors: 1.0.0
       prettier: 2.8.4
       typescript: 4.9.5
-      wagmi: 0.11.5_nhxfo4amw5whyuw5cxmyrerie4
+      wagmi: 0.11.5_6la3wgdurc2byppalgze7lq2hy
       zod: 3.20.6
     dev: true
 
@@ -4462,6 +4483,7 @@ packages:
       - supports-color
       - utf-8-validate
       - zod
+    dev: false
 
   /@wagmi/connectors/0.2.5_o2b2bsdg36juzaqij7k3hlff5u:
     resolution: {integrity: sha512-saS5wps+R5SCs4ka9BG4vlaS4xDKn8GRt5y/f6v8RYBhat+H+3DGBowwGLN/OLtu744VKY8sIsm8/GRy2tXbsg==}
@@ -4502,6 +4524,77 @@ packages:
       - utf-8-validate
       - zod
     dev: false
+
+  /@wagmi/connectors/0.2.5_o7fdg4mkfgndrvxojzmkxronfu:
+    resolution: {integrity: sha512-saS5wps+R5SCs4ka9BG4vlaS4xDKn8GRt5y/f6v8RYBhat+H+3DGBowwGLN/OLtu744VKY8sIsm8/GRy2tXbsg==}
+    peerDependencies:
+      '@wagmi/core': '>=0.9.x'
+      ethers: '>=5.5.1 <6'
+      typescript: '>=4.9.4'
+    peerDependenciesMeta:
+      '@wagmi/core':
+        optional: true
+      typescript:
+        optional: true
+    dependencies:
+      '@coinbase/wallet-sdk': 3.6.3
+      '@ledgerhq/connect-kit-loader': 1.0.2
+      '@safe-global/safe-apps-provider': 0.15.2
+      '@safe-global/safe-apps-sdk': 7.9.0
+      '@wagmi/core': 0.9.5_6la3wgdurc2byppalgze7lq2hy
+      '@walletconnect/ethereum-provider': 1.8.0
+      '@walletconnect/universal-provider': 2.3.3_typescript@4.9.5
+      '@web3modal/standalone': 2.1.1
+      abitype: 0.3.0_typescript@4.9.5
+      ethers: 5.7.2
+      eventemitter3: 4.0.7
+      typescript: 4.9.5
+    transitivePeerDependencies:
+      - '@babel/core'
+      - '@react-native-async-storage/async-storage'
+      - '@swc/core'
+      - '@swc/wasm'
+      - '@types/node'
+      - bufferutil
+      - debug
+      - encoding
+      - lokijs
+      - react
+      - supports-color
+      - utf-8-validate
+      - zod
+
+  /@wagmi/core/0.9.5_6la3wgdurc2byppalgze7lq2hy:
+    resolution: {integrity: sha512-Ff4ejQbeexH5pfcYbwYusvxcYUY1+AuKCqHyYLliOQChLvymK7QGth7Hh7lKEf1Js/g4ktHHI07EfLKHEiDYWw==}
+    peerDependencies:
+      ethers: '>=5.5.1 <6'
+      typescript: '>=4.9.4'
+    peerDependenciesMeta:
+      typescript:
+        optional: true
+    dependencies:
+      '@wagmi/chains': 0.2.7_typescript@4.9.5
+      '@wagmi/connectors': 0.2.5_o7fdg4mkfgndrvxojzmkxronfu
+      abitype: 0.3.0_typescript@4.9.5
+      ethers: 5.7.2
+      eventemitter3: 4.0.7
+      typescript: 4.9.5
+      zustand: 4.3.3
+    transitivePeerDependencies:
+      - '@babel/core'
+      - '@react-native-async-storage/async-storage'
+      - '@swc/core'
+      - '@swc/wasm'
+      - '@types/node'
+      - bufferutil
+      - debug
+      - encoding
+      - immer
+      - lokijs
+      - react
+      - supports-color
+      - utf-8-validate
+      - zod
 
   /@wagmi/core/0.9.5_jrm47edstun6s3eao4mezhwsbq:
     resolution: {integrity: sha512-Ff4ejQbeexH5pfcYbwYusvxcYUY1+AuKCqHyYLliOQChLvymK7QGth7Hh7lKEf1Js/g4ktHHI07EfLKHEiDYWw==}
@@ -4567,6 +4660,7 @@ packages:
       - supports-color
       - utf-8-validate
       - zod
+    dev: false
 
   /@walletconnect/browser-utils/1.8.0:
     resolution: {integrity: sha512-Wcqqx+wjxIo9fv6eBUFHPsW1y/bGWWRboni5dfD8PtOmrihrEpOCmvRJe4rfl7xgJW8Ea9UqKEaq0bIRLHlK4A==}
@@ -5093,7 +5187,7 @@ packages:
   /@walletconnect/window-metadata/1.0.0:
     resolution: {integrity: sha512-9eFvmJxIKCC3YWOL97SgRkKhlyGXkrHwamfechmqszbypFspaSk+t2jQXAEU7YClHF6Qjw5eYOmy1//zFi9/GA==}
     dependencies:
-      '@walletconnect/window-getters': 1.0.0
+      '@walletconnect/window-getters': 1.0.1
 
   /@walletconnect/window-metadata/1.0.1:
     resolution: {integrity: sha512-9koTqyGrM2cqFRW517BPY/iEtUDx2r1+Pwwu5m7sJ7ka79wi3EyqhqcICk/yDmv6jAS1rjKgTKXlEhanYjijcA==}
@@ -8711,6 +8805,10 @@ packages:
     resolution: {integrity: sha512-jqYfLp7mo9vIyQf8ykW2v7A+2N4QjeCeI5+Dz9XraiO1ign81wjiH7Fb9vSOWvQfNtmSa4H2RoQTrrXivdUZmw==}
     dependencies:
       is-callable: 1.2.7
+
+  /forge-std/1.1.2:
+    resolution: {integrity: sha512-Wfb0iAS9PcfjMKtGpWQw9mXzJxrWD62kJCUqqLcyuI0+VRtJ3j20XembjF3kS20qELYdXft1vD/SPFVWVKMFOw==}
+    dev: true
 
   /form-data-encoder/2.1.4:
     resolution: {integrity: sha512-yDYSgNMraqvnxiEXO4hi88+YZxaHC6QKzb5N84iRCTDeRO7ZALpir/lVmf/uXUhnwUr2O4HU8s/n6x+yNjQkHw==}
@@ -14844,6 +14942,41 @@ packages:
       xml-name-validator: 4.0.0
     dev: true
 
+  /wagmi/0.11.5_6la3wgdurc2byppalgze7lq2hy:
+    resolution: {integrity: sha512-dd7UMMXm52K4auDdJ09PzCAHagV51G2xag92Y+vz+LUCGg/UKFqZObMywFY6SsTIpse0XMPsvmaR1FQeF5FOIw==}
+    peerDependencies:
+      ethers: '>=5.5.1 <6'
+      react: '>=17.0.0'
+      typescript: '>=4.9.4'
+    peerDependenciesMeta:
+      typescript:
+        optional: true
+    dependencies:
+      '@tanstack/query-sync-storage-persister': 4.24.4
+      '@tanstack/react-query': 4.24.4
+      '@tanstack/react-query-persist-client': 4.24.4_pbzrecrhgj7fe7hddoo6lp43hu
+      '@wagmi/core': 0.9.5_6la3wgdurc2byppalgze7lq2hy
+      abitype: 0.3.0_typescript@4.9.5
+      ethers: 5.7.2
+      typescript: 4.9.5
+      use-sync-external-store: 1.2.0
+    transitivePeerDependencies:
+      - '@babel/core'
+      - '@react-native-async-storage/async-storage'
+      - '@swc/core'
+      - '@swc/wasm'
+      - '@types/node'
+      - bufferutil
+      - debug
+      - encoding
+      - immer
+      - lokijs
+      - react-dom
+      - react-native
+      - supports-color
+      - utf-8-validate
+      - zod
+
   /wagmi/0.11.5_nhxfo4amw5whyuw5cxmyrerie4:
     resolution: {integrity: sha512-dd7UMMXm52K4auDdJ09PzCAHagV51G2xag92Y+vz+LUCGg/UKFqZObMywFY6SsTIpse0XMPsvmaR1FQeF5FOIw==}
     peerDependencies:
@@ -14878,6 +15011,7 @@ packages:
       - supports-color
       - utf-8-validate
       - zod
+    dev: false
 
   /wagmi/0.11.5_yn5nryg4hihyasdbaeuoziy3ma:
     resolution: {integrity: sha512-dd7UMMXm52K4auDdJ09PzCAHagV51G2xag92Y+vz+LUCGg/UKFqZObMywFY6SsTIpse0XMPsvmaR1FQeF5FOIw==}
