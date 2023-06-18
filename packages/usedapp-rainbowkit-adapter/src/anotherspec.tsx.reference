@@ -1,0 +1,61 @@
+import { RainbowKitProvider } from '@rainbow-me/rainbowkit'
+import type { QueryClient } from '@tanstack/react-query'
+import { DAppProvider, DEFAULT_SUPPORTED_CHAINS, Mainnet } from '@usedapp/core'
+import { RainbowKitDisclaimer } from 'components/RainbowKitDisclaimer/RainbowKitDisclaimer'
+import { UseDappRainbowKitAdapter } from 'components/UseDappRainbowKitAdapter/UseDappRainbowKitAdapter'
+import { useTheme } from 'hooks/useTheme'
+import React, { useMemo } from 'react'
+import { externalRoutes } from 'routes'
+import { chains } from 'utils/chain'
+import { readOnlyUrls } from 'utils/readonlyProviders'
+import { createWagmiClient } from 'utils/wagmi'
+import { WagmiConfig } from 'wagmi'
+
+import { APP_NAME } from '../../constants'
+import { rainbowThemes, wagmiChains, wagmiProvider } from './constants'
+
+/**
+ * Renders the Providers for initializing teh wallet and useDapp
+ */
+export const WalletProvider: React.FC<{
+  queryClient: QueryClient
+  children: React.ReactNode
+}> = ({ queryClient, children }) => {
+  const [theme] = useTheme()
+  const wagmiClient = useMemo(
+    () => createWagmiClient(queryClient, wagmiChains, wagmiProvider),
+    [queryClient],
+  )
+  return (
+    <WagmiConfig client={wagmiClient}>
+      <RainbowKitProvider
+        chains={wagmiChains}
+        theme={rainbowThemes[theme]}
+        appInfo={{
+          appName: APP_NAME,
+          learnMoreUrl: externalRoutes.HOW_DO_I_START,
+          disclaimer: RainbowKitDisclaimer,
+        }}
+        modalSize="compact"
+      >
+        <DAppProvider
+          config={{
+            readOnlyChainId: Mainnet.chainId,
+            readOnlyUrls: readOnlyUrls as any,
+            autoConnect: false,
+            pollingInterval: 10_000,
+            networks: [
+              ...DEFAULT_SUPPORTED_CHAINS,
+              chains.OptimismGoerli,
+              chains.Devnet,
+              chains.OptimismDevnet,
+            ],
+          }}
+        >
+          <UseDappRainbowKitAdapter />
+          {children}
+        </DAppProvider>
+      </RainbowKitProvider>
+    </WagmiConfig>
+  )
+}
