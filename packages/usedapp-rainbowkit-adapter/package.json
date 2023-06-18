@@ -1,0 +1,59 @@
+{
+  "name": "@roninjin10/usedapp-rainbowkit-adapter",
+  "description": "A light wrapper around growthbook based on zod",
+  "version": "0.0.1",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "src/index.ts",
+  "license": "MIT",
+  "private": false,
+  "files": [
+    "dist"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "envSchema": "ts-node src/scripts/envSchema.ts",
+    "build": "tsup",
+    "test": "vitest",
+    "test:ui": "vitest --ui",
+    "test:run": "vitest run",
+    "lint": "eslint \"**/*.{ts,tsx}\" --fix && prettier \"src/**/*.{ts,tsx}\" --write",
+    "lint:check": "eslint \"**/*.{ts,tsx}\" && prettier --check \"src/**/*.{ts,tsx}\""
+  },
+  "peerDependencies": {
+    "@usedapp/core": "^1.2.10",
+    "ethers": "^5.7.2",
+    "react": "^16.8.0-0 || ^17.0.0-0 || ^18.0.0-0",
+    "wagmi": "~0.11.5"
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "^5.16.5",
+    "@testing-library/react": "^13.4.0",
+    "@testing-library/react-hooks": "^8.0.1",
+    "@types/react": "^18.0.27",
+    "@types/react-dom": "^18.0.10",
+    "@types/testing-library__jest-dom": "^5.14.5",
+    "@usedapp/core": "^1.2.10",
+    "@vitejs/plugin-react": "^3.1.0",
+    "@vitest/ui": "^0.28.4",
+    "ethers": "^5.7.2",
+    "jest-dom": "link:@types/@testing-library/jest-dom",
+    "jsdom": "^21.1.0",
+    "matchers": "link:@types/@testing-library/jest-dom/matchers",
+    "nodemon": "^2.0.20",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "tsup": "^6.6.0",
+    "typescript": "^4.9.5",
+    "vite": "^4.1.1",
+    "vitest": "^0.28.4",
+    "wagmi": "~0.11.5",
+    "zod": "^3.20.6"
+  },
+  "dependencies": {
+    "@web3-react/abstract-connector": "^6.0.7"
+  }
+}

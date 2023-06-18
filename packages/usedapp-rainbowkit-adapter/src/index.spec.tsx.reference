@@ -1,0 +1,72 @@
+// Test is copied from optimism repo and currently not running as vitest is not set up fully here
+import matchers from '@testing-library/jest-dom/matchers'
+import { cleanup,waitFor } from '@testing-library/react'
+import type { AbstractConnector } from '@web3-react/abstract-connector'
+import { UseDappRainbowKitAdapter } from 'components/UseDappRainbowKitAdapter/UseDappRainbowKitAdapter'
+import { MockUseEthers, MockWallet, renderWithWrappers } from 'testUtils'
+import { optimism } from 'wagmi/chains'
+import React = require('react')
+import { afterEach, describe, expect, it, vi } from 'vitest'
+
+expect.extend(matchers)
+
+afterEach(() => {
+  cleanup()
+})
+
+const mockAddress = new MockWallet().address
+const mockProvider = {
+  lookAtMe: 'ima mock provider',
+  removeListener: vi.fn(),
+  on: vi.fn(),
+}
+const mockConnector = {
+  getProvider: async () => mockProvider,
+}
+
+const mockWagmiChain = optimism
+
+const mockUseEthers = new MockUseEthers()
+vi.mock('@usedapp/core', async () => ({
+  //@ts-ignore importActual returns unknown and using <typeof import('...')> causes consistent-type-imports
+  ...(await vi.importActual('@usedapp/core')),
+  useEthers: () => mockUseEthers,
+}))
+
+vi.mock('wagmi', async () => ({
+  //@ts-ignore importActual returns unknown and using <typeof import('...')> causes consistent-type-imports
+  ...(await vi.importActual('wagmi')),
+  useAccount: () => {
+    return { address: mockAddress, connector: mockConnector }
+  },
+  useNetwork: () => {
+    return { chain: mockWagmiChain }
+  },
+  useProvider: () => mockProvider,
+}))
+
+beforeEach(() => {
+  vi.resetAllMocks()
+})
+
+describe(UseDappRainbowKitAdapter.name, () => {
+  it('should be an adapter between wagmi and useDapp.   When wagmi connects to chain it should connect usedapp to same connector', async () => {
+    renderWithWrappers(<></>)
+
+    const { activate } = mockUseEthers
+
+    await waitFor(() => {
+      expect(activate).toBeCalledTimes(1)
+    })
+
+    const useDappConnector: AbstractConnector = activate.mock.calls[0][0]
+
+    expect(await useDappConnector.getChainId()).toBe(mockWagmiChain.id)
+    expect(await useDappConnector.getAccount()).toBe(mockAddress)
+    expect(await useDappConnector.activate()).toEqual({
+      account: mockAddress,
+      chainId: 10,
+      provider: mockProvider,
+    })
+  })
+})
