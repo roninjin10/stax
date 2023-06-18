@@ -1,7 +1,7 @@
 {
   "name": "@roninjin10/usedapp-rainbowkit-adapter",
   "description": "A light wrapper around growthbook based on zod",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
   "types": "src/index.ts",

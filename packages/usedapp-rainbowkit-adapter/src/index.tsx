@@ -2,7 +2,7 @@ import { useEthers } from '@usedapp/core'
 import { AbstractConnector } from '@web3-react/abstract-connector'
 import type { providers } from 'ethers'
 import { useEffect } from 'react'
-import { useAccount, useDisconnect, useNetwork } from 'wagmi'
+import { useAccount, useNetwork } from 'wagmi'
 
 class UseDappConnector extends AbstractConnector {
   constructor(
@@ -36,7 +36,6 @@ export const UseDappRainbowKitAdapter: React.FC = () => {
   const { activate, deactivate } = useEthers()
 
   const { address, connector } = useAccount()
-  const {disconnectAsync} = useDisconnect()
   const { chain } = useNetwork()
 
   useEffect(() => {
@@ -51,7 +50,9 @@ export const UseDappRainbowKitAdapter: React.FC = () => {
           chain.id,
           address,
           connector.getProvider.bind(connector),
-          disconnectAsync,
+          () => {
+            // we don't want to actually disconnect here because it would cause issues with the rainbowkit connection
+          },
         ),
       )
     })
