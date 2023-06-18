@@ -1,0 +1,29 @@
+import { ConnectButton } from '@rainbow-me/rainbowkit'
+import { QueryClientProvider } from '@tanstack/react-query'
+import { fireEvent } from '@testing-library/react'
+import { MockQueryClient, renderWithWrappers } from 'testUtils'
+
+import { WalletProvider } from '.'
+
+vi.mock('@rainbow-me/rainbowkit', async () => ({
+  //@ts-ignore importActual returns unknown and using <typeof import('...')> causes consistent-type-imports
+  ...(await vi.importActual('@rainbow-me/rainbowkit')),
+}))
+
+describe(WalletProvider.name, () => {
+  it('should allow a user to connect to open rainbowkit modal', () => {
+    window.matchMedia = () => ({} as any)
+    const client = new MockQueryClient()
+    const r = renderWithWrappers(
+      <QueryClientProvider client={client}>
+        <WalletProvider queryClient={client}>
+          <ConnectButton />
+        </WalletProvider>
+        ,
+      </QueryClientProvider>,
+    )
+    const connectButton = r.getByText('Connect Wallet')
+    fireEvent.click(connectButton)
+    expect(r.getByText('MetaMask')).toBeVisible()
+  })
+})
