@@ -662,57 +662,11 @@ importers:
         specifier: ^3.20.6
         version: 3.20.6
 
-  packages/usedapp-rainbow-example:
-    dependencies:
-      '@types/react':
-        specifier: ^18.0.27
-        version: 18.0.27
-      '@usedapp/core':
-        specifier: ^1.2.10
-        version: 1.2.10(ethers@6.6.0)(react@18.2.0)
-      '@web3-react/abstract-connector':
-        specifier: ^6.0.7
-        version: 6.0.7
-      ethers:
-        specifier: ^6.6.0
-        version: 6.6.0
-      react:
-        specifier: ^18.2.0
-        version: 18.2.0
-      wagmi:
-        specifier: ~0.11.5
-        version: 0.11.5(@babel/core@7.20.12)(@types/node@18.13.0)(ethers@6.0.2)(react-dom@18.2.0)(react@18.2.0)(typescript@4.9.5)(zod@3.20.6)
-    devDependencies:
-      '@vitest/ui':
-        specifier: ^0.28.4
-        version: 0.28.4
-      nodemon:
-        specifier: ^2.0.20
-        version: 2.0.20
-      tsup:
-        specifier: ^6.6.0
-        version: 6.6.0(ts-node@10.9.1)(typescript@4.9.5)
-      typescript:
-        specifier: ^4.9.5
-        version: 4.9.5
-      vite:
-        specifier: ^4.1.1
-        version: 4.1.1(@types/node@18.15.13)
-      vitest:
-        specifier: ^0.28.4
-        version: 0.28.4(@vitest/ui@0.28.4)(jsdom@21.1.0)
-      zod:
-        specifier: ^3.20.6
-        version: 3.20.6
-
   packages/usedapp-rainbowkit-adapter:
     dependencies:
       '@web3-react/abstract-connector':
         specifier: ^6.0.7
         version: 6.0.7
-      ethers:
-        specifier: ^5.7.2
-        version: 5.7.2
     devDependencies:
       '@testing-library/jest-dom':
         specifier: ^5.16.5
@@ -741,9 +695,18 @@ importers:
       '@vitest/ui':
         specifier: ^0.28.4
         version: 0.28.4
+      ethers:
+        specifier: ^5.7.2
+        version: 5.7.2
+      jest-dom:
+        specifier: link:@types/@testing-library/jest-dom
+        version: link:@types/@testing-library/jest-dom
       jsdom:
         specifier: ^21.1.0
         version: 21.1.0
+      matchers:
+        specifier: link:@types/@testing-library/jest-dom/matchers
+        version: link:@types/@testing-library/jest-dom/matchers
       nodemon:
         specifier: ^2.0.20
         version: 2.0.20
@@ -780,10 +743,6 @@ packages:
 
   /@adraffy/ens-normalize@1.8.9:
     resolution: {integrity: sha512-93OmGCV0vO8+JQ3FHG+gZk/MPHzzMPDRiCiFcCQNTCnHaaxsacO3ScTPGlu2wX2dOtgfalbchPcw1cOYYjHCYQ==}
-
-  /@adraffy/ens-normalize@1.9.2:
-    resolution: {integrity: sha512-0h+FrQDqe2Wn+IIGFkTCd4aAwTJ+7834Ek1COohCyV26AXhwQ7WQaz+4F/nLOeVl/3BtWHOHLPsq46V8YB46Eg==}
-    dev: false
 
   /@ampproject/remapping@2.2.0:
     resolution: {integrity: sha512-qRmjj8nj9qmLTQXXmaR1cck3UXSRMPrbsLJAasZpF+t3riI71BXed5ebIOYwQntykeZuhjsdweEc9BxH5Jc26w==}
@@ -3406,6 +3365,7 @@ packages:
   /@metamask/detect-provider@2.0.0:
     resolution: {integrity: sha512-sFpN+TX13E9fdBDh9lvQeZdJn4qYoRb/6QF2oZZK/Pn559IhCFacPMU1rMuqyXoFQF3JSJfii2l98B87QDPeCQ==}
     engines: {node: '>=14.0.0'}
+    dev: true
 
   /@metamask/safe-event-emitter@2.0.0:
     resolution: {integrity: sha512-/kSXhY692qiV1MXu6EeOZvg5nECLclxNXcKCxJ3cXQgYuRymRHpdx/t7JXfsK+JLjwA1e1c1/SBrlQYpusC29Q==}
@@ -4476,6 +4436,7 @@ packages:
   /@uniswap/token-lists@1.0.0-beta.31:
     resolution: {integrity: sha512-BQVoelKCRf64IToPEs1wxiXOnhr/ukwPOF78XG11PrTAOL4F8umjYKFb8ZPv1/dIJsPaC7GhLSriEqyp94SasQ==}
     engines: {node: '>=10'}
+    dev: true
 
   /@usedapp/core@1.2.10(ethers@5.7.2)(react@18.2.0):
     resolution: {integrity: sha512-5eFgXGgLUCGPMXNqLlPB9XNc/PIv/h+eUh08gAwe+AhQEYre3K5uk39WpVQmBPsGxUKYZygbILhC4eaLgxDQ4A==}
@@ -4496,26 +4457,6 @@ packages:
       - node-fetch
       - supports-color
     dev: true
-
-  /@usedapp/core@1.2.10(ethers@6.6.0)(react@18.2.0):
-    resolution: {integrity: sha512-5eFgXGgLUCGPMXNqLlPB9XNc/PIv/h+eUh08gAwe+AhQEYre3K5uk39WpVQmBPsGxUKYZygbILhC4eaLgxDQ4A==}
-    hasBin: true
-    peerDependencies:
-      ethers: ^5
-      react: '*'
-    dependencies:
-      '@metamask/detect-provider': 2.0.0
-      '@uniswap/token-lists': 1.0.0-beta.31
-      ethers: 6.6.0
-      fetch-mock: 9.11.0
-      lodash.merge: 4.6.2
-      lodash.pickby: 4.6.0
-      nanoid: 3.3.4
-      react: 18.2.0
-    transitivePeerDependencies:
-      - node-fetch
-      - supports-color
-    dev: false
 
   /@vanilla-extract/babel-plugin-debug-ids@1.0.1:
     resolution: {integrity: sha512-ynyKqsJiMzM1/yiIJ6QdqpWKlK4IMJJWREpPtaemZrE1xG1B4E/Nfa6YazuDWjDkCJC1tRIpEGnVs+pMIjUxyw==}
@@ -4587,7 +4528,7 @@ packages:
       '@babel/plugin-transform-react-jsx-source': 7.19.6(@babel/core@7.20.12)
       magic-string: 0.27.0
       react-refresh: 0.14.0
-      vite: 4.1.1(@types/node@18.15.13)
+      vite: 4.1.1(@types/node@18.13.0)
     transitivePeerDependencies:
       - supports-color
     dev: true
@@ -5536,10 +5477,6 @@ packages:
 
   /aes-js@4.0.0-beta.3:
     resolution: {integrity: sha512-/xJX0/VTPcbc5xQE2VUP91y1xN8q/rDfhEzLm+vLc3hYvb5+qHCnpJRuFcrKn63zumK/sCwYYzhG8HP78JYSTA==}
-
-  /aes-js@4.0.0-beta.5:
-    resolution: {integrity: sha512-G965FqalsNyrPqgEGON7nIx1e/OVENSgiEIzyC63haUMuvNnwIgIjMs52hlTCKhkBny7A2ORNlfY9Zu+jmGk1Q==}
-    dev: false
 
   /agent-base@6.0.2:
     resolution: {integrity: sha512-RZNwNclF7+MS/8bDg70amg32dyeZGZxiDuQmZxKLAlQjr3jGyLx+4Kkk58UO7D2QdgFIQCovuSuZESne6RG6XQ==}
@@ -6869,6 +6806,7 @@ packages:
   /core-js@3.31.0:
     resolution: {integrity: sha512-NIp2TQSGfR6ba5aalZD+ZQ1fSxGhDo/s1w0nx3RYzf2pnJxt7YynxFlFScP6eV7+GZsKO95NSjGxyJsU3DZgeQ==}
     requiresBuild: true
+    dev: true
 
   /core-util-is@1.0.3:
     resolution: {integrity: sha512-ZQBvi1DcpJ4GDqanjucZ2Hj3wEO5pZDS89BWbkcrvdxksJorwUDDZamX9ldFkp9aw2lmBDLgkObEA4DWNJ9FYQ==}
@@ -8531,22 +8469,6 @@ packages:
       - bufferutil
       - utf-8-validate
 
-  /ethers@6.6.0:
-    resolution: {integrity: sha512-7D2U+n8eZYmh592VZqap9vBu50jN7YUDHqAmwBYTMntmUKC9RVgcqcFbd+3DTCOQ1jMyK6QHv1usbcfgiGaHOA==}
-    engines: {node: '>=14.0.0'}
-    dependencies:
-      '@adraffy/ens-normalize': 1.9.2
-      '@noble/hashes': 1.1.2
-      '@noble/secp256k1': 1.7.1
-      '@types/node': 18.15.13
-      aes-js: 4.0.0-beta.5
-      tslib: 2.4.0
-      ws: 8.5.0
-    transitivePeerDependencies:
-      - bufferutil
-      - utf-8-validate
-    dev: false
-
   /ethjs-util@0.1.6:
     resolution: {integrity: sha512-CUnVOQq7gSpDHZVVrQW8ExxUETWrnrvXYvYz55wOU8Uj4VCgw56XC2B/fVqQN+f7gmrnRHSLVnFAwsCuNwji8w==}
     engines: {node: '>=6.5.0', npm: '>=3'}
@@ -8800,6 +8722,7 @@ packages:
       whatwg-url: 6.5.0
     transitivePeerDependencies:
       - supports-color
+    dev: true
 
   /figures@2.0.0:
     resolution: {integrity: sha512-Oa2M9atig69ZkfwiApY8F2Yy+tzMbazyvqv21R0NsSC8floSOC09BbT1ITWAdoMGQvJ/aZnR1KMwdx9tvHnTNA==}
@@ -9164,6 +9087,7 @@ packages:
 
   /glob-to-regexp@0.4.1:
     resolution: {integrity: sha512-lkX1HJXwyMcprw/5YUZc2s7DrpAiHB21/V+E1rHUrVNokkvB6bqMzT0VfV6/86ZNabt1k14YOIaT7nDvOX3Iiw==}
+    dev: true
 
   /glob@7.1.4:
     resolution: {integrity: sha512-hkLPepehmnKk41pUGm3sYxoFs/umurYfYJCerbXEyFIWcAzvpipAgVkBqqT9RBKMGjnq6kMuyYwha6csxbiM1A==}
@@ -10032,6 +9956,7 @@ packages:
 
   /is-subset@0.1.1:
     resolution: {integrity: sha512-6Ybun0IkarhmEqxXCNw/C0bna6Zb/TkfUX9UbwJtK6ObwAVCxmAP308WWTHviM/zAqXk05cdhYsUsZeGQh99iw==}
+    dev: true
 
   /is-symbol@1.0.4:
     resolution: {integrity: sha512-C/CPBqKWnvdcxqIARxyOh4v1UUEOCHpgDa0WYgpKDFMszcrPcffg5uhwSgPCLD2WWxmq6isisz87tzT01tuGhg==}
@@ -10560,9 +10485,11 @@ packages:
 
   /lodash.pickby@4.6.0:
     resolution: {integrity: sha512-AZV+GsS/6ckvPOVQPXSiFFacKvKB4kOQu6ynt9wz0F3LO4R9Ij4K1ddYsIytDpSgLz88JHd9P+oaLeej5/Sl7Q==}
+    dev: true
 
   /lodash.sortby@4.7.0:
     resolution: {integrity: sha512-HDWXG8isMntAyRF5vZ7xKuEvOhT4AhlRt/3czTSjvGUxjYCBVRQY48ViDHyfYz9VIoBkW4TMGQNapx+l3RUwdA==}
+    dev: true
 
   /lodash@4.17.21:
     resolution: {integrity: sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==}
@@ -12033,6 +11960,7 @@ packages:
 
   /path-to-regexp@2.2.1:
     resolution: {integrity: sha512-gu9bD6Ta5bwGrrU8muHzVOBFFREpp2iRkVfhBJahwJ6p6Xw20SjT0MxLnwkjOibQmGSYhiUnf2FLe7k+jcFmGQ==}
+    dev: true
 
   /path-to-regexp@6.2.1:
     resolution: {integrity: sha512-JLyh7xT1kizaEvcaXOQwOc2/Yhw6KZOvPf1S8401UyLk86CU79LN3vl7ztXGm/pZ+YjoyAJ4rxmHwbkBXJX+yw==}
@@ -12459,6 +12387,7 @@ packages:
     resolution: {integrity: sha512-wkvS7mL/JMugcup3/rMitHmd9ecIGd2lhFhK9N3UUQ450h66d1r3Y9nvXzQAW1Lq+wyx61k/1pfKS5KuKiyEbg==}
     engines: {node: '>=0.4.x'}
     deprecated: The querystring API is considered Legacy. new code should use the URLSearchParams API instead.
+    dev: true
 
   /querystringify@2.2.0:
     resolution: {integrity: sha512-FIqgj2EUvTa7R50u0rGsyTftzjYmv/a3hO345bZNrqabNqjtgiDMgmo4mkUjd+nzU5oF3dClKqFIPUKybUyqoQ==}
@@ -14036,6 +13965,7 @@ packages:
     resolution: {integrity: sha512-dTpowEjclQ7Kgx5SdBkqRzVhERQXov8/l9Ft9dVM9fmg0W0KQSVaXX9T4i6twCPNtYiZM53lpSSUAwJbFPOHxA==}
     dependencies:
       punycode: 2.3.0
+    dev: true
 
   /tr46@3.0.0:
     resolution: {integrity: sha512-l7FvfAHlcmulp8kr+flpQZmVwtu7nfRV7NZujtN0OqES8EL4O4e0qqzL0DC5gAvx/ZC/9lk6rhcUwYvkBnBnYA==}
@@ -14994,6 +14924,7 @@ packages:
 
   /webidl-conversions@4.0.2:
     resolution: {integrity: sha512-YQ+BmxuTgd6UXZW3+ICGfyqRyHXVlD5GtQr5+qjiNW7bF0cqrzX500HVXPBOvgXb5YnzDd+h0zqyv61KUD7+Sg==}
+    dev: true
 
   /webidl-conversions@7.0.0:
     resolution: {integrity: sha512-VwddBukDzu71offAQR975unBIGqfKZpM+8ZX6ySk8nYhVoo5CYaZyzt3YBvYtRtO+aoGlqxPg/B87NGVZ/fu6g==}
@@ -15032,6 +14963,7 @@ packages:
       lodash.sortby: 4.7.0
       tr46: 1.0.1
       webidl-conversions: 4.0.2
+    dev: true
 
   /whatwg-url@7.1.0:
     resolution: {integrity: sha512-WUu7Rg1DroM7oQvGWfOiAK21n74Gg+T4elXEQYkOhtyLeWiJFoOGLXPKI/9gzIie9CtwVLm8wtw6YJdKyxSjeg==}
