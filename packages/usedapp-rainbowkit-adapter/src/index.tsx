@@ -56,7 +56,7 @@ export const UseDappRainbowKitAdapter: React.FC = () => {
         ),
       )
     })
-  }, [connector, chain, address, activate, deactivate])
+  }, [connector, chain, address])
 
   return <></>
 }
